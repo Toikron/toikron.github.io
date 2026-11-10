@@ -24,9 +24,9 @@
         <a href="#measured">Benchmark</a>
         <a href="#architecture">35+ Kural</a>
         <a class="hide-sm" href="#pilot">3 Pilot Okul (141 Öğretmen)</a>
-        <a class="hide-sm" href="#live-demo">Canlı Demo</a>
+        <a class="hide-sm" href="#live-demo">Çizelge Denetleyici</a>
         <a class="hide-sm" href="/hdd-engine/neden/">Neden Yaptım</a>
-        <a class="sponsor-button" href="https://ekolnizam.com" target="_blank" rel="noopener">EkolNizam →</a>
+        <a class="sponsor-button" href="https://app.ekolnizam.com/demo/hdd?page=planlama" target="_blank" rel="noopener">Canlı Uygulama Demosu →</a>
       </nav>
       <label class="theme">
         <select class="theme-select" id="theme" aria-label="Tema seçimi">
@@ -49,13 +49,13 @@
 
       <div class="install">
         <div class="tabs" role="tablist" aria-label="Doğrulama bilgileri">
-          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-wasm" id="tab-wasm" tabindex="0">WASM Çözücü Çekirdeği</button>
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-wasm" id="tab-wasm" tabindex="0">Canlı Uygulama Demosu</button>
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-prg" id="tab-prg" tabindex="-1">Eski Sistemden (.prg / .roz) Geçiş</button>
           <button class="tab" role="tab" aria-selected="false" aria-controls="panel-json" id="tab-json" tabindex="-1">Saha Ölçüm Raporu</button>
         </div>
         <div class="cmd" id="panel-wasm" role="tabpanel" aria-labelledby="tab-wasm">
-          <pre><span class="prompt">$ </span><code>hdd-engine.wasm (10,16 MB · Rust + C++ OR-Tools CP-SAT · Tarayıcı İçi Web Worker)</code></pre>
-          <button class="btn" type="button" data-copy="cc4deceae27b641ce21ddc9a88d88640a329bc0f9f5e23d70c9d8993ea691e60">SHA-256 Kopyala</button>
+          <pre><span class="prompt">→ </span><code><a href="https://app.ekolnizam.com/demo/hdd?page=planlama" target="_blank" rel="noopener">https://app.ekolnizam.com/demo/hdd?page=planlama</a>  (Kayıt gerektirmeden tarayıcıda çalışan tam EkolNizam HDD demosu)</code></pre>
+          <a class="btn" href="https://app.ekolnizam.com/demo/hdd?page=planlama" target="_blank" rel="noopener" style="text-decoration:none;">Demoyu Aç ↗</a>
         </div>
         <div class="cmd" id="panel-prg" role="tabpanel" aria-labelledby="tab-prg" hidden>
           <pre><span class="prompt">&gt; </span><code>Progmatic (.prg: teacher, lesson, clss, room, common) ve aSc (.roz) → 2 saniyede .ekolnizam dönüşümü</code></pre>
@@ -732,9 +732,13 @@
     <!-- BÖLÜM 6: TARAYICIDA ÇALIŞAN İNTERAKTİF CANLI DEMO                  -->
     <!-- ================================================================= -->
     <section id="live-demo">
-      <h2>Çalışan canlı demo: 3 pilot okulun gerçek ders programı ve darboğaz denetleyicisi</h2>
+      <h2>Çalışan canlı demo ve 3 pilot okulun gerçek çizelge denetleyicisi</h2>
+      <aside class="sponsor" style="margin-top: 12px; margin-bottom: 24px;">
+        <p>EkolNizam HDD'nin gerçek "Ders Programını Yerleştir" ekranını tarayıcınızda canlı test edin:</p>
+        <a class="sponsor-button" href="https://app.ekolnizam.com/demo/hdd?page=planlama" target="_blank" rel="noopener">https://app.ekolnizam.com/demo/hdd?page=planlama →</a>
+      </aside>
       <p class="section-desc">
-        Aşağıdaki interaktif denetleyici doğrudan 3 pilot okulun gerçek çözüm verilerine (<code>640 saat</code> Fen Lisesi CP-SAT + LNS çözümü, aynı okulun <code>636 saatlik</code> Progmatic Son Yedek çıktısı, <code>280 saatlik</code> Orhaniye Ortaokulu çözümü ve <code>1.593 saatlik</code> Adana Meslek Lisesi atölye verisi) bağlıdır. Okul, sınıf veya öğretmen seçerek yerleşen tüm dersleri ve Progmatic'te ezilen kapalı saatleri canlı olarak karşılaştırabilirsiniz.
+        Tam uygulama demosunun yanı sıra, aşağıdaki interaktif denetleyici üzerinden 3 pilot okulun gerçek çözüm verilerini (<code>640 saat</code> Fen Lisesi CP-SAT + LNS çözümü, aynı okulun <code>636 saatlik</code> Progmatic Son Yedek çıktısı, <code>280 saatlik</code> Orhaniye Ortaokulu çözümü ve <code>1.593 saatlik</code> Adana Meslek Lisesi atölye verisi) doğrudan karşılaştırabilirsiniz:
       </p>
 
       <div class="demo-box">
@@ -791,8 +795,13 @@
       </p>
 
       <figure class="shot">
-        <img src="/assets/planning-workspace.png" alt="EkolNizam HDD Ders Programı Yerleştir Ekranı">
-        <figcaption>1. Ders Programı Yerleştir Ekranı: Üst barda Hızlı Güncelle, Yerleştirmeyi Başlat ve Kısıtları Kontrol Et araçları; sol panelde ders blokları ve öğretmen listesi; orta alanda canlı yerleştirme tablosu.</figcaption>
+        <img src="/assets/planning-workspace.png" alt="EkolNizam HDD Ders Programını Yerleştir Ekranı">
+        <figcaption>1. Ders Programını Yerleştir Ekranı (<a href="https://app.ekolnizam.com/demo/hdd?page=planlama" target="_blank" rel="noopener">Canlı Demoda Aç</a>): 268/268 ders saatinin 0 hata ve 0 uyarıyla yerleştiği, sağda Denetçi panelinin (%100 hazır) yer aldığı çalışma alanı.</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <img src="/assets/planning-progress.png" alt="EkolNizam HDD Canlı CP-SAT ve LNS Dağıtım İlerlemesi">
+        <figcaption>2. Canlı Optimizasyon İlerlemesi: CP-SAT tüm dersleri (268/268) yerleştirdikten sonra LNS aşamasının Kısa Gün, Asgari Yük Açığı ve Boş Ders Saati metriklerini anlık iyileştirmesi.</figcaption>
       </figure>
 
       <div class="shot-grid">
