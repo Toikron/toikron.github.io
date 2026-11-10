@@ -217,6 +217,10 @@ code {
   display: flex;
 }
 
+.bar-links a {
+  white-space: nowrap;
+}
+
 .bar a:not(.bar-name):not(.sponsor-button) {
   color: var(--color-text-secondary);
   text-decoration: none;
@@ -509,7 +513,7 @@ section > h2 {
   display: flex;
 }
 
-.stat-big strong {
+.stat-big > strong {
   font: 600 clamp(2.1rem, 5vw, 3rem)/1 var(--font-sans);
   letter-spacing: -0.03em;
   color: var(--color-brand);
@@ -519,6 +523,11 @@ section > h2 {
 .stat-big span {
   color: var(--color-text-secondary);
   font-size: 13.5px;
+}
+
+.stat-big span strong {
+  color: var(--color-text);
+  font-weight: 600;
 }
 
 .mini {
