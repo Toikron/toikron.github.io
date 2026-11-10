@@ -22,8 +22,9 @@
       <a class="bar-name" href="/"><span>toikron/</span>index</a>
       <nav class="bar-links" aria-label="Ana menü">
         <a href="/hdd-engine/">hdd-engine (CP-SAT)</a>
+        <a class="hide-sm" href="/hdd-engine/#cpsat-nedir">CP-SAT &amp; LNS Nedir?</a>
         <a class="hide-sm" href="/hdd-engine/#measured">Benchmark</a>
-        <a class="hide-sm" href="/hdd-engine/#pilot">Pilot Okullar</a>
+        <a class="hide-sm" href="/hdd-engine/#pilot">3 Pilot Okul</a>
         <a class="hide-sm" href="/hdd-engine/neden/">Mühendislik Notları</a>
         <a class="sponsor-button" href="/hdd-engine/#live-demo">Canlı Demo →</a>
       </nav>
@@ -42,9 +43,9 @@
     <div class="profile-header">
       <p class="eyebrow">TOIKRON / NIZAMNET</p>
       <h1>Toikron</h1>
-      <p class="role"><a href="https://nizamnet.com">NizamNet</a> ve <a href="https://ekolnizam.com">EkolNizam</a> kurucusu · Sistem ve Algoritma Mimarı</p>
+      <p class="role"><a href="https://nizamnet.com">NizamNet</a> ve <a href="https://ekolnizam.com">EkolNizam</a> kurucusu · Sistem ve Algoritma Geliştiricisi</p>
       <p class="lead">
-        Rust, C++ ve WebAssembly ile tarayıcı içinde çalışan kısıt optimizasyon motorları, masaüstü arayüz araçları ve eğitim kurumları için operasyon yazılımları geliştiriyorum.
+        Rust, C++ ve WebAssembly ile tarayıcı içinde çalışan kısıt optimizasyon motorları, masaüstü arayüz araçları ve eğitim kurumlarının iş yükünü hafifleten yazılımlar geliştiriyorum.
       </p>
       <div class="contact-links">
         <a href="mailto:toikron.dev@gmail.com">E-posta (toikron.dev@gmail.com)</a>
@@ -60,27 +61,27 @@
       <span class="tag">Rust + OR-Tools CP-SAT WASM</span>
     </h2>
     <p>
-      Şu anki ana odağım <a href="/hdd-engine/"><strong>hdd-engine</strong></a>: Türkiye'deki okulların haftalık ders dağıtımı, nöbet ve derslik atama problemini çözmek için <strong>Rust</strong> ve <strong>Google OR-Tools CP-SAT (C++)</strong> kullanarak geliştirdiğim, doğrudan tarayıcı içindeki bir Web Worker'da çalışan 10,16 MB'lık WebAssembly çizelgeleme motoru.
+      Şu anki ana odağım <a href="/hdd-engine/"><strong>hdd-engine</strong></a>: Türkiye'deki okulların haftalık ders dağıtımı, nöbet ve derslik yerleştirme problemini çözmek için <strong>Rust</strong> ve <strong>Google OR-Tools CP-SAT (C++)</strong> kullanarak geliştirdiğim, doğrudan tarayıcı içinde çalışan WebAssembly optimizasyon motoru.
     </p>
     <p>
-      Klasik masaüstü ders programı yazılımları (Progmatic, aSc Timetables) rastgele yer değiştirme sezgileriyle çalışır; kurallar daraldığında saatlerce dönüp kilitlenir veya öğretmenlerin kapalı saatlerini ezer. <code>hdd-engine</code> ise <strong>34 katı kısıt ailesini (<code>ConstraintKind</code>)</strong> ve <strong>43 kalite metriğini (<code>QualityMetric</code>)</strong> deterministik olarak modeller. Çözüm imkânsız olduğunda Hall eşleşme teoremi ve CP-SAT varsayım çekirdeğiyle <strong>20,6 milisaniyede</strong> darboğazın tam saatini ve şubesini kanıtlar; ardından en az müdahaleyle (örneğin 412 kapalı saatin 411'ini koruyup yalnızca 1 hücreyi açarak) <strong>640/640 ders saatini 0 katı ihlalle</strong> yerleştirir.
+      Okullarda kullanılan klasik masaüstü ders dağıtım programları (Progmatic, aSc Timetables, Bilsa vb.) dersleri rastgele yer değiştirme denemeleriyle dizmeye çalışır. Kısıtlar biraz sıkıştığında Progmatic son 2-4 dersi, aSc ise son 1-2 dersi açıkta bırakır; üstelik öğretmenlere 3-4 saatlik boşluklar yazar. İdareci hem o açıkta kalan dersleri yerleştirmek hem de öğretmen okulda boşuna beklemesin diye 100. denemeye kadar kısıt silip elle ders taşır.
     </p>
     <p>
-      Ayrıca okulların eski <strong>Progmatic (<code>.prg</code>)</strong> ve <strong>aSc (<code>.roz</code> / XML)</strong> dosyalarını bayt düzeyinde okuyan temiz oda (clean-room) ikili ayrıştırıcı sayesinde kurumlar yıllarca biriktirdikleri verileri tek tıkla yeni sisteme taşır. Motor, <strong>3 pilot okulda 141 öğretmen, 69 şube ve 2.513 haftalık ders saati</strong> üzerinde doğrulandı.
+      <code>hdd-engine</code> ise hocayı deneme-yanılma ile uğraştırmaz; 35'ten fazla okul kuralını aynı anda değerlendirip <strong>en iyi tabloyu tek seferde bulmayı</strong> hedefler. Kurallarda matematiksel bir imkânsızlık varsa neden olmadığını <strong>20 milisaniyede</strong> açıkça söyler ve hangi tek saatin açılması gerektiğini hazır çözüm olarak sunar. Ayrıca okulların eski <strong>Progmatic (<code>.prg</code>)</strong> ve <strong>aSc (<code>.roz</code>)</strong> yedeklerini doğrudan tarayıcıda okuyarak sıfırdan veri girme zahmetini bitirir. Sistem <strong>3 pilot okulda 141 öğretmen, 69 şube ve 2.513 haftalık ders saati</strong> üzerinde doğrulandı.
     </p>
     <p>
-      <a href="/hdd-engine/"><strong>Teknik mimariyi, Progmatic benchmarklarını, 35+ kural tablosunu ve canlı demoyu incele →</strong></a>
+      <a href="/hdd-engine/"><strong>CP-SAT ve LNS'nin nasıl çalıştığını, Progmatic/aSc karşılaştırmasını, 35+ kuralı ve canlı demoyu incele →</strong></a>
     </p>
 
     <h2 id="ekolnizam-ekosistem">
-      <span>EkolNizam Ürün Ailesi (EOS, YRT, EKP ve LITE)</span>
+      <span>Tamamlanan Araçlar (LITE) ve Yapım Aşamasındaki Modüller (EOS, YRT, EKP)</span>
       <span class="tag">SolidJS · Drizzle · Turso · WASM</span>
     </h2>
     <p>
-      <code>hdd-engine</code> etrafında kurduğum ortak veri ve yetki altyapısı üzerinde bir okulun ihtiyaç duyduğu diğer operasyonel modülleri geliştiriyorum. <strong>EkolNizam EOS</strong>, tarayıcı içi görüntü işleme (OpenCV/WASM) ile ek optik okuyucu cihaz gerektirmeden telefon veya tarayıcı çıktısından sınav kağıtlarını okur. <strong>EkolNizam YRT</strong> pansiyon ve belletmen nöbetlerini adalet skoruyla dağıtırken, <strong>EkolNizam EKP</strong> aylık öğretmen ders yüklerini, nöbetleri ve 10'a 1 hazırlık kurallarını hesaplayıp doğrudan Maliye Bakanlığı KBS formatında Excel çıktısı üretir.
+      Şu an <strong>EkolNizam HDD (Haftalık Ders Dağıtımı)</strong> ve okulların günlük evrak işlerini hızlandıran <strong>42 araçlık LITE paketi</strong> ile <strong>e-Okul Chrome eklentisi</strong> tamamlanmış ve aktif kullanımdadır.
     </p>
     <p>
-      Okulların günlük evrak yükünü azaltmak için hazırladığım <strong>42 araçlık LITE paketi</strong> ve doğrudan e-Okul ekranlarıyla konuşan <strong>Chrome eklentisi</strong> de aynı çatı altında çalışır.
+      Aynı ortak altyapı üzerinde geliştirmeye devam ettiğim (şu an <strong>yapım aşamasında olan ve henüz tamamlanmayan</strong>) kardeş modüller ise şunlardır: ek cihaz gerektirmeden sınav kağıdı okuyan <strong>Evrensel Optik Okuma (EOS)</strong>, pansiyon ve belletmen nöbetlerini adaletli dağıtan <strong>YRT</strong> ve haftalık ders yüklerinden Maliye Bakanlığı formatında aylık çizelge üreten <strong>Ek Ders Puantaj (EKP)</strong> modülü.
     </p>
 
     <h2 id="cpsat-js">
@@ -88,7 +89,7 @@
       <span class="tag">C++ · Emscripten · FFI</span>
     </h2>
     <p>
-      Google OR-Tools CP-SAT çözücüsünü tarayıcıların 2 GiB WebAssembly bellek sınırları içinde kararlı çalıştırmak için <a href="https://github.com/Toikron/cpsat-js">cpsat-js</a> ve özel <code>cpsat-rs</code> FFI köprüsü üzerinde çalışıyorum. Büyük okul modellerinde protobuf kopyalarını sınırlayan bellek korumaları (<code>allows_build</code> / <code>allows_query</code>), atomik iptal bayrakları (<code>SharedArrayBuffer</code> / <code>Atomics</code>) ve canlı aday yayınlama (incumbent callback) mekanizmaları bu katmanda çalışır.
+      Google OR-Tools CP-SAT çözücüsünü tarayıcıların 2 GiB WebAssembly bellek sınırları içinde kararlı çalıştırmak için <a href="https://github.com/Toikron/cpsat-js">cpsat-js</a> ve özel <code>cpsat-rs</code> köprüsü üzerinde çalışıyorum. Büyük okul modellerinde bellek kullanımını sınırlayan korumalar, anlık iptal bayrakları ve canlı ilerleme bildirimleri bu katmanda çalışır.
     </p>
 
     <h2 id="imdesignmanager">
@@ -96,7 +97,7 @@
       <span class="tag">C++ · Dear ImGui · Açık Kaynak</span>
     </h2>
     <p>
-      Dear ImGui ve <code>ImDrawList</code> üzerine inşa ettiğim gerçek zamanlı arayüz oluşturucu ve tasarım yöneticisi. Masaüstü araçları ve oyun motoru arayüzleri geliştirirken bileşen yerleşimlerini, etkileşim durumlarını ve animasyon eğrilerini anlık görsel geri bildirimle tasarlamak için açık kaynak olarak yayınladım. Kaynak koduna <a href="https://github.com/Toikron/ImDesignManager">GitHub üzerinden</a> ulaşabilirsiniz.
+      Dear ImGui ve <code>ImDrawList</code> üzerine inşa ettiğim gerçek zamanlı arayüz oluşturucu ve tasarım yöneticisi. Masaüstü araçları geliştirirken bileşen yerleşimlerini, etkileşim durumlarını ve animasyon eğrilerini anlık görsel geri bildirimle tasarlamak için açık kaynak olarak yayınladım (<a href="https://github.com/Toikron/ImDesignManager">GitHub deposu</a>).
     </p>
 
     <h2 id="dbvisualizer">
@@ -104,7 +105,7 @@
       <span class="tag">SQLite · Tek Dosya · Açık Kaynak</span>
     </h2>
     <p>
-      Yerel <code>.db</code> ve SQLite dosyalarını sunucu veya kurulum gerektirmeden doğrudan tarayıcıda açıp tablo şemalarını, indeksleri ve satır verilerini incelemeye yarayan tek dosyalık (HTML/CSS/JS) hafif veri tabanı görselleştiricisi. Yerel LibSQL ve SQLite tabanlı projelerde hızlı hata ayıklamak için geliştirdim (<a href="https://github.com/Toikron/DBVisualizer-for-Sqlite">GitHub deposu</a>).
+      Yerel <code>.db</code> ve SQLite dosyalarını sunucu veya kurulum gerektirmeden doğrudan tarayıcıda açıp tablo şemalarını ve satır verilerini incelemeye yarayan tek dosyalık (HTML/CSS/JS) veri tabanı görselleştiricisi (<a href="https://github.com/Toikron/DBVisualizer-for-Sqlite">GitHub deposu</a>).
     </p>
 
     <h2 id="fizik-ve-3d">
@@ -112,7 +113,7 @@
       <span class="tag">Rust · 3D · Simülasyon</span>
     </h2>
     <p>
-      Kısıt çözme (constraint solving) matematiğini yalnızca çizelgelemede değil, gerçek zamanlı 3B fizik simülasyonlarında da kullanıyorum. <code>avbd_rs</code> (Augmented Vertex Block Descent) ile Rust üzerinde katı cisim ve etkileşim çözücüleri denerken, <code>EdgeWeaver</code> ile Blender içinde topoloji ve kenar akışı otomasyonu sağlayan eklentiler geliştiriyorum.
+      Kısıt çözme matematiğini 3B fizik simülasyonlarında da kullanıyorum. <code>avbd_rs</code> (Augmented Vertex Block Descent) ile Rust üzerinde katı cisim çözücüleri denerken, <code>EdgeWeaver</code> ile Blender içinde topoloji ve kenar akışı otomasyonu sağlayan eklentiler geliştiriyorum.
     </p>
 
     <h2 id="yazilar">
@@ -121,19 +122,19 @@
     <ul class="posts">
       <li>
         <time>Kas 2026</time>
-        <span><a href="/hdd-engine/"><strong>toikron/hdd-engine:</strong> 35+ kuralı değerlendiren CP-SAT + Guided LNS motoru, Progmatic karşılaştırması ve 3 pilot okul verisi</a></span>
+        <span><a href="/hdd-engine/"><strong>toikron/hdd-engine:</strong> CP-SAT ve LNS nedir, 35+ kural nasıl çözülür, Progmatic/aSc karşılaştırması ve 3 pilot okul sonuçları</a></span>
       </li>
       <li>
         <time>Eki 2026</time>
-        <span><a href="/hdd-engine/neden/"><strong>Neden kendi çözücü motorumu yazdım:</strong> 90'lardan kalma okul yazılımlarının kilitlenme sebebi ve Clean-Room <code>.prg</code> dönüşümü</a></span>
+        <span><a href="/hdd-engine/neden/"><strong>Neden kendi çözücü motorumu yazdım:</strong> 100 deneme çilesini bitirmek ve eski <code>.prg</code> dosyalarını tarayıcıda okumak</a></span>
       </li>
       <li>
         <time>Eyl 2026</time>
-        <span><a href="/hdd-engine/#diagnosis"><strong>20,6 milisaniyede darboğaz kanıtı:</strong> 8 sınıf ve 7 öğretmen çelişkisinde Hall eşleşmesi ve kontrollü kurtarma</a></span>
+        <span><a href="/hdd-engine/#cpsat-nedir"><strong>Herkesin anlayacağı dille CP-SAT ve LNS:</strong> Gözü bağlı deneme-yanılma ile matematiksel optimizasyon arasındaki fark</a></span>
       </li>
       <li>
         <time>Ağu 2026</time>
-        <span><a href="/hdd-engine/#prg-binary"><strong>Progmatic ikili dosya şeması:</strong> <code>teacher.prg</code> (7.060 B) ve <code>common.prg</code> (2.764 B) kayıtlarını tarayıcıda çözmek</a></span>
+        <span><a href="/hdd-engine/#prg-binary"><strong>Progmatic ikili dosya şeması:</strong> <code>teacher.prg</code> ve <code>common.prg</code> dosyalarını sıfır veri kaybıyla dönüştürmek</a></span>
       </li>
     </ul>
   </main>

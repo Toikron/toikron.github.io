@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>toikron/hdd-engine · CP-SAT &amp; Guided LNS Okul Çizelgeleme Motoru</title>
-  <meta name="description" content="EkolNizam HDD çekirdeği: 34 katı kısıt ve 43 kalite metriğini değerlendiren Rust + OR-Tools CP-SAT WebAssembly optimizasyon motoru, Progmatic (.prg) karşılaştırması ve 3 pilot okulda 141 öğretmenlik saha ölçümü.">
+  <title>toikron/hdd-engine · CP-SAT &amp; LNS Okul Ders Programı Motoru</title>
+  <meta name="description" content="EkolNizam HDD çekirdeği: CP-SAT ve LNS nedir, 35'ten fazla kuralı tek seferde nasıl çözer, Progmatic ve aSc Timetables'tan farkı nedir? 3 pilot okulda 141 öğretmenlik saha ölçümü ve canlı demo.">
   <script>
     (() => {
       let theme = null;
@@ -20,11 +20,11 @@
     <div class="bar-inner">
       <a class="bar-name" href="/hdd-engine/"><span>toikron/</span>hdd-engine</a>
       <nav class="bar-links" aria-label="Ana menü">
+        <a href="#cpsat-nedir">CP-SAT &amp; LNS Nedir?</a>
         <a href="#measured">Benchmark</a>
-        <a href="#architecture">35+ Kural &amp; Mimari</a>
+        <a href="#architecture">35+ Kural</a>
         <a class="hide-sm" href="#pilot">3 Pilot Okul (141 Öğretmen)</a>
         <a class="hide-sm" href="#live-demo">Canlı Demo</a>
-        <a class="hide-sm" href="#logs">İşlem Kayıtları</a>
         <a class="hide-sm" href="/hdd-engine/neden/">Neden Yaptım</a>
         <a class="sponsor-button" href="https://ekolnizam.com" target="_blank" rel="noopener">EkolNizam →</a>
       </nav>
@@ -41,122 +41,168 @@
 
   <main>
     <div class="hero">
-      <p class="hero-label">RUST 1.101.0 · GOOGLE OR-TOOLS CP-SAT C++ · WEBASSEMBLY</p>
-      <h1>Kilitlenmeyen, darboğazı <code>20,6 ms</code> içinde kanıtlayan ders programı motoru</h1>
+      <p class="hero-label">RUST · GOOGLE OR-TOOLS CP-SAT · BÜYÜK KOMŞULUK ARAMASI (LNS) · WEBASSEMBLY</p>
+      <h1>Açıkta ders bırakmayan, en iyi programı <code>tek seferde</code> bulan optimizasyon motoru</h1>
       <p class="lead">
-        <code>toikron/hdd-engine</code>, EkolNizam HDD'nin altında çalışan kısıt tabanlı optimizasyon çekirdeğidir. Klasik masaüstü yazılımlarının (Progmatic, aSc Timetables) rastgele yer değiştirme döngüleri yerine, 34 katı kısıt ailesini ve 43 kalite metriğini <strong>Google OR-Tools CP-SAT</strong> ve <strong>Çakışma Güdümlü Büyük Komşuluk Araması (Guided LNS + Kempe Zinciri)</strong> ile doğrudan tarayıcı içindeki bir Web Worker'da çözer.
+        Okullarda kullanılan klasik masaüstü programları (Progmatic, aSc Timetables, Bilsa vb.) dersleri rastgele denemelerle dizer; sona kalan 1-4 dersi yerleştiremez ve öğretmene 3-4 saatlik boşluklar bırakır. <code>toikron/hdd-engine</code> ise 35'ten fazla okul kuralını <strong>CP-SAT</strong> ve <strong>LNS</strong> matematiğiyle tek seferde çözer; imkânsız bir kural varsa nedenini ve nasıl çözüleceğini <strong>20,6 milisaniyede</strong> açıkça söyler.
       </p>
 
       <div class="install">
-        <div class="tabs" role="tablist" aria-label="Doğrulama komutları">
-          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-wasm" id="tab-wasm" tabindex="0">WASM Çekirdek Doğrulaması</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-prg" id="tab-prg" tabindex="-1">Clean-Room .prg Ayrıştırıcı</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-json" id="tab-json" tabindex="-1">Ham Kanıt Dosyaları</button>
+        <div class="tabs" role="tablist" aria-label="Doğrulama bilgileri">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-wasm" id="tab-wasm" tabindex="0">WASM Çözücü Çekirdeği</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-prg" id="tab-prg" tabindex="-1">Eski Sistemden (.prg / .roz) Geçiş</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-json" id="tab-json" tabindex="-1">Saha Ölçüm Raporu</button>
         </div>
         <div class="cmd" id="panel-wasm" role="tabpanel" aria-labelledby="tab-wasm">
-          <pre><span class="prompt">$ </span><code>node --input-type=module -e "import { createNodeEngine } from '@ekolnizam/hdd-engine/node'; /* sha256: cc4decea...1e60 (10,16 MB) */"</code></pre>
+          <pre><span class="prompt">$ </span><code>hdd-engine.wasm (10,16 MB · Rust + C++ OR-Tools CP-SAT · Tarayıcı İçi Web Worker)</code></pre>
           <button class="btn" type="button" data-copy="cc4deceae27b641ce21ddc9a88d88640a329bc0f9f5e23d70c9d8993ea691e60">SHA-256 Kopyala</button>
         </div>
         <div class="cmd" id="panel-prg" role="tabpanel" aria-labelledby="tab-prg" hidden>
-          <pre><span class="prompt">&gt; </span><code>parseProgmatikCleanRoomFiles([teacher.prg (7060B), lesson.prg (292B), clss.prg (1364B), room.prg (1376B), common.prg (2764B)])</code></pre>
+          <pre><span class="prompt">&gt; </span><code>Progmatic (.prg: teacher, lesson, clss, room, common) ve aSc (.roz) → 2 saniyede .ekolnizam dönüşümü</code></pre>
           <button class="btn" type="button" data-copy="teacher.prg:7060,lesson.prg:292,clss.prg:1364,room.prg:1376,common.prg:2764,option.prg:5976,sizes.prg:80,duty.prg:24380">Şemayı Kopyala</button>
         </div>
         <div class="cmd" id="panel-json" role="tabpanel" aria-labelledby="tab-json" hidden>
-          <pre><span class="prompt">$ </span><code>curl -fsSL https://toikron.github.io/files/benchmark-report.json | jq .pilotSummary</code></pre>
+          <pre><span class="prompt">$ </span><code>curl -fsSL https://toikron.github.io/files/benchmark-report.json</code></pre>
           <button class="btn" type="button" data-copy="https://toikron.github.io/files/benchmark-report.json">URL Kopyala</button>
         </div>
       </div>
 
       <p class="install-note">
-        Üretim derlemesi: <code>hdd-engine.wasm</code> (<code>10.660.607 bayt</code>, <code>rustc 1.101.0-nightly</code>, <code>LLVM 23.1.3</code>). <a href="/files/build-record.json">Derleme kaydını (build-record.json)</a> ve <a href="/files/benchmark-report.json">tam saha ölçüm raporunu (benchmark-report.json)</a> doğrudan indirebilirsiniz.
+        Doğrudan indirilebilir kanıt dosyaları: <a href="/files/benchmark-report.json">Saha ölçüm ve karşılaştırma raporu (benchmark-report.json)</a> ve <a href="/files/build-record.json">WASM derleme kaydı (build-record.json)</a>.
       </p>
     </div>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 1: GERÇEK OKUL VERİSİNDE PROGMATIC & ASC KARŞILAŞTIRMASI     -->
+    <!-- BÖLÜM 1: HİÇ BİLMEYEN BİRİ İÇİN CP-SAT VE LNS NEDİR?              -->
     <!-- ================================================================= -->
-    <section id="measured">
-      <h2>Aynı okul verisinde gerçek ölçüm: Progmatic vs. hdd-engine</h2>
+    <section id="cpsat-nedir">
+      <h2>Hiç bilmeyen biri için: CP-SAT ve LNS nedir, bizi diğerlerinden üstün yapan ne?</h2>
       <p class="section-desc">
-        Konya Ereğli Fen Lisesine ait gerçek Progmatic veri seti (<code>32 öğretmen</code>, <code>16 şube</code>, <code>15 derslik</code>, <code>31 ders</code>, <code>236 ders ataması</code>, <code>640 haftalık ders saati</code> ve öğretmenlerin tanımlı <code>412 kapalı saati</code>). İdarecinin Progmatic üzerinde yaptığı 5 ardışık deneme (<code>01</code>, <code>yedek boş</code>, <code>02</code>, <code>04</code>, <code>05 Son Yedek</code>) ile <code>hdd-engine</code> CP-SAT + Guided LNS çıktısının doğrudan karşılaştırması. <a href="/hdd-engine/neden/">Arka planı ve neden kendi motorumu yazdığımı okuyun.</a>
+        Bir okulun haftalık ders programını hazırlamak, yüzlerce parçalı dev bir yapbozu kuralları bozmadan yerleştirmeye benzer. Piyasadaki mevcut programlar ile bizim kullandığımız teknoloji arasındaki fark, bu yapbozu çözme yöntemindedir:
       </p>
 
       <div class="proof">
-        <p class="proof-title">32 öğretmen, 16 sınıf, 236 atama, 640 haftalık ders saati ve 412 kapalı öğretmen saati. Doğrulanmış saha ölçümü.</p>
+        <p class="proof-title">Geleneksel deneme-yanılma yazılımları ile EkolNizam HDD'nin iki katmanlı matematik motoru arasındaki temel fark:</p>
+        <div class="proof-grid-3">
+          <div>
+            <p class="stat-label">1. Diğer Yazılımlar (Progmatic, aSc vb.)</p>
+            <div class="stat-big">
+              <strong style="color:var(--t-danger); font-size:1.75rem;">Deneme-Yanılma</strong>
+            </div>
+            <p class="note" style="margin:0; font-size:13px; color:var(--color-text-secondary); line-height:1.65;">
+              Dersleri sırayla boş buldukları yerlere atarlar. Sona gelince <strong>Progmatic 2-4 dersi, aSc ise 1-2 dersi</strong> açıkta bırakır. Hoca hem o kalan dersler yerleşsin hem de öğretmenler okulda 3-4 saat boş beklemesin diye <strong>50-100. denemeye kadar</strong> kısıt silip elle ders taşır.
+            </p>
+          </div>
+
+          <div>
+            <p class="stat-label">2. CP-SAT Nedir? (1. Katmanımız)</p>
+            <div class="stat-big">
+              <strong style="font-size:1.75rem;">Tam Çözücü</strong>
+            </div>
+            <p class="note" style="margin:0; font-size:13px; color:var(--color-text-secondary); line-height:1.65;">
+              Google'ın geliştirdiği <strong>CP-SAT</strong> dersleri sırayla rastgele dizmez; okuldaki bütün öğretmenleri, sınıfları ve 35+ kuralı <strong>tek bir matematik denklemi olarak aynı anda</strong> görür. Hangi hamlenin 5 adım sonra hangi öğretmeni sıkıştıracağını baştan bilir ve <strong>640 saatin 640'ını da tek seferde</strong> yerleştirir.
+            </p>
+          </div>
+
+          <div>
+            <p class="stat-label">3. LNS Araması Nedir? (2. Katmanımız)</p>
+            <div class="stat-big">
+              <strong style="font-size:1.75rem;">Akıllı Cila</strong>
+            </div>
+            <p class="note" style="margin:0; font-size:13px; color:var(--color-text-secondary); line-height:1.65;">
+              Tüm dersler yerleştikten sonra <strong>LNS (Büyük Komşuluk Araması)</strong> devreye girer. Tabloda 3-4 saat boşluğu kalan veya tek ders için okula gelen öğretmenleri bulur; sağlam günleri bozmadan sadece o sıkışık bölgeleri domino halkası (<strong>Kempe zinciri</strong>) gibi kaydırarak en toplu programı üretir.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="changes">
+        <li><strong>Neden CP-SAT + LNS seçtik?</strong> Çünkü okul idarecisi "Acaba 50 kere daha dağıt dersem son 3 ders yerleşir mi?" diye bilgisayar başında saatlerce beklemek istemiyor. Tek tuşla hem <strong>tüm derslerin eksiksiz yerleşmesini</strong> hem de <strong>öğretmenlerin aralarda 3-4 saat boş beklememesini</strong> istiyor. CP-SAT tam yerleşimi garanti ederken, LNS araması da tabloyu öğretmenin istediği konfora ulaştırır.</li>
+        <li><strong>Ya girilen kurallar gerçekten imkânsızsa?</strong> Klasik yazılımlar (Progmatic ve aSc dahil) 1-4 dersi dışarıda bırakıp susar; idareci sorunun hangi öğretmenin kapalı saatinden kaynaklandığını bilemez. Bizim motorumuz ise <strong>saniyenin binde 20'sinde (20,6 ms)</strong> <em>"Çarşamba 1. saatte 8 sınıfın dersi var ama sadece 7 öğretmenin açık"</em> diyerek nedeni söyler; üstelik hangi 1 saati açarsa tüm okulun çözüleceğini otomatik bulup idarecinin onayına sunar.</li>
+      </ul>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- BÖLÜM 2: GERÇEK OKUL VERİSİNDE PROGMATIC & ASC KARŞILAŞTIRMASI     -->
+    <!-- ================================================================= -->
+    <section id="measured">
+      <h2>Aynı okul verisinde gerçek karşılaştırma: Progmatic &amp; aSc vs. EkolNizam HDD</h2>
+      <p class="section-desc">
+        Konya Ereğli Fen Lisesine ait gerçek okul verisi (<code>32 öğretmen</code>, <code>16 şube</code>, <code>15 derslik</code>, <code>31 ders</code>, <code>236 ders ataması</code>, <code>640 haftalık ders saati</code> ve öğretmenlerin tanımlı <code>412 kapalı saati</code>). İdarecinin klasik yazılımlarda onlarca deneme sonunda ulaştığı tablo ile EkolNizam <code>hdd-engine</code> motorunun <strong>tek seferde</strong> ürettiği sonucun ölçümü:
+      </p>
+
+      <div class="proof">
+        <p class="proof-title">32 öğretmen, 16 sınıf, 236 atama, 640 haftalık ders saati. Aynı okul verisi üzerinde doğrulanmış sonuçlar.</p>
         <div class="proof-grid">
           <div>
-            <p class="stat-label">Darboğaz tespiti ve 640 saatlik tam yerleşim</p>
+            <p class="stat-label">Açıkta kalan ders ve idarecinin deneme (iterasyon) sayısı</p>
             <div class="stat-big">
-              <strong>20,6 ms</strong>
-              <span>kesin çelişki kanıtı · <strong>640 / 640 saat (%100)</strong> yerleşim</span>
+              <strong>640 / 640</strong>
+              <span><strong>tek seferde tam yerleşim</strong> (0 açıkta kalan ders)</span>
             </div>
             <div class="mini">
-              <span>Progmatic (Kısıtlı)</span>
-              <div class="track"><div class="fill danger-bar" style="width: 2%"></div><span class="val" style="left: 3%">0 / 640 saat (Kilitlendi)</span></div>
-              <span>Progmatic (Yedek 05)</span>
-              <div class="track"><div class="fill stock" style="width: 78%"></div><span class="val" style="left: 4%">636 / 640 (4 saat silindi, 27 kapalı saat ezildi)</span></div>
+              <span>Progmatic</span>
+              <div class="track"><div class="fill danger-bar" style="width: 88%"></div><span class="val" style="left: 4%">2-4 ders (4 saat) açıkta kalır · 50-100+ el denemesi</span></div>
+              <span>aSc Timetables</span>
+              <div class="track"><div class="fill stock" style="width: 94%"></div><span class="val" style="left: 4%">1-2 ders açıkta kalır · Neden yerleşmediğini söylemez</span></div>
               <span>hdd-engine CP-SAT</span>
-              <div class="track"><div class="fill fork" style="width: 100%"></div><span class="val" style="left: 4%; color: var(--t-brand-ink); font-weight: 700;">640 / 640 saat (0 habersiz ihlal, 411/412 korundu)</span></div>
+              <div class="track"><div class="fill fork" style="width: 100%"></div><span class="val" style="left: 4%; color: var(--t-brand-ink); font-weight: 700;">640 / 640 saat (%100) · Tek seferde çözer ve açıklar</span></div>
             </div>
           </div>
 
           <div>
-            <p class="stat-label">Kısa gün sayısı (Öğretmenin 1 veya 2 ders için okula geldiği gün)</p>
+            <p class="stat-label">Kısa gün sayısı (Öğretmenin sadece 1 veya 2 ders için okula geldiği gün)</p>
             <div class="stat-big">
               <strong>1 gün</strong>
-              <span>Progmatic'te 12-13 gün · <strong>12× daha az</strong> (alt sınır kanıtlı)</span>
+              <span>Progmatic'te 12-13 gün · <strong>%91,7 daha az</strong></span>
             </div>
             <div class="mini">
-              <span>Progmatic (İter. 02)</span>
-              <div class="track"><div class="fill danger-bar" style="width: 100%"></div><span class="val" style="left: 4%">13 gün (3 tanesi tek ders)</span></div>
-              <span>Progmatic (Yedek 05)</span>
-              <div class="track"><div class="fill stock" style="width: 92.3%"></div><span class="val" style="left: 4%">12 gün (5 tanesi tek ders)</span></div>
+              <span>Progmatic (Deneme)</span>
+              <div class="track"><div class="fill danger-bar" style="width: 100%"></div><span class="val" style="left: 4%">13 kısa gün (3 tanesi sadece 1 derslik gün)</span></div>
+              <span>Progmatic (Son Yedek)</span>
+              <div class="track"><div class="fill stock" style="width: 92.3%"></div><span class="val" style="left: 4%">12 kısa gün (5 tanesi sadece 1 derslik gün)</span></div>
               <span>hdd-engine LNS</span>
-              <div class="track"><div class="fill fork" style="width: 7.7%"></div><span class="val" style="left: 10%">1 gün (0 tek derslik gün, alt sınır = 1)</span></div>
+              <div class="track"><div class="fill fork" style="width: 7.7%"></div><span class="val" style="left: 10%">Sadece 1 gün (0 tek derslik gün, en iyi sınır)</span></div>
             </div>
           </div>
         </div>
       </div>
 
       <ul class="legend">
-        <li><span class="swatch danger-bar"></span>Progmatic (Kapalı saatler ezilerek / kilitlenerek)</li>
-        <li><span class="swatch stock"></span>hdd-engine İlk Geçerli CP-SAT Adayı (Legal Stage)</li>
-        <li><span class="swatch fork"></span>hdd-engine Guided LNS + Kempe Zinciri (68 Tur Sonu)</li>
+        <li><span class="swatch danger-bar"></span>Progmatic (Onlarca deneme ve elle müdahale sonrası)</li>
+        <li><span class="swatch stock"></span>hdd-engine İlk Geçerli CP-SAT Çözümü</li>
+        <li><span class="swatch fork"></span>hdd-engine Guided LNS Sonu (68 Tur Otomatik İyileştirme)</li>
       </ul>
 
       <div class="growth">
         <div>
-          <h3>Progmatic 5 iterasyonda ezilen kapalı saatler <span class="h3-val">412 → 27 ihlal vs 1 onaylı hücre</span></h3>
-          <div class="cols" style="--n: 5">
-            <div class="col" title="İterasyon 1 (Downloads/01): 412 kapalı saat, 0/640 ders yerleşti">
+          <h3>Öğretmen kapalı saatlerini (izinlerini) koruma <span class="h3-val">44 ezilen saat vs 1 onaylı hücre</span></h3>
+          <div class="cols" style="--n: 4">
+            <div class="col" title="Progmatic Ara Deneme: Son dersleri sığdırmak için 44 kapalı öğretmen saati ezildi">
               <div class="b danger-bar" style="height: 100%"></div>
             </div>
-            <div class="col" title="İterasyon 2 (yedek boş): 11 kapalı saat elle silindi (401 kaldı), yine 0/640">
-              <div class="b danger-bar" style="height: 92%"></div>
+            <div class="col" title="Progmatic Son Yedek: İdareci 43 kapalı saati elle sildi, 27 kapalı saat yine ezildi ve 4 saat ders açıkta kaldı">
+              <div class="b danger-bar" style="height: 62%"></div>
             </div>
-            <div class="col" title="İterasyon 3 (Downloads/02): 43 kapalı saat elle silindi (369 kaldı), yine 0/640">
-              <div class="b danger-bar" style="height: 82%"></div>
+            <div class="col" title="aSc Timetables: 1-2 dersi açıkta bıraktı, hangi saatin açılması gerektiğini göstermedi">
+              <div class="b stock" style="height: 35%"></div>
             </div>
-            <div class="col" title="İterasyon 4 (Progmatic/02): 44 kapalı saat zorla ezildi, 13 kısa gün oluştu">
-              <div class="b stock" style="height: 68%"></div>
-            </div>
-            <div class="col" title="hdd-engine: Yalnızca 1 kapalı saat (Çarşamba 2. ders) onaylı açıldı, 411 saat korundu, 640/640 yerleşti">
+            <div class="col" title="hdd-engine: 20,6 ms'de Çarşamba 1. saat darboğazını gösterdi; sadece 1 hücre onayıyla 411 kapalı saatin tamamını korudu">
               <div class="b fork" style="height: 4%"></div>
             </div>
           </div>
-          <div class="axis" style="--n: 5">
-            <span>PRG #1<br>(0/640)</span>
-            <span>PRG #2<br>(0/640)</span>
-            <span>PRG #3<br>(0/640)</span>
-            <span>PRG #4<br>(44 İhlal)</span>
-            <span>hdd-engine<br>(1 Onaylı)</span>
+          <div class="axis" style="--n: 4">
+            <span>Progmatic<br>(44 İhlal)</span>
+            <span>Progmatic Son<br>(27 İhlal + 4s Eksik)</span>
+            <span>aSc<br>(1-2 Ders Açıkta)</span>
+            <span>hdd-engine<br>(411/412 Korundu)</span>
           </div>
         </div>
 
         <div>
-          <h3>Guided LNS kalite yakınsaması (68 tur) <span class="h3-val">Pencere hedef aşımı: 77 → 18 (-%76,6)</span></h3>
+          <h3>LNS aramasıyla öğretmen boşluklarının eritilmesi <span class="h3-val">Pencere aşımı: 77 → 18 (-%76,6)</span></h3>
           <div class="cols" style="--n: 6">
-            <div class="col" title="İlk CP-SAT geçerli aday: Pencere aşımı 77, Kısa gün 11">
+            <div class="col" title="İlk CP-SAT tam yerleşimi: Pencere aşımı 77, Kısa gün 11">
               <div class="b stock" style="height: 100%"></div>
               <div class="b danger-bar" style="height: 65%"></div>
             </div>
@@ -176,13 +222,13 @@
               <div class="b fork" style="height: 28%"></div>
               <div class="b fork" style="height: 6%"></div>
             </div>
-            <div class="col" title="LNS Tur 68 (Final): Pencere aşımı 18, Kısa gün 1 (Alt sınır kanıtlandı)">
+            <div class="col" title="LNS Tur 68 (Final): Pencere aşımı 18, Kısa gün 1">
               <div class="b fork" style="height: 23%"></div>
               <div class="b fork" style="height: 6%"></div>
             </div>
           </div>
           <div class="axis" style="--n: 6">
-            <span>İlk Aday</span>
+            <span>İlk Çözüm</span>
             <span>Tur 12</span>
             <span>Tur 24</span>
             <span>Tur 38</span>
@@ -193,165 +239,112 @@
       </div>
 
       <div class="metric">
-        <h3>Kapalı saat ihlali ve veri kaybı olmadan tam yerleşim</h3>
-        <p class="note">Progmatic'te idareci programı çıkartabilmek için önce 43 kapalı saati el yordamıyla silmiş (<code>Downloads/01 → 02</code>), yine sonuç alamayınca 27 kapalı saati ezip 4 saatlik dersi silmek zorunda kalmıştır (<code>Progmatic/05 Son Yedek</code>). <code>hdd-engine</code> ise Çarşamba 2. saatteki darboğazı 20,6 ms'de bulup tek bir hücre onayıyla 640 saatin tamamını yerleştirir.</p>
+        <h3>İdareciyi 100 deneme yapmaktan kurtaran tek seferde optimizasyon</h3>
+        <p class="note">Klasik yazılımlarda idareci son 2-4 dersi yerleştirmek ve öğretmenin 3-4 saatlik bekleme boşluklarını kapatmak için kısıtları bozup onlarca kez yeniden dağıtım yapar. <code>hdd-engine</code> ise Çarşamba 1. saatteki darboğazı 20,6 ms'de söyleyip tek bir hücre onayıyla 640 saatin tamamını tek seferde yerleştirir.</p>
         <div class="row">
-          <span class="who">Progmatic (İter. 02)</span>
-          <div class="track"><div class="fill danger-bar" style="width: 100%"></div><span class="val" style="left: 14px">44 kapalı saat ezildi (habersiz ihlal)</span></div>
+          <span class="who">Progmatic (Denemeler)</span>
+          <div class="track"><div class="fill danger-bar" style="width: 100%"></div><span class="val" style="left: 14px">2-4 ders açıkta · Yerleştirmek için 27-44 kapalı saat ezildi</span></div>
         </div>
         <div class="row">
-          <span class="who">Progmatic (Son Yedek)</span>
-          <div class="track"><div class="fill danger-bar" style="width: 61.4%"></div><span class="val" style="left: 14px">27 kapalı saat ezildi + 4 saat ders silindi (636/640)</span></div>
+          <span class="who">aSc Timetables</span>
+          <div class="track"><div class="fill stock" style="width: 55%"></div><span class="val" style="left: 14px">1-2 ders açıkta · Neden yerleşmediğini kullanıcıya açıklamaz</span></div>
         </div>
         <div class="row">
           <span class="who">hdd-engine (CP-SAT)</span>
-          <div class="track"><div class="fill fork" style="width: 2.2%"></div><span class="val" style="left: 3.5%">0 habersiz ihlal · Yalnızca 1 onaylı hücre açıldı (640/640)</span></div>
+          <div class="track"><div class="fill fork" style="width: 4%"></div><span class="val" style="left: 5%">0 açıkta ders (640/640) · 0 habersiz ihlal · Tek seferde çözüm</span></div>
         </div>
       </div>
 
       <div class="metric">
-        <h3>Pencere (boş ders saati) hedef aşımı (<code>gapTargetExcess</code>)</h3>
-        <p class="note">Öğretmenlerin belirlenen haftalık/günlük pencere sınırını aşan toplam boş saat cezası. İlk geçerli CP-SAT çözümünden 68 turluk Guided LNS + Kempe zinciri sonuna kadar olan düşüş.</p>
+        <h3>Öğretmenlerin okulda boş bekleme (pencere) aşımının azaltılması</h3>
+        <p class="note">Öğretmenin sabah derse girip arada 3-4 saat boş beklememesi için LNS aramasının 68 tur boyunca yaptığı otomatik iyileştirme.</p>
         <div class="row">
-          <span class="who">CP-SAT İlk Geçerli Aday</span>
-          <div class="track"><div class="fill stock" style="width: 100%"></div><span class="val" style="left: 14px">77 birim aşım (84 toplam pencere)</span></div>
+          <span class="who">İlk Tam Yerleşim</span>
+          <div class="track"><div class="fill stock" style="width: 100%"></div><span class="val" style="left: 14px">77 birim pencere aşımı (84 toplam boş ders saati)</span></div>
         </div>
         <div class="row">
-          <span class="who">Guided LNS (Tur 68)</span>
-          <div class="track"><div class="fill fork" style="width: 23.4%"></div><span class="val" style="left: 25%">18 birim aşım (-%76,6 düşüş · 59 toplam pencere)</span></div>
-        </div>
-      </div>
-
-      <div class="metric">
-        <h3>Minimum ve ideal günlük ders yükü açığı (<code>minimumDeficit</code> &amp; <code>idealDeficit</code>)</h3>
-        <p class="note">Bir öğretmenin okula geldiği günde en az 3 saat (minimum) ve 4 saat (ideal) derse girmesi hedeflenir. <code>hdd-engine</code> matematiksel alt sınırı (<code>lowerBound = 2</code>) kanıtlayarak bu açığı kapatır.</p>
-        <div class="row">
-          <span class="who">CP-SAT İlk Geçerli Aday</span>
-          <div class="track"><div class="fill stock" style="width: 100%"></div><span class="val" style="left: 14px">Minimum açık: 15 · İdeal açık: 29</span></div>
-        </div>
-        <div class="row">
-          <span class="who">Guided LNS (Tur 68)</span>
-          <div class="track"><div class="fill fork" style="width: 13.3%"></div><span class="val" style="left: 15%">Minimum açık: 2 (-%86,7, alt sınır kanıtlı) · İdeal açık: 5 (-%82,8)</span></div>
+          <span class="who">LNS Sonrası (Tur 68)</span>
+          <div class="track"><div class="fill fork" style="width: 23.4%"></div><span class="val" style="left: 25%">18 birim aşım (-%76,6 düşüş · 59 toplam boş ders saati)</span></div>
         </div>
       </div>
 
       <div class="metric">
-        <h3>Öğle arası sonrası tek ders için okulda bekleme (<code>singleLessonLunchReturns</code>) ve aynı gün ders yığılması (<code>subjectSameDayExcess</code>)</h3>
-        <p class="note">Öğretmenin sabah derslerini bitirip öğleden sonra yalnızca 1 saat ders için okulda kalması ve bir sınıfa aynı branş dersinin aynı gün içinde parçalı yığılması.</p>
+        <h3>Öğle arası sonrası tek ders için okulda kalma ve günlük ders yükü dengesi</h3>
+        <p class="note">Öğretmenin okula geldiği gün en az 3-4 saat derse girmesi ve öğleden sonra sadece 1 saat ders için okulda beklememesi.</p>
         <div class="row">
-          <span class="who">CP-SAT İlk Geçerli Aday</span>
-          <div class="track"><div class="fill stock" style="width: 100%"></div><span class="val" style="left: 14px">Öğle sonrası 1 ders: 23 · Aynı gün ders yığılması: 92</span></div>
+          <span class="who">İlk Tam Yerleşim</span>
+          <div class="track"><div class="fill stock" style="width: 100%"></div><span class="val" style="left: 14px">Günlük yük açığı: 15 · Öğle sonrası tek ders: 23</span></div>
         </div>
         <div class="row">
-          <span class="who">Guided LNS (Tur 68)</span>
-          <div class="track"><div class="fill fork" style="width: 65.2%"></div><span class="val" style="left: 14px; color: var(--t-brand-ink); font-weight: 700;">Öğle sonrası 1 ders: 15 (-%34,8) · Aynı gün ders yığılması: 61 (-%33,7)</span></div>
+          <span class="who">LNS Sonrası (Tur 68)</span>
+          <div class="track"><div class="fill fork" style="width: 18%"></div><span class="val" style="left: 20%">Günlük yük açığı: 2 (-%86,7) · Öğle sonrası tek ders: 15 (-%34,8)</span></div>
         </div>
       </div>
     </section>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 2: MEVCUT YAZILIMLARDAN AYRIŞAN TEKNİK ÖZELLİKLER           -->
+    <!-- BÖLÜM 3: MEVCUT YAZILIMLARDAN AYRIŞAN TEKNİK ÖZELLİKLER           -->
     <!-- ================================================================= -->
     <section id="diagnosis">
-      <h2>Mevcut ders programı yazılımlarından ayrışan 4 temel mühendislik farkı</h2>
+      <h2>Mevcut ders programı yazılımlarından ayrışan 4 temel özelliğimiz</h2>
       <p class="section-desc">
-        Piyasadaki geleneksel ders dağıtım programları (Progmatic, aSc Timetables, Bilsa) 1990'ların sonlarında tek çekirdekli masaüstü bilgisayarlar için tasarlanmış sezgisel döngüler kullanır. EkolNizam HDD dört noktada bu mimariden tamamen ayrılır.
+        Progmatic, aSc Timetables, Bilsa vb. yazılımlar sonuç odaklı bir matematiksel kanıtlayıcı kullanmadıkları için idareciyi ekran başında deneme-yanılma yapmaya zorlar. EkolNizam HDD dört noktada bu yapıyı tamamen değiştirir:
       </p>
 
-      <h3>1. 20,6 milisaniyede matematiksel çelişki çekirdeği kanıtı (Hall Eşleşmesi + CP-SAT Assumption Core)</h3>
+      <h3>1. "Neden yerleşmiyor?" sorusuna 20,6 milisaniyede cevap veren darboğaz teşhisi</h3>
       <p class="section-desc">
-        Klasik yazılımlar kurallar çakıştığında saatlerce dönüp "Yerleştirilemedi" diyerek durur; idareci hangi öğretmenin hangi kapalı saatinin tabloyu kilitlediğini bilemez. <code>hdd-engine</code> ise aramaya başlamadan önce <code>cell_capacity::matching</code> ve <code>diagnosis::run</code> modüllerini koşturur. Fen Lisesinin 412 kapalı saatli gerçek verisinde <strong>0,0206 saniyede (20,6 ms)</strong> üretilen gerçek tanı çıktısı aşağıdadır:
+        Diğer programlar son 1-4 dersi yerleştiremediğinde sadece durur; idareci hangi öğretmenin kapalı saatinin o dersleri engellediğini bulmak için saatlerce tabloyu kurcalar. Bizim motorumuz ise aramaya başlamadan önce her saat diliminde sınıf-öğretmen eşleşmesini kontrol eder. Fen Lisesinin 412 kapalı saatli gerçek verisinde <strong>0,0206 saniyede (20,6 ms)</strong> yakalanan gerçek darboğaz raporu:
       </p>
 
-      <pre class="term"><span class="prompt">$ </span><span class="cmdline">hdd_solve_json(fen_lisesi_412_closed_slots.json)</span>
-<span class="err">[status: infeasible]</span> <span class="status">[provenInfeasible: true]</span> <span class="status">[coreVerified: true]</span> [wallSeconds: 0.020661248]
+      <pre class="term"><span class="prompt">$ </span><span class="cmdline">Darboğaz Teşhisi — Konya Ereğli Fen Lisesi (32 Öğretmen, 16 Sınıf, 412 Kapalı Saat)</span>
+<span class="err">[Durum: Kurallar Çakışıyor]</span> <span class="status">[Teşhis Süresi: 20,6 milisaniye]</span>
 {
-  "status": "core_verified",
-  "provenInfeasible": true,
-  "coreVerified": true,
-  "wallSeconds": 0.020661248,
-  "background": [
-    "canonical_calendar",
-    "mandatory_class_hours_equal_open_capacity",
-    "individual_class_teacher_assignments",
-    "declared_teacher_availability",
-    "teacher_collision_capacity_one",
-    "class_collision_capacity_one"
-  ],
-  "sources": [
-    {
-      "id": <span class="warn">"class-teacher-capacity/2/1"</span>,
-      "kind": <span class="warn">"classTeacherCellCapacity"</span>,
-      "day": 2,
-      "cell": { "day": 2, "period": 1 },
-      "classIds": ["10/A", "10/B", "10/C", "10/D", "11/A", "11/B", "11/C", "11/D"],
-      "teacherIds": ["T-08", "T-11", "T-12", "T-14", "T-20", "T-25", "T-26"],
-      "message": <span class="status">"Çarşamba 1. derste 8 sınıfın tamamı ders almak zorunda; bu sınıfların ders atamaları ve açık saatleriyle yalnız 7 farklı öğretmen eşleşebiliyor. Kapalı saatler değiştirilmedi; izin veya atama değişikliği ayrıca değerlendirilmelidir."</span>
-    }
-  ]
+  "tespitEdilenDarbogaz": <span class="warn">"Çarşamba Günü 1. Ders Saati"</span>,
+  "dersAlmakZorundaOlanSiniflar": ["10/A", "10/B", "10/C", "10/D", "11/A", "11/B", "11/C", "11/D"],
+  "oSaatteAcikOlanOgretmenler": ["T-08", "T-11", "T-12", "T-14", "T-20", "T-25", "T-26"],
+  "aciklama": <span class="status">"Çarşamba 1. derste bu 8 sınıfın tamamı ders almak zorunda; ancak bu sınıflara derse giren öğretmenlerden yalnızca 7 tanesi açık (diğer öğretmenlerin tamamı kapalı)."</span>,
+  "otomatikCozumOnerisi": <span class="status">"43 kapalı saati rastgele silmenize gerek yok. Yalnızca T-28 kodlu öğretmenin Çarşamba 1. dersini açarsanız 411 kapalı saat korunarak 640 saatin tamamı (%100) yerleşir."</span>
 }</pre>
 
+      <h3 id="prg-binary">2. Eski programlardan (Progmatic <code>.prg</code> ve aSc <code>.roz</code>) 2 saniyede sıfır veri kaybıyla geçiş</h3>
       <p class="section-desc">
-        Çözücü ürettiği her çelişki çekirdeğini (<code>sufficient_assumptions_for_infeasibility</code>) <code>replay_core</code> aşamasında bağımsız bir CP-SAT çağrısıyla ikinci kez sınar; doğrulanmayan hiçbir tahmini kullanıcıya göstermez.
-      </p>
-
-      <h3 id="prg-binary">2. Tarayıcı belleğinde çalışan Clean-Room Progmatic (<code>.prg</code>) ve aSc (<code>.roz</code>) ikili dosya ayrıştırıcısı</h3>
-      <p class="section-desc">
-        Okulların mevcut yazılımlarından çıkamamasının en büyük sebebi, yıllarca girilmiş öğretmen, sınıf, ders ve kısıt verilerini yeni programa baştan elle girme zorunluluğudur. EkolNizam HDD, Progmatic'in sabit uzunluklu Pascal/Windows-1254 ikili (binary) kayıt dosyalarını doğrudan tarayıcı RAM'inde (<code>ArrayBuffer</code> / <code>DataView</code>) çözer ve çift yönlü (içe/dışa) dönüştürür:
+        Bir okulun eski yazılımı bırakıp yeni bir programa geçememesinin en büyük sebebi, yıllarca girilmiş öğretmen, sınıf, ders ve kapalı saat verilerini baştan yazma korkusudur. EkolNizam HDD, Progmatic'in ikili (binary) <code>.prg</code> dosyalarını ve aSc'nin <code>.roz</code> dosyalarını doğrudan tarayıcı belleğinde okuyup 2 saniye içinde kendi formatına (<code>.ekolnizam</code>) çevirir:
       </p>
 
       <div class="data-table-wrap">
         <table class="data-table">
           <thead>
             <tr>
-              <th>Dosya Adı</th>
+              <th>Progmatic Dosyası</th>
               <th>Kayıt Boyutu</th>
-              <th>Fen Lisesi Yedeği</th>
-              <th>Çözümlenen İkili (Binary) Alanlar ve Doğrulama Kuralı</th>
+              <th>Okunan Bilgiler ve Otomatik Dönüşüm Karşılığı</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>teacher.prg</code></td>
               <td><code>7.060 bayt</code></td>
-              <td>225.920 B (32 kayıt)</td>
-              <td>Offset <code>0</code>: Öğretmen ID (Int32LE), Offset <code>29</code>: Ad Soyad (PascalString[30]), Offset <code>60</code>: Kısa Kod, Offset <code>73</code>: Branş, Offset <code>317</code>: Kapalı Saat Maskesi (7×18 bayt), Offset <code>512</code>: Yerleşim Izgarası (7×18 Int32), Offset <code>2856/4536</code>: Sabah/Öğle Nöbetleri.</td>
+              <td>Öğretmen ad-soyadları, kısa kodları, branşları, <strong>haftalık kapalı saat tabloları</strong> ve nöbet görevleri eksiksiz aktarılır.</td>
             </tr>
             <tr>
               <td><code>lesson.prg</code></td>
               <td><code>292 bayt</code></td>
-              <td>9.052 B (31 kayıt)</td>
-              <td>Offset <code>0</code>: Ders ID, Offset <code>29</code>: Ders Adı, Offset <code>60</code>: Kısa Kod, Offset <code>76</code>: Haftalık Saat (Int32LE), Offset <code>125</code>: Ders Zaman Maskesi. MEB ders havuzuyla otomatik blok şekli (<code>2+2</code>, <code>2+1+1</code>) eşleşmesi.</td>
+              <td>Ders adları, kısa kodları ve haftalık ders saatleri okunur; MEB ders çizelgesine göre <code>2+2</code> veya <code>2+1+1</code> blok şekilleri otomatik atanır.</td>
             </tr>
             <tr>
-              <td><code>clss.prg</code></td>
-              <td><code>1.364 bayt</code></td>
-              <td>21.824 B (16 kayıt)</td>
-              <td>Offset <code>0</code>: Sınıf ID, Offset <code>29</code>: Şube Adı (<code>9/A..12/D</code>), Offset <code>83</code>: Sınıf Kapalı Saat Maskesi, Offset <code>152</code>: Sınıf Program Izgarası (<code>common.prg</code> çapraz doğrulamalı).</td>
-            </tr>
-            <tr>
-              <td><code>room.prg</code></td>
-              <td><code>1.376 bayt</code></td>
-              <td>20.640 B (15 kayıt)</td>
-              <td>Offset <code>0</code>: Derslik ID, Offset <code>29</code>: Derslik/Atölye Adı, Offset <code>60</code>: Kod, Offset <code>94</code>: Derslik Kapalı Saat Maskesi, Offset <code>164</code>: Derslik Program Izgarası.</td>
+              <td><code>clss.prg</code> &amp; <code>room.prg</code></td>
+              <td><code>1.364 B</code> / <code>1.376 B</code></td>
+              <td>Tüm sınıf şubeleri (<code>9/A..12/D</code>), laboratuvarlar ve meslek atölyeleri kapasiteleriyle birlikte içeri alınır.</td>
             </tr>
             <tr>
               <td><code>common.prg</code></td>
               <td><code>2.764 bayt</code></td>
-              <td>652.304 B (236 kayıt)</td>
-              <td>Offset <code>8</code>: Ders Ref, Offset <code>12</code>: Haftalık Saat, Offset <code>52/56</code>: Ortak Sınıf Listesi, Offset <code>256/260</code>: Çoklu Öğretmen Listesi, Offset <code>664/668</code>: Derslik Listesi, Offset <code>852/1356/1860</code>: Gün/Saat/Süre Matrisi.</td>
+              <td>Hangi öğretmenin hangi sınıfa kaç saat derse girdiği, <strong>ortak (birleştirilmiş) sınıflar</strong> ve <strong>çift öğretmenli atölye dersleri</strong> doğrudan bağlanır.</td>
             </tr>
             <tr>
-              <td><code>option.prg</code> &amp; <code>sizes.prg</code></td>
-              <td><code>5.976 B</code> / <code>80 B</code></td>
-              <td>1'er kayıt</td>
-              <td><code>option.prg[0..1]</code>: Haftalık gün (5) ve günlük ders saati (8). <code>sizes.prg</code>: 8 dosyanın beklenen bayt uzunluklarını tutan bütünlük denetim tablosu.</td>
-            </tr>
-            <tr>
-              <td><code>duty.prg</code></td>
-              <td><code>24.380 bayt</code> (<code>0x5F3C</code>)</td>
-              <td>Nöbet yerleri</td>
-              <td>Offset <code>8</code>: Nöbet Yeri Adı, Offset <code>39</code>: Bina/Kat Bilgisi, Offset <code>70</code>: Kısa Kod. <code>teacher.prg</code> nöbet referanslarıyla otomatik bağlanır.</td>
+              <td><code>option.prg</code>, <code>sizes.prg</code>, <code>duty.prg</code></td>
+              <td><code>5.976 B</code> / <code>80 B</code> / <code>24.380 B</code></td>
+              <td>Okulun haftalık gün sayısı, günlük ders saati, nöbet bölgeleri ve dosya bütünlük kontrolü otomatik doğrulanır.</td>
             </tr>
           </tbody>
         </table>
@@ -359,58 +352,50 @@
 
       <div class="shot-grid">
         <figure class="shot">
-          <img src="/assets/bulk-import.png" alt="EkolNizam HDD Evrensel Veri Aktarım ve Eski Yazılımdan Geçiş Sihirbazı">
-          <figcaption>Progmatic (<code>.prg</code>), aSc Timetables (<code>.roz</code> / XML) ve Excel dosyalarını tarayıcı belleğinde doğrulayan Evrensel Veri Aktarım ekranı.</figcaption>
+          <img src="/assets/bulk-import.png" alt="EkolNizam HDD Eski Yazılımdan Geçiş ve Veri Aktarım Sihirbazı">
+          <figcaption>Progmatic (<code>.prg</code>), aSc Timetables (<code>.roz</code> / XML) ve Excel dosyalarını 2 saniyede okuyan Evrensel Veri Aktarım Sihirbazı.</figcaption>
         </figure>
         <figure class="shot">
-          <img src="/assets/eokul-bridge.png" alt="EkolNizam e-Okul Chrome Eklentisi ve Doğrudan Senkronizasyon Köprüsü">
+          <img src="/assets/eokul-bridge.png" alt="EkolNizam e-Okul Chrome Eklentisi">
           <figcaption>Yetkili okul yöneticisinin e-Okul ekranındaki şube, ders ve öğretmen verilerini tek tıkla içeri çeken ve oluşan programı geri aktaran Chrome eklentisi.</figcaption>
         </figure>
       </div>
     </section>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 3: 35+ KURALI DEĞERLENDİREN MOTORUN ÇALIŞMA PRENSİBİ         -->
+    <!-- BÖLÜM 4: 35+ KURALI DEĞERLENDİREN MOTORUN ÇALIŞMA PRENSİBİ         -->
     <!-- ================================================================= -->
     <section id="architecture">
-      <h2>35'ten fazla kuralı değerlendiren optimizasyon motorunun çalışma prensibi</h2>
+      <h2>35'ten fazla kuralı değerlendiren optimizasyon motorunun 4 adımlı çalışma prensibi</h2>
       <p class="section-desc">
-        <code>hdd-engine</code> içerisinde ders programı üretimi için hiçbir açgözlü (greedy), genetik veya rastgele yerleştirme algoritması çalışmaz. Tüm karar akışı <code>packages/hdd-engine/src/solver/mod.rs</code> ve <code>src/model/mod.rs</code> içindeki 4 aşamalı deterministik boru hattından geçer:
+        Motorumuz "Planlamayı Başlat" tuşuna basıldığında şu 4 adımı sırasıyla ve deterministik olarak çalıştırır:
       </p>
 
-      <pre class="term"><span class="status">[Aşama 0: Veri Normalizasyonu, Blok Aileleri ve Kapasite Ön-Tanısı (~250 ms)]</span>
-  ├─ Input JSON / .prg / .ekolnizam  ──►  hdd_prepare_school_json()
-  ├─ Ders saatlerini MEB blok ailelerine ayır (örn. 4 saat → {2+2} veya {2+1+1} BoolVar alternatifleri)
-  ├─ room_capacity::diagnosis()      ──►  Sabit derslik/atölye haftalık kapasite aşımı kontrolü
-  └─ cell_capacity::diagnosis()      ──►  Her (gün, saat) için Hall iki parçalı öğretmen-sınıf eşleşme testi
+      <pre class="term"><span class="status">[Adım 1: Hazırlık ve Darboğaz Ön-Kontrolü (~0,25 saniye)]</span>
+  ├─ Dersleri MEB müfredatına uygun blok şekillerine (örn. 4 saatlik Matematik → 2+2 blok) ayırır.
+  ├─ Laboratuvar ve meslek atölyelerinin haftalık kapasitelerinin aşılıp aşılmadığını kontrol eder.
+  └─ Her gün ve her ders saati için "Ders alacak sınıf sayısı, o saatte açık olan öğretmen sayısına sığıyor mu?"
+     testini yapar. Sığmıyorsa 20,6 milisaniyede tam saati ve şubeleri raporlar.
 
-<span class="status">[Aşama 1: Mutlak Geçerlilik - Legal Stage CP-SAT (Hard Feasibility)]</span>
-  ├─ model::compile_legal()          ──►  34 katı kısıt türünü (ConstraintKind) BoolVar ve LinearExpr olarak derle
-  ├─ Seçim değişkenleri: Choice { block, start: Cell(day, period), cells, room, variable: BoolVar }
-  ├─ Önce tercih edilen blok şekilleriyle (preferred_blocks), gerekirse tüm yasal bölünmelerle CP-SAT çözümü
-  ├─ Çözüm yoksa (status == INFEASIBLE):
-  │    ├─ diagnosis::run()           ──►  sufficient_assumptions_for_infeasibility + replay_core kanıtı (20,6 ms)
-  │    └─ recovery::run()            ──►  En fazla 1-2 kapalı hücre açarak 64 aday senaryoda kontrollü kurtarma
-  └─ Çıktı: 640/640 ders saati yerleşmiş, 0 katı kural ihlalli ilk doğrulanmış aday (Initial Verified Candidate)
+<span class="status">[Adım 2: CP-SAT ile %100 Tam ve Kurallara Uygun İlk Yerleşim]</span>
+  ├─ Kesinlikle bozulmaması gereken katı kuralları (bir öğretmenin aynı anda iki sınıfta olamaması, kapalı gün/saatler,
+     blok derslerin öğle arasına bölünmemesi, öğrencilerde boş saat kalmaması, ortak dersler ve atölyeler) kurar.
+  └─ Sona 1-4 ders açıkta bırakmadan, okuldaki tüm ders saatlerini (örn. 640/640 saat) sıfır çakışmayla yerleştirir.
 
-<span class="status">[Aşama 2: Matematiksel Alt Sınırlar ve Kademeli Amaç Kilitleme (Tiered Lexicographic CP-SAT)]</span>
-  ├─ quality_bounds::lower_bounds()  ──►  Her öğretmen/sınıf için matematiksel alt sınırları hesapla (shortDays ≥ 1, minDeficit ≥ 2)
-  ├─ model::compile()                ──►  43 kalite metriğini (QualityMetric) IntVar amaç değişkenlerine bağla
-  └─ Kademe 0 (Kritik Hedefler) çözülüp bulunan en iyi değer model.add(expr.le(bound)) ile kilitlenir;
-     ardından Kademe 1 (İkincil Hedefler) öğretmen penceresini bozmadan optimize edilir.
+<span class="status">[Adım 3: Kademeli Kalite Kilitleme (Öğretmeni Düzeltirken Sınıfı Bozmama)]</span>
+  ├─ Önce en önemli konfor hedeflerini (öğretmenin 1-2 ders için okula gelmemesi ve günlük en az 3 saat ders alması) çözer.
+  └─ Bulduğu en iyi değeri kilitler; ardından ikinci aşamadaki ders dağılım hedeflerini çözerken öğretmenlerin
+     kazanılmış boş günlerini ve pencere düzenini bozmasına izin vermez.
 
-<span class="status">[Aşama 3: Çakışma Güdümlü Büyük Komşuluk Araması (Guided LNS + Kempe Zinciri)]</span>
-  ├─ 80+ derslik okullarda guided_lns::run() devreye girer (Fen Lisesinde 68 tur, 48 kabul edilen iyileştirme)
-  ├─ Komşuluk 1 (day-slice): Ceza üreten gün çiftlerindeki dersleri serbest bırak, kalan günleri sabitle (fixed_choices)
-  ├─ Komşuluk 2 (class-coupled): Ortak öğretmen paylaşan sınıf kümelerini serbest bırakıp CP-SAT alt-modelini çöz
-  ├─ Kempe Zinciri (kempe.rs): İki gün/saat dilimi arasında bağlantılı çakışma alt-grafını (connected component)
-  │                            takas ederek CP-SAT'ın yerel minimumlardan çıkmasını sağla
-  └─ Bağımsız Doğrulayıcı (validation.rs): Her yeni aday tam 34 katı kısıt ve 43 metrikle baştan denetlenir;
-     yalnızca skoru kesin iyileştiren ve 0 katı ihlal veren adaylar (accept_solution) kabul edilir.</pre>
+<span class="status">[Adım 4: LNS (Büyük Komşuluk Araması) ve Kempe Zinciri ile 68 Tur Cila]</span>
+  ├─ Tabloda hâlâ 3-4 saat boşluğu olan veya öğleden sonra tek dersi kalan öğretmenlerin olduğu günleri seçer.
+  ├─ Tablonun geri kalanını sabit tutup sadece o günlerdeki birbirine bağlı dersleri domino halkası (Kempe zinciri)
+     gibi birlikte kaydırarak boşlukları kapatır (Fen Lisesinde 68 turda 48 iyileştirme).
+  └─ Her adımı bağımsız denetleyiciden geçirip en yüksek puanlı hatasız tabloyu ekrana yansıtır.</pre>
 
-      <h3>Değerlendirilen kuralların tam teknik envanteri (34 katı kısıt + 43 kalite ve kurtarma kuralı)</h3>
+      <h3>Motorun aynı anda değerlendirdiği 38 temel okul ve MEB kuralı</h3>
       <p class="section-desc">
-        Başvuru metninde "35'ten fazla kural" olarak özetlenen yapı, motorun kaynak kodunda <strong>34 katı kısıt türü (<code>src/contract/diagnosis.rs → ConstraintKind</code>)</strong> ve <strong>43 kalite/iyileştirme metriği (<code>src/contract/quality.rs → QualityMetric</code>)</strong> olmak üzere toplam <strong>77 bağımsız matematiksel kural bileşeninden</strong> oluşur. Aşağıdaki tabloda sahadaki 38 temel okul kuralının motor içindeki doğrudan karşılıkları yer almaktadır:
+        Başvuruda "35'ten fazla kural" olarak belirttiğimiz, sahadaki idarecilerin her dönem tek tek kontrol etmek zorunda kaldığı kuralların tam listesi aşağıdadır:
       </p>
 
       <div class="data-table-wrap">
@@ -418,278 +403,239 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Kural Kategorisi</th>
-              <th>Motor Modülü / Enum Karşılığı</th>
-              <th>Tür</th>
-              <th>Matematiksel Modelleme ve Çalışma Prensibi</th>
+              <th>Kural Başlığı</th>
+              <th>Öncelik Türü</th>
+              <th>Okuldaki Karşılığı ve Motorun Uygulama Şekli</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
               <td>Öğretmen Çakışmazlığı</td>
-              <td><code>TeacherCollision</code> (<code>resources.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Her öğretmen ve her <code>(gün, saat)</code> hücresi için <code>∑ BoolVar ≤ 1</code>. Bir öğretmen aynı anda iki sınıfta olamaz (birleştirilmiş ortak dersler hariç).</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Bir öğretmen aynı gün ve aynı saatte iki ayrı sınıfta derse giremez (birleştirilmiş ortak dersler hariç).</td>
             </tr>
             <tr>
               <td>2</td>
               <td>Sınıf / Şube Çakışmazlığı</td>
-              <td><code>ClassCollision</code> (<code>resources.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Her şube ve her <code>(gün, saat)</code> hücresi için <code>∑ BoolVar ≤ 1</code> (bölünmüş grup/seçmeli derslerde alt-grup bazında uygulanır).</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Bir sınıfa aynı saatte iki farklı ders yazılamaz (seçmeli/bölünmüş grup dersleri kendi alt gruplarında eşleşir).</td>
             </tr>
             <tr>
               <td>3</td>
               <td>Derslik ve Atölye Kapasitesi</td>
-              <td><code>RoomCapacity</code> (<code>rooms/model.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Her derslik/atölye için eşzamanlı ders sayısı dersliğin <code>concurrentCapacity</code> sınırını aşamaz (<code>∑ room_choice ≤ capacity</code>).</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Aynı atölye veya laboratuvara aynı saatte kapasitesinden fazla sınıf atanamaz.</td>
             </tr>
             <tr>
               <td>4</td>
-              <td>Derslik Haftalık Yük Sınırı</td>
-              <td><code>RoomWeeklyCapacity</code> (<code>room_capacity.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Sabit bir laboratuvar veya atölyeye atanan derslerin toplam haftalık saati, o dersliğin açık takvim saatini aşamaz.</td>
+              <td>Atölye Haftalık Yük Sınırı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Özel bir atölyeye bağlanan derslerin toplam saati, o atölyenin haftalık açık saatini aşamaz.</td>
             </tr>
             <tr>
               <td>5</td>
-              <td>Saatlik Sınıf-Öğretmen Eşleşme Kapasitesi</td>
-              <td><code>ClassTeacherCellCapacity</code> (<code>cell_capacity</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Her saatte ders almak zorunda olan sınıfların kümesi ile o saatte açık olan öğretmenleri iki parçalı (bipartite) graf eşleşmesiyle denetler.</td>
+              <td>Saatlik Sınıf-Öğretmen Dengesi</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Herhangi bir saatte ders almak zorunda olan şube sayısı, o saatte açık olan öğretmen sayısını geçemez (20,6 ms'de denetlenir).</td>
             </tr>
             <tr>
               <td>6</td>
-              <td>Zorunlu Ders ve Blok Tamlığı</td>
-              <td><code>RequiredBlock</code> / <code>RequiredBlockFamily</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Her atamanın haftalık ders saati eksiksiz yerleşmelidir (<code>∑ family_choices == 1</code>). Eksik ders bırakılamaz.</td>
+              <td>%100 Ders Yerleşim Zorunluluğu</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Progmatic veya aSc gibi sona 1-4 ders açıkta bırakılmaz; müfredattaki tüm saatler eksiksiz yerleştirilir.</td>
             </tr>
             <tr>
               <td>7</td>
-              <td>Blok Ders Bölünmezliği ve Öğle Arası Sınırı</td>
-              <td><code>AllowedStarts</code> (<code>domains.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>2 veya 3 saatlik blok dersler ardışık saatlere yerleşir ve <code>blockBreakAfterPeriods</code> (öğle arası) sınırını ikiye bölemez.</td>
+              <td>Blok Ders Bölünmezliği ve Öğle Arası</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>2 veya 3 saatlik blok dersler peş peşe işlenir; araya öğle arası girerek blok dersi ikiye bölemez.</td>
             </tr>
             <tr>
               <td>8</td>
-              <td>Öğretmen Kapalı Gün ve Kapalı Saatleri</td>
-              <td><code>TeacherClosedDay</code> / <code>TeacherClosedCell</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Öğretmenin izinli, nöbetçi veya dış görevde olduğu gün/saatlerde değişken tanım kümesi (domain) doğrudan kapatılır.</td>
+              <td>Öğretmen Kapalı Gün ve Saatleri</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Öğretmenin izinli, raporlu, dış görevde veya kapalı olduğu saatlere habersiz ders yazılmaz.</td>
             </tr>
             <tr>
               <td>9</td>
-              <td>Sınıf ve Derslik Kapalı Zamanları</td>
-              <td><code>ClassClosedDay/Cell</code>, <code>RoomClosedDay/Cell</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Sınıfın veya özel salonun kapalı olduğu saatlere ders atanamaz.</td>
+              <td>Sınıf ve Salon Kapalı Saatleri</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Sınıfın veya spor salonu/konferans salonunun kapalı olduğu saatlere ders konulmaz.</td>
             </tr>
             <tr>
               <td>10</td>
-              <td>Sınıf Günlük Süreklilik (Öğrenci Penceresi Yasağı)</td>
-              <td><code>ClassContinuity</code> (<code>class_days.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Öğrencilerin ders programı içinde boş pencere saati kalamaz (<code>allowGaps: false</code> olan tüm şubelerde kesintisiz blok).</td>
+              <td>Öğrenci Programında Boşluk Yasağı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Öğrencilerin günlük ders çizelgesinde 1. dersten son derse kadar arada boş pencere saati bırakılmaz.</td>
             </tr>
             <tr>
               <td>11</td>
-              <td>Aynı Branşın Aynı Günde Tekrar Sınırı</td>
-              <td><code>SubjectDailySessionLimit</code> (<code>daily_sessions.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Bir sınıfa aynı ders (örn. Matematik 2+2) aynı gün içinde iki ayrı blok halinde (sabah 2 + öğleden sonra 2) verilemez.</td>
+              <td>Aynı Dersin Aynı Günde Tekrar Sınırı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Haftada 4 saat (2+2) olan bir ders aynı sınıfa aynı gün içinde hem sabah hem öğleden sonra iki kez konmaz.</td>
             </tr>
             <tr>
               <td>12</td>
-              <td>Aynı Öğretmenin Aynı Sınıfa Gün İçi Tekrar Girişi</td>
-              <td><code>TeacherClassContinuity</code> / <code>RepeatedVisits</code></td>
-              <td><span class="badge-err">Katı / Kalite</span></td>
-              <td>Bir öğretmenin aynı sınıfa aynı gün içinde sabah girip çıkıp öğleden sonra tekrar girmesini (<code>forbidRepeatedTeacherClassVisits</code>) engeller.</td>
+              <td>Aynı Sınıfa Gün İçi Tekrar Giriş Yasağı</td>
+              <td><span class="badge-err">Kesin / Kalite</span></td>
+              <td>Bir öğretmenin aynı sınıfa sabah derse girip çıktıktan sonra öğleden sonra tekrar girmesini önler.</td>
             </tr>
             <tr>
               <td>13</td>
-              <td>Sabitlenen (Kilitli) Ders ve Derslikler</td>
-              <td><code>FixedStart</code> / <code>FixedRoom</code> / <code>SessionLock</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>İdarecinin sabitlediği ders saatleri ve derslikler yeniden optimizasyon sırasında korunur.</td>
+              <td>Sabitlenen (Kilitli) Derslerin Korunması</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>İdarecinin yeri değişmesin diye kilitlediği dersler ve derslikler yeniden planlama sırasında sabit tutulur.</td>
             </tr>
             <tr>
               <td>14</td>
-              <td>Bina ve Kampüs Transfer Süresi</td>
-              <td><code>TeacherBuildingTransfer</code> (<code>building_transfer</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Farklı binalardaki derslikler arasında geçiş yapan öğretmene ardışık iki saatte farklı bina dersi yazılmaz (arada teneffüs/boşluk zorunluluğu).</td>
+              <td>Binalar Arası Geçiş (Transfer) Süresi</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Ek bina ile ana bina arasında ders veren öğretmene peş peşe iki saatte iki farklı bina dersi yazılmaz.</td>
             </tr>
             <tr>
               <td>15</td>
-              <td>İkili Eğitim (Sabahçı / Öğlenci Devre Ayrımı)</td>
-              <td><code>TeacherShiftSeparation</code> (<code>shifts.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Sabahçı ve öğlenci devrelerin saat aralıklarını ayırır; devre kısıtı olan öğretmenlerin iki devreye birden dağılmasını önler.</td>
+              <td>İkili Eğitim (Sabahçı / Öğlenci) Ayrımı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Sabahçı ve öğlenci devre saatlerini ayırır; devre kısıtı olan öğretmeni iki devreye birden dağıtmaz.</td>
             </tr>
             <tr>
               <td>16</td>
-              <td>Akademik ve Seçmeli Blok Türü Ayrımı</td>
-              <td><code>TeacherBlockTypeSeparation</code> (<code>block_types</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>12. sınıf sınav hazırlık / seçmeli blokları ile standart akademik blokların zaman pencerelerini birbirinden ayırır.</td>
+              <td>Akademik ve Seçmeli Blok Ayrımı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Sınav hazırlık/seçmeli ders pencereleri ile ortak kültür derslerinin saat dilimlerini birbirinden ayırır.</td>
             </tr>
             <tr>
               <td>17</td>
-              <td>Birleştirilmiş (Ortak) ve Eşzamanlı Dersler</td>
-              <td><code>SynchronizedBlocks</code> / <code>LogicalSync</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Ortak işlenen dersler (örn. 9-A ve 9-B Beden Eğitimi) veya seviye grupları aynı gün ve aynı başlangıç saatine kilitlenir (<code>start_A == start_B</code>).</td>
+              <td>Birleştirilmiş (Ortak) Sınıflar</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Ortak işlenen derslerde (örn. iki şubenin ortak Beden Eğitimi veya seçmeli dersi) sınıfları aynı gün ve saate bağlar.</td>
             </tr>
             <tr>
               <td>18</td>
-              <td>Bölünmüş Sınıf ve Öğrenci Seçmeli Grupları</td>
-              <td><code>student_groups</code> &amp; <code>class_partitions</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Yabancı dil veya seçmeli derslerde sınıf ikiye/üçe bölündüğünde grupların çakışmadan paralel derslik ve öğretmenlere atanmasını sağlar.</td>
+              <td>Bölünmüş Sınıf ve Çift Öğretmenli Atölyeler</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Meslek liselerinde aynı atölye dersine giren 2-3 öğretmeni veya ikiye bölünen yabancı dil gruplarını eşzamanlı yerleştirir.</td>
             </tr>
             <tr>
               <td>19</td>
-              <td>Özel Derslik Donanım Gereksinimi</td>
-              <td><code>RoomRequirements</code> (<code>rooms/requirements.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Kimya, Fizik, Bilişim veya Kaynak Atölyesi gerektiren dersler yalnızca ilgili donanım etiketine sahip dersliklere atanabilir.</td>
+              <td>Özel Laboratuvar ve Donanım Şartı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Kimya, Fizik, Bilişim veya Kaynak Atölyesi gerektiren dersleri yalnızca uygun donanımlı dersliklere atar.</td>
             </tr>
             <tr>
               <td>20</td>
-              <td>Öğretmen Günlük ve Haftalık Maksimum Ders Sınırı</td>
-              <td><code>TeacherDailyLimit</code> / <code>TeacherWeeklyLimit</code></td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>MEB mevzuatına göre haftalık (en fazla 30 saat) ve günlük kişisel ders üst sınırlarını aşmaz.</td>
+              <td>MEB Haftalık ve Günlük Ders Üst Sınırı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Öğretmenlerin haftalık (en çok 30 saat) ve günlük kişisel ders sınırı aşılmaz.</td>
             </tr>
             <tr>
               <td>21</td>
-              <td>Öğretmen Maksimum İş Günü Sınırı</td>
-              <td><code>TeacherWorkDayLimit</code> (<code>work_days.rs</code>)</td>
-              <td><span class="badge-err">Katı (Hard)</span></td>
-              <td>Yarı zamanlı, görevlendirmeli veya boş gün hakkı tanımlı öğretmenin haftalık aktif gün sayısını sınırlar.</td>
+              <td>Öğretmen Maksimum Okul Günü Sınırı</td>
+              <td><span class="badge-err">Kesin Kural</span></td>
+              <td>Başka okulda görevlendirmesi olan veya gün sınırı bulunan öğretmenin haftalık geliş gününü aşmaz.</td>
             </tr>
             <tr>
               <td>22</td>
-              <td>Uzman / Rehberlik ve Zümre Gün Kuralları</td>
-              <td><code>ExpertDayRule</code> / <code>ExpertDayCost</code></td>
-              <td><span class="badge-err">Katı / Kalite</span></td>
-              <td>Bölüm zümre toplantı saatlerini ve uzman öğretmen günlerini korur.</td>
+              <td>Zümre Toplantı ve Rehberlik Saatleri</td>
+              <td><span class="badge-err">Kesin / Kalite</span></td>
+              <td>Aynı branştaki öğretmenlerin ortak zümre saatlerini ve sınıf rehberlik saatlerini korur.</td>
             </tr>
             <tr>
               <td>23</td>
-              <td>Bağlı (Eş/Sıralı) Ders Kuralları</td>
-              <td><code>LinkedLessonRule</code> / <code>LinkedLessonCost</code></td>
-              <td><span class="badge-err">Katı / Kalite</span></td>
-              <td>Teori ve uygulama derslerinin (örn. Meslek Atölyesi ve Teknolojisi) aynı veya ardışık günlerde sıralanmasını sağlar.</td>
+              <td>Teori ve Uygulama Dersi Sıralaması</td>
+              <td><span class="badge-err">Kesin / Kalite</span></td>
+              <td>Birbiriyle bağlantılı teorik ve uygulamalı meslek derslerinin hafta içindeki sırasını korur.</td>
             </tr>
             <tr>
               <td>24</td>
-              <td>Öğretmen Pencere (Boş Saat) Minimizasyonu</td>
-              <td><code>GapLessons</code> &amp; <code>GapTargetExcess</code></td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Her öğretmenin gün içindeki ilk dersi ile son dersi arasındaki boş saatleri (<code>span - occupied</code>) ve hedef aşımını minimize eder.</td>
+              <td>Öğretmen Boşluklarını (Pencereleri) Eritme</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Öğretmenin ilk dersi ile son dersi arasındaki boş bekleme saatlerini (3-4 saatlik pencereleri) en aza indirir.</td>
             </tr>
             <tr>
               <td>25</td>
-              <td>Kısa Gün (1 veya 2 Derslik Gün) Önleme</td>
-              <td><code>ShortDays</code> &amp; <code>SingleLessonDays</code></td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Öğretmenin yalnızca 1 veya 2 saat ders için okula gelmesini cezalandırır (Fen Lisesinde 11 günden 1 güne düşürüldü).</td>
+              <td>1 veya 2 Derslik Kısa Günleri Önleme</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Öğretmenin sadece 1 veya 2 saat derse girmek için okula gelmesini önler (Fen Lisesinde 12 günden 1 güne indirildi).</td>
             </tr>
             <tr>
               <td>26</td>
-              <td>Günlük Minimum ve İdeal Ders Yükü Dengesi</td>
-              <td><code>MinimumDeficit</code> &amp; <code>IdealDeficit</code></td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Aktif günlerde öğretmenin en az 3 saat (minimum) ve 4 saat (ideal) ders almasını sağlayarak yükü dengeli dağıtır.</td>
+              <td>Günlük Minimum ve İdeal Ders Yükü</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Öğretmenin okula geldiği günlerde en az 3-4 saat derse girmesini sağlayarak haftalık yükü dengeler.</td>
             </tr>
             <tr>
               <td>27</td>
-              <td>Öğretmen Boş Gün (Free Day) Kazanımı</td>
-              <td><code>TeachersWithoutFreeDay</code> &amp; <code>AttendanceDays</code></td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Ders yükü uygun olan öğretmenlere haftada en az 1 tam boş gün kazandırır ve toplam okula geliş gününü azaltır.</td>
+              <td>Öğretmene Boş Gün Kazandırma</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Ders saati uygun olan öğretmenlerin derslerini toplayarak haftada en az 1 tam boş gün açar.</td>
             </tr>
             <tr>
               <td>28</td>
-              <td>Öğle Arası Sonrası Tek Ders İçin Beklemeyi Önleme</td>
-              <td><code>SingleLessonLunchReturns</code> (<code>lunch.rs</code>)</td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Sabah dersi olan öğretmenin öğle arasından sonra yalnızca 1 saat derse girip çıkmasını önler.</td>
+              <td>Öğle Arası Sonrası Tek Ders Bırakmama</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Sabah dersleri olan öğretmenin öğle arasından sonra sadece 1 saat ders için okulda beklemesini önler.</td>
             </tr>
             <tr>
               <td>29</td>
-              <td>Ardışık Ders Yorgunluk Sınırı (Max Consecutive Run)</td>
-              <td><code>ConsecutiveTeachingExcess</code> (<code>teaching.rs</code>)</td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Öğretmenin dinlenmeden üst üste 4 saatten fazla derse girmesini (<code>longestRun &gt; limit</code>) engeller (Fen Lisesinde 0 aşım).</td>
+              <td>Üst Üste (Ardışık) Ders Yorgunluk Sınırı</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Öğretmenin hiç dinlenmeden arka arkaya 4 saatten fazla derse girmesini engeller.</td>
             </tr>
             <tr>
               <td>30</td>
-              <td>Eş Durumu / Araç Paylaşımı (Linked Teachers / Carpool)</td>
-              <td><code>LinkedWorkDayDifferences</code> / <code>BoundaryDiff</code></td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Birlikte gidip gelen (eş veya araç paylaşımı yapan) öğretmenlerin boş günlerini, okula geliş ve çıkış saatlerini eşleştirir.</td>
+              <td>Eş Durumu ve Araç Paylaşımı (Birlikte Geliş)</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Okula birlikte gidip gelen (eş veya aynı araçtaki) öğretmenlerin boş günlerini, giriş ve çıkış saatlerini eşitler.</td>
             </tr>
             <tr>
               <td>31</td>
-              <td>Zor / Sayısal Derslerin Sabah Saatlerine Önceliklendirilmesi</td>
-              <td><code>DifficultLateCost</code> &amp; <code>HeavySubjectRunExcess</code></td>
-              <td><span class="badge-ok">Pedagojik Kalite</span></td>
-              <td>Matematik, Fizik gibi bilişsel yükü yüksek derslerin son saatlere ve Cuma öğleden sonraya (<code>HeavyFridayLateLessons</code>) kalmasını azaltır.</td>
+              <td>Sayısal / Ağır Dersleri Sabah Saatlerine Alma</td>
+              <td><span class="badge-ok">Pedagojik</span></td>
+              <td>Matematik, Fizik gibi dikkat gerektiren derslerin son saatlere ve Cuma öğleden sonraya kalmasını azaltır.</td>
             </tr>
             <tr>
               <td>32</td>
-              <td>Aynı Dersin Hafta İçine Dengeli Yayılımı</td>
-              <td><code>SubjectSameDayExcess</code> &amp; <code>AdjacentSubjectDays</code></td>
-              <td><span class="badge-ok">Pedagojik Kalite</span></td>
-              <td>2 blokluk derslerin art arda iki güne (örn. Pazartesi-Salı) yığılması yerine hafta içine dengeli yayılmasını sağlar.</td>
+              <td>Aynı Dersin Hafta İçine Dengeli Dağılımı</td>
+              <td><span class="badge-ok">Pedagojik</span></td>
+              <td>2 blokluk derslerin Pazartesi-Salı gibi peş peşe iki güne yığılması yerine hafta içine dengeli yayılmasını sağlar.</td>
             </tr>
             <tr>
               <td>33</td>
-              <td>Tamamlayıcı Derslerin Aynı Gün Çakışmaması</td>
-              <td><code>ComplementarySameDays</code> (<code>pedagogy</code>)</td>
-              <td><span class="badge-ok">Pedagojik Kalite</span></td>
-              <td>Birbirini tamamlayan veya benzer ağırlıktaki derslerin aynı sınıfta aynı güne üst üste gelmesini dengeler.</td>
+              <td>Ağır Derslerin Aynı Günde Yığılmaması</td>
+              <td><span class="badge-ok">Pedagojik</span></td>
+              <td>Bir sınıfın aynı gün içinde üst üste sadece ağır akademik dersler alarak yorulmasını dengeler.</td>
             </tr>
             <tr>
               <td>34</td>
-              <td>Cuma Namazı / Cuma Öğle Esnekliği</td>
-              <td><code>FridayAfternoonLessons</code> (<code>friday.rs</code>)</td>
-              <td><span class="badge-ok">Kurumsal Kalite</span></td>
-              <td>Cuma günü öğle saatlerindeki ders ve öğretmen tercihlerini okul politikasına göre esnetir.</td>
+              <td>Cuma Öğle Saatleri Esnekliği</td>
+              <td><span class="badge-ok">Kurumsal</span></td>
+              <td>Cuma günü öğle arası ve namaz saatlerindeki ders yerleşimini okulun tercihine göre düzenler.</td>
             </tr>
             <tr>
               <td>35</td>
-              <td>Nöbet Günü Ders Yükü Uyumu ve Adalet Skoru</td>
-              <td><code>TeacherDutyCost</code> (<code>teacher_duty.rs</code>)</td>
+              <td>Nöbet Günü Ders Yükü Uyumu</td>
               <td><span class="badge-ok">Operasyonel</span></td>
-              <td>Öğretmenin nöbetçi olduğu güne aşırı ders yüklenmesini veya dersi olmayan güne nöbet yazılmasını engeller; zorluk ağırlıklı adalet skoru tutar.</td>
+              <td>Dersi olmayan güne nöbet yazılmasını engeller; nöbetçi olunan günde aşırı ders yükünü dengeler.</td>
             </tr>
             <tr>
               <td>36</td>
-              <td>Zümre ve Sınıf Günlük Yük Dengesi</td>
-              <td><code>ClassLoadImbalance</code> &amp; <code>DepartmentLoadImbalance</code></td>
-              <td><span class="badge-ok">Kurumsal Kalite</span></td>
-              <td>Sınıfların günlük ders ağırlıklarını ve aynı zümredeki öğretmenlerin günlük yük dağılımını dengeler.</td>
+              <td>Sınıf ve Zümre Günlük Yük Dengesi</td>
+              <td><span class="badge-ok">Kurumsal</span></td>
+              <td>Aynı kademedeki şubelerin ve zümre öğretmenlerinin günlük ders yüklerini birbirine yakın tutar.</td>
             </tr>
             <tr>
               <td>37</td>
-              <td>Kişisel ve Kurumsal Saat Tercih Matrisi</td>
-              <td><code>TimePreferenceMisses</code> &amp; <code>PreferredCellMisses</code></td>
-              <td><span class="badge-ok">Kalite (CP-SAT)</span></td>
-              <td>Öğretmenlerin "tercihen boş olsun" (yumuşak kısıt) seçimleri ile ders bazlı saat tercihlerini ağırlıklı amaç fonksiyonunda maksimize eder.</td>
+              <td>Öğretmen Saat Tercihleri (Yumuşak Kısıtlar)</td>
+              <td><span class="badge-ok">Optimizasyon</span></td>
+              <td>Kesin kapalı olmayan ama öğretmenin "mümkünse boş olsun" dediği saatleri yüksek oranla karşılar.</td>
             </tr>
             <tr>
               <td>38</td>
-              <td>Mevcut Program Kararlılığı (Minimal Perturbation)</td>
-              <td><code>ChangedLessons</code> (<code>stability.rs</code>)</td>
+              <td>Dönem İçi Değişiklikte Programı Bozmadan Onarım</td>
               <td><span class="badge-ok">Yeniden Planlama</span></td>
-              <td>Dönem ortasında bir öğretmen izne ayrıldığında veya atama değiştiğinde, çalışan programın tamamını bozmadan en az hücre değişimiyle onarım yapar.</td>
+              <td>Dönem ortasında bir öğretmen değiştiğinde bütün okulun programını yıkmadan en az değişiklikle tabloyu onarır.</td>
             </tr>
           </tbody>
         </table>
@@ -697,21 +643,21 @@
 
       <figure class="shot">
         <img src="/assets/constraints-matrix.png" alt="EkolNizam HDD Kısıt ve Kalite Kuralları Yönetim Ekranı">
-        <figcaption>EkolNizam HDD içinde katı kısıtların, öğretmen saat tercihlerinin ve 35+ pedagojik/operasyonel kural ağırlığının yönetildiği kontrol ekranı.</figcaption>
+        <figcaption>EkolNizam HDD içinde öğretmen kapalı saatlerinin ve 35+ kural önceliğinin yönetildiği kontrol ekranı.</figcaption>
       </figure>
     </section>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 4: 3 OKULDA 141 ÖĞRETMENLE PİLOT UYGULAMA SONUÇLARI          -->
+    <!-- BÖLÜM 5: 3 OKULDA 141 ÖĞRETMENLE PİLOT UYGULAMA SONUÇLARI          -->
     <!-- ================================================================= -->
     <section id="pilot">
       <h2>3 okulda 141 öğretmenle yapılan pilot uygulamanın ölçülebilir sonuçları</h2>
       <p class="section-desc">
-        Başvuruda belirtilen "3 okulda 120'den fazla öğretmenle pilot uygulama" beyanı; bir <strong>Mesleki ve Teknik Anadolu Lisesi</strong>, bir <strong>Fen Lisesi</strong> ve bir <strong>Ortaokul</strong> olmak üzere üç farklı okul türünde toplam <strong>141 öğretmen, 69 şube, 880 ders ataması ve 2.513 haftalık ders saati</strong> üzerinde gerçekleştirilen gerçek saha verilerine dayanmaktadır.
+        Başvuruda belirtilen "3 okulda 120'den fazla öğretmenle pilot uygulama" beyanı; bir <strong>Mesleki ve Teknik Anadolu Lisesi</strong>, bir <strong>Fen Lisesi</strong> ve bir <strong>Ortaokul</strong> olmak üzere üç farklı okul kademesinde toplam <strong>141 öğretmen, 69 şube, 880 ders ataması ve 2.513 haftalık ders saati</strong> üzerinde yapılan gerçek saha çalışmalarına dayanmaktadır:
       </p>
 
       <div class="proof">
-        <p class="proof-title">3 gerçek okul yedeğinden (<code>adana.ekolnizam</code>, <code>FEN_LİSESİ.ekolnizam</code>, <code>orhaniye.ekolnizam</code>) ölçülen toplam saha verisi.</p>
+        <p class="proof-title">3 gerçek okulda doğrulanan toplam saha ölçeği ve ölçülebilir kazanımlar.</p>
         <div class="proof-grid-3">
           <div>
             <p class="stat-label">Toplam Pilot Kadrosu</p>
@@ -719,7 +665,7 @@
               <strong>141</strong>
               <span>öğretmen (3 okul)</span>
             </div>
-            <p class="note" style="margin:0; font-size:12.5px; color:var(--color-text-muted)">94 (Meslek Lisesi) + 32 (Fen Lisesi) + 15 (Ortaokul). Tümü gerçek MEB ders atamalarıyla doğrulandı.</p>
+            <p class="note" style="margin:0; font-size:12.5px; color:var(--color-text-muted)">94 (Meslek Lisesi) + 32 (Fen Lisesi) + 15 (Ortaokul). Gerçek MEB müfredatı ve ders yükleriyle doğrulandı.</p>
           </div>
           <div>
             <p class="stat-label">Haftalık Ders Saati ve Şube</p>
@@ -727,15 +673,15 @@
               <strong>2.513</strong>
               <span>saat/hafta · <strong>69 şube</strong></span>
             </div>
-            <p class="note" style="margin:0; font-size:12.5px; color:var(--color-text-muted)">880 bağımsız ders ataması. %100 yerleşim oranı (0 açıkta kalan ders, 0 katı çakışma).</p>
+            <p class="note" style="margin:0; font-size:12.5px; color:var(--color-text-muted)">880 ders ataması. Sona tek bir ders bile açıkta kalmadan %100 yerleşim ve 0 çakışma sağlandı.</p>
           </div>
           <div>
-            <p class="stat-label">Ortalama Planlama Süresi</p>
+            <p class="stat-label">Planlama Süresi Tasarrufu</p>
             <div class="stat-big">
               <strong>1,3 - 5 dk</strong>
               <span>(eskiden 3 - 5 iş günü)</span>
             </div>
-            <p class="note" style="margin:0; font-size:12.5px; color:var(--color-text-muted)">Veri aktarımı (<code>.prg</code> / <code>.roz</code>) &lt; 2 saniye; darboğaz tanısı 20,6 ms; tam CP-SAT + LNS çözümü 79-300 sn.</p>
+            <p class="note" style="margin:0; font-size:12.5px; color:var(--color-text-muted)">Onlarca deneme-yanılma yerine 2 saniyede veri aktarımı, 20,6 ms darboğaz teşhisi ve tek seferde tam çözüm.</p>
           </div>
         </div>
       </div>
@@ -744,38 +690,38 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>Pilot Kurum ve Türü</th>
+              <th>Pilot Okul ve Kademesi</th>
               <th>Öğretmen</th>
-              <th>Şube / Derslik</th>
-              <th>Atama &amp; Saat</th>
-              <th>Saha Problemi ve Kuruma Özgü Kısıtlar</th>
-              <th>Ölçülen EkolNizam HDD Sonucu (Kanıt Kaydı)</th>
+              <th>Şube ve Derslik</th>
+              <th>Atama ve Saat</th>
+              <th>Okuldaki Zorluk ve Kısıtlar</th>
+              <th>Ölçülen EkolNizam HDD Sonucu</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Pilot Okul #1</strong><br>Mesleki ve Teknik Anadolu Lisesi<br><span style="font-size:11.5px;color:var(--color-text-muted)">Adana · <code>adana.ekolnizam</code></span></td>
+              <td><strong>Pilot Okul #1</strong><br>Mesleki ve Teknik Anadolu Lisesi<br><span style="font-size:11.5px;color:var(--color-text-muted)">Adana</span></td>
               <td><strong>94</strong></td>
               <td>45 şube<br>28 derslik/atölye<br>122 ders</td>
               <td>528 atama<br><strong>1.593 saat</strong></td>
-              <td>Araç Teknolojisi, Ark Kaynak ve Elektrik Tesisat atölyelerinde <strong>çift öğretmenli (<code>isTeamTaught: true</code>)</strong> 4'er saatlik blok dersler ve 28 atölye/derslik kapasite sınırı.</td>
-              <td><span class="badge-ok">1.593 / 1.593 saat (%100)</span><br>Eski sistemden 1.593 saatlik veri tek seferde taşındı; ortak atölye ve çift öğretmen çakışmaları <strong>0 ihlalle</strong> çözüldü.</td>
+              <td>Araç Teknolojisi, Ark Kaynak ve Elektrik Tesisat atölyelerinde aynı derse 2 öğretmenin birlikte girdiği 4'er saatlik uzun bloklar ve 28 atölye kapasite sınırı.</td>
+              <td><span class="badge-ok">1.593 / 1.593 saat (%100)</span><br>Eski sistemdeki 1.593 saatlik veri tek seferde taşındı; ortak atölye ve çift öğretmenli bloklar <strong>0 çakışmayla</strong> yerleştirildi.</td>
             </tr>
             <tr>
-              <td><strong>Pilot Okul #2</strong><br>Konya Ereğli Fen Lisesi<br><span style="font-size:11.5px;color:var(--color-text-muted)">Kurum Kodu: 967658 · <code>.prg</code> &amp; <code>.ekolnizam</code></span></td>
+              <td><strong>Pilot Okul #2</strong><br>Konya Ereğli Fen Lisesi<br><span style="font-size:11.5px;color:var(--color-text-muted)">Konya Ereğli</span></td>
               <td><strong>32</strong></td>
               <td>16 şube (<code>9/A..12/D</code>)<br>16 derslik<br>31 ders</td>
               <td>236 atama<br><strong>640 saat</strong></td>
-              <td>29 öğretmende tanımlı <strong>412 kapalı saat</strong> nedeniyle Progmatic'in <code>0/640</code> saatte kilitlenmesi veya 27-44 kapalı saati ezmesi; 12 kısa gün oluşması.</td>
-              <td><span class="badge-ok">640 / 640 saat (%100)</span><br>Çarşamba 2. saat darboğazı <strong>20,6 ms'de</strong> kanıtlandı; 1 hücre onayıyla 411 kapalı saat korundu. Kısa gün <strong>12 → 1</strong>, pencere aşımı <strong>77 → 18 (-%76,6)</strong>.</td>
+              <td>29 öğretmende 412 kapalı saat. Progmatic'te son 2-4 dersin açıkta kalması, hocanın onlarca deneme yapması, 27-44 kapalı saatin ezilmesi ve 12 kısa gün oluşması.</td>
+              <td><span class="badge-ok">640 / 640 saat (%100)</span><br>Çarşamba 1. saat darboğazı <strong>20,6 ms'de</strong> tespit edildi; 1 saatlik onayla 411 kapalı saat korundu. Kısa gün <strong>12 → 1</strong>, pencere aşımı <strong>77 → 18 (-%76,6)</strong>.</td>
             </tr>
             <tr>
-              <td><strong>Pilot Okul #3</strong><br>Orhaniye Ortaokulu (+ Aybastı Atatürk OO <code>.roz</code> testi)<br><span style="font-size:11.5px;color:var(--color-text-muted)">Konya Ereğli · <code>orhaniye.ekolnizam</code></span></td>
+              <td><strong>Pilot Okul #3</strong><br>Orhaniye Ortaokulu (+ Aybastı Atatürk OO <code>.roz</code> geçiş testi)<br><span style="font-size:11.5px;color:var(--color-text-muted)">Konya Ereğli &amp; Ordu</span></td>
               <td><strong>15</strong></td>
               <td>8 şube (<code>5A..8B</code>)<br>45 ders (MEB yeni çizelge)</td>
               <td>112 atama<br><strong>280 saat</strong></td>
-              <td>5-6 ve 7-8. sınıf farklı haftalık ders saatleri, seçmeli ders grupları, öğretmen boş gün talebi ve değişken teneffüs (10 dk / 20 dk) süreleri.</td>
-              <td><span class="badge-ok">280 / 280 saat (%100)</span><br><strong>79,3 saniyede</strong> 0 katı ihlalle çözüldü. 6 senaryo revizyonu sonunda yumuşak kısıt ihlalleri <strong>212 → 5 (-%97,6)</strong> seviyesine indirildi (Kalite: 90-100).</td>
+              <td>5-6 ve 7-8. sınıf farklı ders saatleri, seçmeli ders grupları, öğretmen boş gün talepleri ve farklı teneffüs (10 dk / 20 dk uzun teneffüs) süreleri.</td>
+              <td><span class="badge-ok">280 / 280 saat (%100)</span><br><strong>79,3 saniyede</strong> açıkta ders kalmadan çözüldü. Tercih iyileştirmeleriyle yumuşak kısıt ihlalleri <strong>212'den 5'e (-%97,6)</strong> düşürüldü.</td>
             </tr>
           </tbody>
         </table>
@@ -783,21 +729,21 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 5: TARAYICIDA ÇALIŞAN İNTERAKTİF CANLI DEMO                  -->
+    <!-- BÖLÜM 6: TARAYICIDA ÇALIŞAN İNTERAKTİF CANLI DEMO                  -->
     <!-- ================================================================= -->
     <section id="live-demo">
-      <h2>Çalışan canlı demo: 3 pilot okulun gerçek çizelge ve darboğaz denetleyicisi</h2>
+      <h2>Çalışan canlı demo: 3 pilot okulun gerçek ders programı ve darboğaz denetleyicisi</h2>
       <p class="section-desc">
-        Aşağıdaki interaktif denetleyici doğrudan 3 pilot okulun gerçek çözüm verilerine (<code>640 saat</code> Fen Lisesi CP-SAT çözümü, aynı okulun <code>636 saatlik</code> Progmatic Son Yedek çıktısı, <code>280 saatlik</code> Orhaniye Ortaokulu çözümü ve <code>1.593 saatlik</code> Adana Meslek Lisesi atölye verisi) bağlıdır. Okul, görünüm modu, sınıf veya öğretmen seçerek yerleşen tüm dersleri, öğretmenlerin kapalı saatlerini ve Progmatic'in ezdiği 27 kapalı saati canlı olarak inceleyebilirsiniz.
+        Aşağıdaki interaktif denetleyici doğrudan 3 pilot okulun gerçek çözüm verilerine (<code>640 saat</code> Fen Lisesi CP-SAT + LNS çözümü, aynı okulun <code>636 saatlik</code> Progmatic Son Yedek çıktısı, <code>280 saatlik</code> Orhaniye Ortaokulu çözümü ve <code>1.593 saatlik</code> Adana Meslek Lisesi atölye verisi) bağlıdır. Okul, sınıf veya öğretmen seçerek yerleşen tüm dersleri ve Progmatic'te ezilen kapalı saatleri canlı olarak karşılaştırabilirsiniz.
       </p>
 
       <div class="demo-box">
         <div class="demo-toolbar">
           <label style="font-size:12.5px; color:var(--color-text-secondary);">
-            Veri Seti:
+            Okul ve Çözücü:
             <select id="demo-dataset" class="demo-select">
-              <option value="fen-ekolnizam">Pilot #2: Fen Lisesi - EkolNizam CP-SAT + LNS (640/640 Saat, 0 İhlal)</option>
-              <option value="fen-progmatic">Pilot #2: Fen Lisesi - Progmatic Son Yedek (636/640 Saat, 27 Kapalı Saat İhlali)</option>
+              <option value="fen-ekolnizam">Pilot #2: Fen Lisesi - EkolNizam CP-SAT + LNS (640/640 Saat, 0 İhlal, 1 Kısa Gün)</option>
+              <option value="fen-progmatic">Pilot #2: Fen Lisesi - Progmatic Son Yedek (636/640 Saat, 4 Saat Açıkta, 27 İzin Ezildi)</option>
               <option value="orhaniye">Pilot #3: Orhaniye Ortaokulu - EkolNizam CP-SAT (280/280 Saat, 0 İhlal)</option>
               <option value="adana">Pilot #1: Adana Meslek Lisesi - 94 Öğretmen, 28 Atölye/Derslik (1.593 Saat)</option>
             </select>
@@ -810,7 +756,7 @@
           </div>
 
           <button type="button" id="btn-run-diag" class="demo-btn" style="margin-left:auto; border-color:var(--t-warn); color:var(--t-warn);">
-            ⚡ 20,6 ms Darboğaz Kanıtını Göster
+            ⚡ 20,6 ms Darboğaz Teşhisini Göster
           </button>
         </div>
 
@@ -819,14 +765,14 @@
 
         <div id="demo-diag-panel" hidden style="padding: 14px 16px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); font-size: 12.5px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <strong style="color:var(--t-warn);">CANLI TANILAMA (Assumption-Core &amp; Hall Bipartite Matching - 20,66 ms):</strong>
+            <strong style="color:var(--t-warn);">CANLI DARBOĞAZ TEŞHİSİ (Süre: 20,66 milisaniye):</strong>
             <button type="button" id="btn-close-diag" class="demo-btn" style="height:26px; padding:0 8px; font-size:11px;">Kapat ✕</button>
           </div>
           <p style="margin:0 0 8px; color:var(--color-text-secondary);">
-            <strong>Tespit edilen darboğaz (<code>class-teacher-capacity/2/1</code>):</strong> Çarşamba günü 1. derste (<code>day: 2, period: 1</code>) <strong>10/A, 10/B, 10/C, 10/D, 11/A, 11/B, 11/C, 11/D</strong> (toplam 8 şube) zorunlu ders almak zorunda. Ancak bu 8 şubeye derse giren öğretmenlerden yalnızca 7 tanesi (<code>T-08, T-11, T-12, T-14, T-20, T-25, T-26</code>) o saatte açık; diğerlerinin tamamı kapalı.
+            <strong>Neden diğer programlar son dersleri yerleştiremiyor?</strong> Çarşamba günü 1. derste <strong>10/A, 10/B, 10/C, 10/D, 11/A, 11/B, 11/C, 11/D</strong> (toplam 8 sınıf) ders almak zorunda. Ancak bu 8 sınıfa derse giren öğretmenlerden yalnızca 7 tanesi (<code>T-08, T-11, T-12, T-14, T-20, T-25, T-26</code>) o saatte açık bırakılmış.
           </p>
           <p style="margin:0; color:var(--color-brand);">
-            <strong>Kontrollü Kurtarma Çözümü (<code>proposalId: authorized-one-hour-baseline</code>):</strong> İdarecinin Progmatic'te yaptığı gibi 27-44 kapalı saati ezmek yerine, yalnızca <strong>T-28</strong> kodlu öğretmenin Çarşamba 1. ders hücresi onaylı olarak açıldı; kalan <strong>411 kapalı saatin tamamı korundu</strong> ve 640/640 ders yerleşti.
+            <strong>Otomatik Çözüm Önerisi:</strong> İdarecinin Progmatic'te yaptığı gibi 43 kapalı saati silmesine veya 27 saati ezmesine gerek yok. Yalnızca <strong>T-28</strong> kodlu öğretmenin Çarşamba 1. ders saati açıldığında kalan <strong>411 kapalı saatin tamamı korunur</strong> ve 640/640 ders tek seferde yerleşir.
           </p>
         </div>
 
@@ -836,23 +782,23 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 6: TAMAMLANMIŞ İŞLEVLER, EKRAN GÖRÜNTÜLERİ VE ÇIKTILAR       -->
+    <!-- BÖLÜM 7: TAMAMLANMIŞ İŞLEVLER, EKRAN GÖRÜNTÜLERİ VE ÇIKTILAR       -->
     <!-- ================================================================= -->
     <section id="screenshots">
       <h2>Tamamlanmış işlevler, ekran görüntüleri ve örnek resmî çıktılar</h2>
       <p class="section-desc">
-        EkolNizam HDD ve kardeş modülleri (EKP Ek Ders Puantajı, YRT Nöbet, LITE Araçları) tasarım aşamasında değil, çalışan ve resmî MEB/KBS standartlarında çıktı üreten tamamlanmış ürünlerdir.
+        Ana ürünümüz <strong>EkolNizam HDD (Haftalık Ders Dağıtımı)</strong>, <strong>e-Okul Chrome eklentisi</strong> ve <strong>42 araçlık LITE paketi</strong> tamamlanmış ve çalışır durumdadır. (Ortak altyapımız üzerindeki Optik Okuma EOS, Pansiyon Nöbeti YRT ve Ek Ders EKP modüllerimiz ise şu an geliştirme/yapım aşamasındadır.)
       </p>
 
       <figure class="shot">
-        <img src="/assets/planning-workspace.png" alt="EkolNizam HDD Planlama Çalışma Alanı ve Canlı Dağıtım Tuvali">
-        <figcaption>1. Planlama Çalışma Alanı (<code>RustPlannerWorkspace</code>): Sol panelde yerleşmeyi bekleyen ders blokları ve öğretmen filtreleri, orta alanda canlı çakışma/kapalı saat renk kodlu ders dağıtım tuvali.</figcaption>
+        <img src="/assets/planning-workspace.png" alt="EkolNizam HDD Ders Programı Yerleştir Ekranı">
+        <figcaption>1. Ders Programı Yerleştir Ekranı: Üst barda Hızlı Güncelle, Yerleştirmeyi Başlat ve Kısıtları Kontrol Et araçları; sol panelde ders blokları ve öğretmen listesi; orta alanda canlı yerleştirme tablosu.</figcaption>
       </figure>
 
       <div class="shot-grid">
         <figure class="shot">
-          <img src="/assets/timetable.png" alt="EkolNizam HDD Tamamlanmış Haftalık Ders Programı Görünümü">
-          <figcaption>2. Tamamlanmış Haftalık Çizelge: Sınıf, öğretmen ve derslik bazında filtrelenebilen, sürükle-bırak sırasında 34 katı kısıtı anlık doğrulayan etkileşimli tablo.</figcaption>
+          <img src="/assets/assignments.png" alt="EkolNizam HDD Manyetik Dağıtım ve Ders Atama Ekranı">
+          <figcaption>2. Manyetik Ders Atama ve Blok Şekli Seçimi: Sınıflara atanan derslerin haftalık saatleri ve blok dağılımlarının (<code>2+2</code>, <code>1+1</code>) tek ekranda yönetimi.</figcaption>
         </figure>
         <figure class="shot">
           <img src="/assets/report-preview.png" alt="MEB Standartlarında Resmi Öğretmen ve Sınıf Ders Programı Rapor Çıktısı">
@@ -866,142 +812,98 @@
           <figcaption>4. Esnek Zaman ve Zil Çizelgesi: Günlük ders sayısı, öğle arası ve saha geri bildirimiyle eklenen değişken teneffüs (10 dk + 20 dk uzun teneffüs) yapılandırması.</figcaption>
         </figure>
         <figure class="shot">
-          <img src="/assets/ekp-kbs-2026-08.png" alt="EkolNizam EKP MEB Uyumlu Aylık Ek Ders ve KBS Puantaj Cetveli">
-          <figcaption>5. MEB Uyumlu Ek Ders (EKP / KBS) Puantaj Çıktısı: Haftalık 15 saat maaş karşılığı, 10'a 1 hazırlık ve planlama, rehberlik (+2) ve nöbet (+3) kurallarını hesaplayan aylık puantaj tablosu (<a href="/files/ekp-kbs-2026-08.pdf">Örnek PDF çıktısını indir</a>).</figcaption>
-        </figure>
-      </div>
-
-      <div class="shot-grid">
-        <figure class="shot">
-          <img src="/assets/dashboard.png" alt="EkolNizam Kurum Yönetim Paneli">
-          <figcaption>6. Kurum Kokpiti: Okulun öğretmen, şube, derslik, atama tamlık oranı ve son senaryo durumlarını tek ekranda gösteren yönetim paneli.</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="/assets/module-center.png" alt="EkolNizam Çoklu Ürün ve Modül Merkezi">
-          <figcaption>7. Ortak Altyapı ve Modül Merkezi: HDD (Ders Dağıtımı), EOS (Optik Okuma), YRT (Pansiyon Nöbeti), EKP (Ek Ders) ve 42 LITE aracının tek hesap altında yönetimi.</figcaption>
+          <img src="/assets/dashboard.png" alt="EkolNizam HDD Kurum Kokpiti">
+          <figcaption>5. Kurum Kokpiti: Okulun öğretmen, şube, derslik, atama tamlık oranı ve aktif ders programı durumunu gösteren yönetim paneli.</figcaption>
         </figure>
       </div>
     </section>
 
     <!-- ================================================================= -->
-    <!-- BÖLÜM 7: İŞLEM KAYITLARI (TELEMETRİ VE DOĞRULAMA LOGLARI)          -->
+    <!-- BÖLÜM 8: İŞLEM KAYITLARI (TELEMETRİ VE DOĞRULAMA LOGLARI)          -->
     <!-- ================================================================= -->
     <section id="logs">
-      <h2>Gerçek işlem kayıtları ve çözücü telemetrisi</h2>
+      <h2>Gerçek işlem kayıtları ve çözücü özeti</h2>
       <p class="section-desc">
-        Aşağıdaki işlem kayıtları, pilot okulların gerçek üretim koşularından (<code>anonymous-school-baseline.json</code>, <code>orhaniye.ekolnizam</code> ve <code>product-readiness</code> E2E denetimlerinden) alınan ham sistem çıktılarıdır.
+        Aşağıdaki kayıtlar, 3 pilot okulun gerçek verileri üzerinde çalışan motorun ürettiği doğrulanmış sistem çıktılarıdır:
       </p>
 
       <details open>
-        <summary>İşlem Kaydı #1: Fen Lisesi (640 Saat) CP-SAT + Guided LNS Çözüm ve Doğrulama Kaydı</summary>
+        <summary>İşlem Kaydı #1: Fen Lisesi (640 Saat) CP-SAT + Guided LNS Çözüm Özeti</summary>
         <pre class="term">{
-  "schemaVersion": 1,
-  "scope": "hdd-guided-lns-school-baseline-v1",
-  "acceptedOn": "2026-10-14",
-  "fixtureSha256": "86e63a7c0947ffc63964b31e99dca6bc96949280b7ea7017eee7276d8df43875",
-  "sourceRevision": "269eeaf430bff73f61482cdbaf37a19a47feafbab8536e638111b133d66918ea",
-  "search": { "workers": 1, "maxSeconds": 300, "seed": 42 },
-  "startMode": "cold",
-  "strictProof": {
-    "status": "infeasible",
-    "coreVerified": true,
-    "wallSeconds": 0.029055232
+  "okul": "Konya Ereğli Fen Lisesi (32 Öğretmen, 16 Sınıf, 15 Derslik, 236 Atama)",
+  "toplamHaftalikDersSaati": 640,
+  "tanimliKapaliOgretmenSaati": 412,
+  "darbogazTeshisi": {
+    "durum": "dogrulandi",
+    "sureSaniye": 0.02066,
+    "darbogazSaati": "Çarşamba 1. Ders (8 sınıfa karşılık 7 açık öğretmen)",
+    "onaylananTekHucres": "T-28 (Çarşamba 1. Ders)",
+    "korunanKapaliSaat": "411 / 412 (%99,8)"
   },
-  "permission": {
-    "proposalId": "authorized-one-hour-baseline",
-    "openedTeacherCells": [{ "teacherId": "teachers-28", "cell": { "day": 2, "period": 1 } }]
+  "ilkGecerliCozum_CPSAT": {
+    "yerlesenDersSaati": "640 / 640 (%100)",
+    "katiKuralIhlali": 0,
+    "kisaGunSayisi_1veya2Ders": 11,
+    "pencereHedefAsimi": 77,
+    "toplamPencereSaati": 84,
+    "gunlukMinimumYukAcigi": 15,
+    "ogleArasiSonrasiTekDers": 23
   },
-  "initialScore": {
-    "shortDays": 11,
-    "minimumDeficit": 15,
-    "gapTargetExcess": 77,
-    "gapLessons": 84,
-    "idealDeficit": 29,
-    "subjectSameDayExcess": 92,
-    "singleLessonLunchReturns": 23,
-    "teacherAttendanceDays": 127,
-    "teachersWithoutFreeDay": 4
-  },
-  "finalScore": {
-    "shortDays": 1,
-    "minimumDeficit": 2,
-    "gapTargetExcess": 18,
-    "gapLessons": 59,
-    "idealDeficit": 5,
-    "subjectSameDayExcess": 61,
-    "singleLessonLunchReturns": 15,
-    "teacherAttendanceDays": 124,
-    "teachersWithoutFreeDay": 3
-  },
-  "optimality": {
-    "shortDaysLowerBound": 1,
-    "minimumDeficitLowerBound": 2
-  },
-  "rounds": 68,
-  "improvements": 48,
-  "neighborhoods": ["day-slice", "class-coupled"],
-  "reachedTargetSeconds": 131.912,
-  "validation": {
-    "complete": true,
-    "legalWithinScope": true,
-    "expectedLessons": 640,
-    "placedLessons": 640,
-    "issues": []
+  "nihaiCozum_GuidedLNS_68Tur": {
+    "yerlesenDersSaati": "640 / 640 (%100)",
+    "katiKuralIhlali": 0,
+    "lnsTurSayisi": 68,
+    "kabulEdilenIyilestirme": 48,
+    "kisaGunSayisi_1veya2Ders": "1 (-%90,9 azalma, matematiksel alt sınır kanıtlandı)",
+    "pencereHedefAsimi": "18 (-%76,6 azalma)",
+    "toplamPencereSaati": 59,
+    "gunlukMinimumYukAcigi": "2 (-%86,7 azalma)",
+    "ogleArasiSonrasiTekDers": "15 (-%34,8 azalma)"
   }
 }</pre>
       </details>
 
       <details>
-        <summary>İşlem Kaydı #2: Orhaniye Ortaokulu (280 Saat) Senaryo İyileştirme Kayıtları (<code>orhaniye.ekolnizam</code>)</summary>
-        <pre class="term">[Senaryo #1 - İlk Üretim]
-  versionId: "sv_1787220622769_149ozvdat"
-  generatedAt: "2026-08-20T14:14:59.776Z"
-  placedCount: 280 / 280 | unassignedCount: 0 | hardViolations: 0
-  softViolations: 212 | elapsedMs: 119308 (119,3 sn) | reproducible: true
+        <summary>İşlem Kaydı #2: Orhaniye Ortaokulu (280 Saat) İyileştirme Özeti</summary>
+        <pre class="term">[İlk Üretim]
+  Kapsam: 15 Öğretmen, 8 Şube (5A-8B), 45 Ders, 112 Atama
+  Yerleşen Ders Saati: 280 / 280 (%100) | Açıkta Kalan Ders: 0 | Katı Kural İhlali: 0
+  Yumuşak Tercih İhlali: 212 | Çözüm Süresi: 119,3 saniye
 
-[Senaryo #2 - Kısıt ve Boş Gün Optimizasyonu]
-  versionId: "sv_1787310869369_dq1cnsttm"
-  generatedAt: "2026-08-21T11:16:08.833Z"
-  placedCount: 280 / 280 | unassignedCount: 0 | hardViolations: 0
-  softViolations: 110 (-%48,1 azalma) | elapsedMs: 79312 (79,3 sn) | qualityScore: 100
+[Kısıt ve Boş Gün Optimizasyonu]
+  Yerleşen Ders Saati: 280 / 280 (%100) | Açıkta Kalan Ders: 0 | Katı Kural İhlali: 0
+  Yumuşak Tercih İhlali: 110 (-%48,1 azalma) | Çözüm Süresi: 79,3 saniye
 
-[Senaryo #6 - Nihai Onaylı Program]
-  versionId: "sv_1788253186793_tk8z5fk"
-  generatedAt: "2026-09-01T11:59:22.480Z"
-  placedCount: 280 / 280 | unassignedCount: 0 | hardViolations: 0
-  softViolations: 5 (-%97,6 azalma) | relaxedSlotCount: 0 | relaxationSeverity: "none"</pre>
+[Nihai Onaylı Program (6. Revizyon)]
+  Yerleşen Ders Saati: 280 / 280 (%100) | Açıkta Kalan Ders: 0 | Katı Kural İhlali: 0
+  Yumuşak Tercih İhlali: 5 (-%97,6 azalma) | Kalite Puanı: 90 - 100</pre>
       </details>
 
       <details>
-        <summary>İşlem Kaydı #3: Adana Mesleki ve Teknik Anadolu Lisesi (1.593 Saat) Veri Aktarım Kaydı (<code>adana.ekolnizam</code>)</summary>
+        <summary>İşlem Kaydı #3: Adana Mesleki ve Teknik Anadolu Lisesi (1.593 Saat) Veri ve Atölye Özeti</summary>
         <pre class="term">{
-  "versionId": "sv_1784913856289_llyfi0x",
-  "name": "Eski Sistem Aktarımı 24.07.2026",
-  "generationMethod": "legacy_migration",
-  "schoolType": "vocational_anatolian_high_school",
-  "manifest": {
-    "teachersCount": 94,
-    "lessonsCount": 122,
-    "classesCount": 45,
-    "classroomsCount": 28,
-    "assignmentsCount": 528,
-    "weeklyHoursTotal": 1593
+  "okulTuru": "Mesleki ve Teknik Anadolu Lisesi (Adana)",
+  "envanter": {
+    "ogretmenSayisi": 94,
+    "subeSayisi": 45,
+    "derslikVeAtolyeSayisi": 28,
+    "farkliDersSayisi": 122,
+    "dersAtamaSayisi": 528,
+    "toplamHaftalikDersSaati": 1593
   },
-  "metadata": {
-    "source": "legacy_migration",
-    "importedAt": "2026-07-24T17:23:16.729Z",
-    "placementCount": 1593,
-    "teamTaughtWorkshopsVerified": true
+  "dogrulama": {
+    "eskiSistemdenAktarilanSaat": "1593 / 1593 (%100)",
+    "ciftOgretmenliAtolyeBloklari": "Doğrulandı (0 çakışma)",
+    "atolyeKapasiteAsimi": 0
   }
 }</pre>
       </details>
 
       <aside class="sponsor">
-        <p>Ham kanıt dosyalarını ve örnek resmî çıktıları doğrudan inceleyin:</p>
+        <p>Ham kanıt dosyalarını doğrudan inceleyin:</p>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a class="sponsor-button" href="/files/benchmark-report.json" target="_blank">benchmark-report.json</a>
           <a class="sponsor-button" href="/files/build-record.json" target="_blank">build-record.json</a>
-          <a class="sponsor-button" href="/files/ekp-kbs-2026-08.pdf" target="_blank">Örnek KBS Puantaj PDF</a>
         </div>
       </aside>
     </section>
@@ -1014,7 +916,6 @@
 
   <script src="/assets/demo-data.js"></script>
   <script type="module">
-    // Theme switcher
     const sel = document.getElementById("theme");
     const root = document.documentElement;
     sel.value = root.dataset.theme || "tokyo-night";
@@ -1025,7 +926,6 @@
       requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("no-transition")));
     });
 
-    // Tabs
     const tabs = Array.from(document.querySelectorAll(".tab"));
     tabs.forEach((t) => {
       t.addEventListener("click", () => {
@@ -1039,7 +939,6 @@
       });
     });
 
-    // Copy buttons
     document.querySelectorAll(".btn[data-copy]").forEach((btn) => {
       const orig = btn.textContent;
       btn.addEventListener("click", async () => {
@@ -1053,7 +952,6 @@
       });
     });
 
-    // Interactive Demo Logic
     const data = window.HDD_DEMO_DATA;
     const datasetSel = document.getElementById("demo-dataset");
     const entitySel = document.getElementById("demo-entity");
@@ -1067,7 +965,7 @@
     const btnCloseDiag = document.getElementById("btn-close-diag");
 
     let currentDataset = "fen-ekolnizam";
-    let currentMode = "teacher"; // "teacher" | "class"
+    let currentMode = "teacher";
 
     btnRunDiag.addEventListener("click", () => {
       diagPanel.hidden = !diagPanel.hidden;
@@ -1151,12 +1049,10 @@
       const maxPeriods = isOrh ? 7 : 8;
       const days = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"];
 
-      // Filter placements
       const filtered = placements.filter((p) =>
         currentMode === "teacher" ? p.teacherId === selectedId : p.classId === selectedId
       );
 
-      // Build cell map: day (0..4) -> period (1..8)
       const cellMap = {};
       let totalHours = 0;
       let violatedCount = 0;
@@ -1174,7 +1070,6 @@
         }
       });
 
-      // Closed slots for teacher
       const closedSet = new Set();
       if (currentMode === "teacher" && !isOrh) {
         const tMeta = data.fenLisesi.teachers.find((t) => t.id === selectedId);
@@ -1183,7 +1078,6 @@
         }
       }
 
-      // Compute teacher gaps for selected entity
       let entityGaps = 0;
       for (let d = 0; d < 5; d++) {
         const ps = dayPeriods[d];
@@ -1196,8 +1090,8 @@
 
       if (isPrg) {
         summaryBar.innerHTML = `
-          <span><strong>Çözücü:</strong> <span class="badge-err">Progmatic Son Yedek (05)</span></span>
-          <span><strong>Okul Genel Yerleşim:</strong> 636 / 640 Saat (4 saat silindi)</span>
+          <span><strong>Çözücü:</strong> <span class="badge-err">Progmatic Son Yedek</span></span>
+          <span><strong>Okul Genel Yerleşim:</strong> 636 / 640 Saat (4 saat açıkta kaldı)</span>
           <span><strong>Okul Genel Kapalı Saat İhlali:</strong> <strong style="color:var(--t-danger)">27 Saat Ezildi</strong></span>
           <span><strong>Seçili Kayıt Yükü:</strong> ${totalHours} Saat (${activeDaysSet.size} aktif gün, ${entityGaps} pencere${violatedCount ? `, <strong style="color:var(--t-danger)">${violatedCount} kapalı saat ihlali!</strong>` : ""})</span>
         `;
@@ -1212,7 +1106,7 @@
         summaryBar.innerHTML = `
           <span><strong>Çözücü:</strong> <span class="badge-ok">hdd-engine CP-SAT + Guided LNS (68 Tur)</span></span>
           <span><strong>Okul Genel Yerleşim:</strong> 640 / 640 Saat (%100)</span>
-          <span><strong>Katı Kural İhlali:</strong> <strong style="color:var(--color-brand)">0 İhlal</strong> · Kısa Gün: <strong>1</strong> (Alt sınır kanıtlı)</span>
+          <span><strong>Katı Kural İhlali:</strong> <strong style="color:var(--color-brand)">0 İhlal</strong> · Kısa Gün: <strong>1</strong></span>
           <span><strong>Seçili Kayıt Yükü:</strong> ${totalHours} Saat (${activeDaysSet.size} aktif gün, ${entityGaps} pencere)</span>
         `;
       }

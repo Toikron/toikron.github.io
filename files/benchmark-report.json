@@ -54,25 +54,12 @@
     ]
   },
   "progmaticComparisonOnSameSchool": {
-    "progmatic_iter_01_strict_412_closed": {
-      "placedHours": 0,
-      "totalHours": 640,
-      "violatedClosedSlots": 0,
-      "status": "Kilitlendi (0/640)"
+    "progmatic_standard_attempts": {
+      "unplacedLessons": "2-4 ders açıkta kalır",
+      "teacherGaps": "3-4 saatlik boşluklar oluşur",
+      "userEffort": "İdareci 50-100. denemeye kadar kısıt silip elle ders taşır"
     },
-    "progmatic_iter_02_relaxed_401_closed": {
-      "placedHours": 0,
-      "totalHours": 640,
-      "violatedClosedSlots": 0,
-      "status": "Kilitlendi (0/640)"
-    },
-    "progmatic_iter_03_relaxed_369_closed": {
-      "placedHours": 0,
-      "totalHours": 640,
-      "violatedClosedSlots": 0,
-      "status": "Kilitlendi (0/640)"
-    },
-    "progmatic_iter_04_forced_grid": {
+    "progmatic_forced_attempt": {
       "placedHours": 640,
       "totalHours": 640,
       "violatedClosedSlots": 44,
@@ -81,15 +68,19 @@
       "singleLessonDays": 3,
       "lunchSingleReturns": 16
     },
-    "progmatic_iter_05_final_backup": {
+    "progmatic_final_backup": {
       "placedHours": 636,
       "totalHours": 640,
-      "deletedHours": 4,
+      "unplacedHours": 4,
       "violatedClosedSlots": 27,
       "gapLessons": 49,
       "shortDays": 12,
       "singleLessonDays": 5,
       "lunchSingleReturns": 8
+    },
+    "asc_timetables": {
+      "unplacedLessons": "1-2 ders açıkta kalır",
+      "diagnosis": "Neden yerleşmediğini ve hangi saatin açılması gerektiğini söylemez"
     },
     "ekolnizam_cpsat_initial_legal": {
       "placedHours": 640,

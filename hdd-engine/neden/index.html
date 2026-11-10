@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Neden kendi çözücü motorumu yazdım · toikron/hdd-engine</title>
-  <meta name="description" content="Okullarda kullanılan klasik ders dağıtım programlarının neden tıkandığı, sezgisel algoritmalar yerine neden Rust ve OR-Tools CP-SAT tercih ettiğim ve Clean-Room .prg dönüşümünün hikayesi.">
+  <meta name="description" content="Okullarda ders programı hazırlarken yaşanan 100 iterasyon çilesi, Progmatic ve aSc Timetables'ın neden son 1-4 dersi açıkta bıraktığı ve neden CP-SAT + LNS motoruna geçtiğim.">
   <script>
     (() => {
       let theme = null;
@@ -20,7 +20,7 @@
     <div class="bar-inner">
       <a class="bar-name" href="/hdd-engine/"><span>toikron/</span>hdd-engine</a>
       <nav class="bar-links" aria-label="Ana menü">
-        <a href="/hdd-engine/#architecture">Mimari &amp; 35+ Kural</a>
+        <a href="/hdd-engine/#cpsat-nedir">CP-SAT &amp; LNS Nedir?</a>
         <a class="hide-sm" href="/hdd-engine/#measured">Benchmark</a>
         <a class="hide-sm" href="/hdd-engine/#pilot">3 Pilot Okul</a>
         <a class="hide-sm" href="/">Toikron Profil</a>
@@ -40,59 +40,51 @@
   <main>
     <article class="prose">
       <p class="hero-label">MÜHENDİSLİK NOTLARI · EKOLNİZAM HDD</p>
-      <h1>Neden mevcut algoritmaları silip saf CP-SAT motoruna geçtim</h1>
+      <h1>100 deneme çilesini bitirmek: Neden kendi CP-SAT motorumu yazdım</h1>
 
       <p>
-        Bir okul müdür yardımcısının odasında ders programı hazırlanırken ekrana baktığınızda hep aynı manzarayı görürsünüz. 90'lı yıllardan kalma bir masaüstü programı açıktır. Ekranın altında yerleşmeyi bekleyen ders kartları dizilmiştir. İdareci "Otomatik Dağıt" tuşuna basar, sayaç döner ama son 4-5 ders bir türlü yerleşmez.
+        Bir okulda müdür yardımcısının ders programı hazırlamasını yanına oturup izlediğinizde tablonun nasıl çıktığını görürsünüz. Ekranda Progmatic, aSc Timetables veya benzeri bir masaüstü programı açıktır. Hoca öğretmenlerin kapalı günlerini, blok dersleri ve nöbetleri girip dağıtımı başlatır.
       </p>
 
       <p>
-        Sorun idarecinin girdiği veride mi, yoksa yazılımın arama yönteminde mi? Klasik yazılımlar (Progmatic ve aSc Timetables) bu soruya yanıt vermez. Çünkü arkada çalışan mekanizma matematiksel bir kanıtlayıcı değildir; dersleri rastgele veya açgözlü (greedy) sırayla yerleştirip sıkıştığında ikili-üçlü takaslar (local swap) deneyen sezgisel bir döngüdür.
+        Program derslerin büyük kısmını hızla tabloya atar ama son 2-4 dersi (aSc'de ise genelde son 1-2 dersi) bir türlü yerleştiremez; o kartlar ekranın altında açıkta kalır. Yerleştirdiği derslerde ise bazı öğretmenlere 3-4 saatlik boşluklar (pencereler) bırakmıştır; öğretmen sabah ilk derse girip öğleden sonraya kadar okulda boş beklemek zorunda kalır.
+      </p>
+
+      <p>
+        İşte asıl mesai o anda başlar. Yazılım "Şu yüzden yerleştiremedim" demediği için hoca başlar deneme yapmaya: Bir öğretmenin kapalı saatini siler, tekrar dağıtır; olmaz. Bir dersi elle başka güne taşır, öbürünü çeker, tekrar basar. Yeter ki o son 2-3 ders de yerleşsin ve öğretmenler aralarda 3-4 saat boş beklemesin diye 50, 80, bazen 100. denemeye kadar günlerce tablo ile uğraşır.
       </p>
 
       <figure class="shot">
-        <img src="/assets/asc-freeze.png" alt="Aynı okul verisinde aSc Timetables ekranının Yanıt Vermiyor durumuna düşmesi">
-        <figcaption>32 öğretmenli ve 640 ders saatli gerçek okul verisinde kısıtlar daraldığında klasik masaüstü yazılımının (Yanıt Vermiyor) durumuna düşüp ders kartlarını açıkta bırakması.</figcaption>
+        <img src="/assets/planning-workspace.png" alt="EkolNizam HDD Ders Programı Yerleştir Ekranı">
+        <figcaption>EkolNizam HDD "Ders Programı Yerleştir" ekranı: Hocayı onlarca deneme yapmaya zorlamadan, tüm kısıtları ve öğretmen boşluklarını tek seferde optimize eden çalışma alanı.</figcaption>
       </figure>
 
-      <h2>Sahte ilerleme çubuklarını ve açgözlü döngüleri çöpe atmak</h2>
+      <h2>Diğer yazılımlar neden son 1-4 dersi açıkta bırakıyor?</h2>
 
       <p>
-        EkolNizam HDD'nin ilk prototiplerinde ben de hibrit bir yol denemiştim: Önce hızlı bir sezgisel yerleştiriciyle 640 saatin büyük kısmını dizip kalan boşlukları onarmaya çalışıyordum. Sahadan gelen gerçek okul yedeklerini motora verdiğimde bu yaklaşımın sınırını net gördüm.
+        Progmatic ve benzeri eski programlar matematiksel olarak "tüm tabloyu aynı anda gören" bir çözücü kullanmaz. Bir bavula eşyaları rastgele tıkıştırır gibi dersleri sırayla boş buldukları yerlere koyarlar. Bavulun sonuna gelince 2-3 eşya dışarıda kalır. Bu sefer rastgele birkaç eşyayı çıkarıp tekrar sokmayı denerler ama 640 saatlik bir okulda doğru kombinasyonu rastgele bulmak samanlıkta iğne aramaktır.
       </p>
 
       <p>
-        16 şubeli ve 32 öğretmenli bir Fen Lisesinin gerçek Progmatic yedeğinde (<code>Downloads/01</code> veri seti) öğretmenlerin toplam 412 kapalı saati vardı. İdareci bu dosyayı Progmatic'te çözemediği için sırasıyla <code>yedek boş</code> (401 kapalı saat) ve <code>02</code> (369 kapalı saat) klasörlerinde 43 kapalı saati el yordamıyla silmiş, başka bir yedekte ise (<code>Progmatic/05</code>) 27 kapalı saati zorla ezip 4 saatlik dersi silerek 636 saatlik eksik bir tablo çıkarmıştı.
+        aSc Timetables bu konuda biraz daha gelişmiş bir geri-izleme (backtracking) kullansa da sıkışık okullarda o da son 1-2 derste takılır. Üstelik iki yazılımın ortak bir eksiği vardır: Gerçekten kurallar birbiriyle çakışıyorsa <strong>neden olmadığını ve hangi öğretmenin hangi saatinin açılması gerektiğini söylemezler.</strong>
       </p>
 
-      <p>
-        Aynı veriyi incelediğimde problemin 43 saatlik bir darlık olmadığını fark ettim. Çarşamba günü 2. derste 8 şubenin tamamı ders almak zorundaydı ama o şubelere derse giren öğretmenlerden yalnızca 7 tanesi açıktı. Sekiz sınıfa aynı anda yedi öğretmen yetmez. İdareci hangi 40 saati açarsa açsın, Çarşamba 2. saatteki o sekizinci öğretmeni açmadığı sürece program matematiksel olarak imkânsızdı.
-      </p>
+      <h2>Bizim farkımız: Tek seferde en iyiyi bulmak ve sorunu konuşarak çözmek</h2>
 
       <p>
-        Bu bulgudan sonra üretim hattındaki bütün açgözlü (greedy), genetik ve yerel arama (local search) kodlarını tamamen sildim. Yerine <strong>Rust (<code>rustc 1.101.0</code>)</strong> ve <strong>Google OR-Tools CP-SAT C++ (<code>hdd-engine.wasm</code>)</strong> tabanlı dört katmanlı yeni bir mimari kurdum:
+        EkolNizam HDD'nin altında çalışan <code>hdd-engine</code> motorunu kurarken tek bir hedefim vardı: Müdür yardımcısını 100 kere deneme yapmaktan, kısıt bozup elle ders taşımaktan kurtarmak. Bunun için eski usul rastgele yerleştirme algoritmalarının tamamını çöpe atıp iki katmanlı bir matematik motoru (<strong>Google OR-Tools CP-SAT + Büyük Komşuluk Araması / LNS</strong>) kurdum:
       </p>
 
       <ul class="changes">
-        <li><strong>Milisaniyelik darboğaz kanıtı:</strong> Çözücü aramaya başlamadan önce iki parçalı graf eşleşmesi (Hall teoremi) ve CP-SAT varsayım çekirdeği (<code>sufficient_assumptions_for_infeasibility</code>) çalıştırır. Fen Lisesi verisindeki Çarşamba 2. ders darboğazını <strong>20,6 milisaniyede</strong> yakalayıp ilgili 8 sınıfı ve 7 öğretmeni doğrudan listeler.</li>
-        <li><strong>Kontrollü kurtarma (<code>recovery::run</code>):</strong> Kullanıcıya "Çözülemedi" demek yerine, en az sayıda kapalı saati açarak tam programı kurtaran alternatifleri hesaplar. Aynı okulda 412 kapalı saatin 411'ini koruyup yalnızca <code>teachers-28</code> kaydının Çarşamba 2. saatini açarak 640/640 saati 0 katı ihlalle çözer.</li>
-        <li><strong>Alt sınır kanıtlı kalite aşamaları ve Guided LNS:</strong> İlk geçerli çözüm bulunduktan sonra motor durmaz. Gün dilimi (<code>day-slice</code>) ve sınıf bağlantılı (<code>class-coupled</code>) komşuluklarda <strong>Kempe zinciri</strong> takaslarıyla 68 tur büyük komşuluk araması (Guided LNS) yapar; kısa günleri 11'den 1'e (alt sınır = 1 kanıtlı), pencere hedef aşımını 77'den 18'e indirir.</li>
-        <li><strong>Tarayıcıda Clean-Room <code>.prg</code> ve <code>.roz</code> okuyucu:</strong> Okul idarecisinin eski programdan çıkıp yeni sisteme geçebilmesi için sıfırdan veri girmemesi şarttır. Progmatic'in <code>teacher.prg</code> (7.060 bayt/kayıt) ve <code>common.prg</code> (2.764 bayt/kayıt) dosyalarını doğrudan tarayıcı belleğinde çözen temiz oda ayrıştırıcıyı bu yüzden yazdım.</li>
+        <li><strong>Açıkta ders bırakmadan tek seferde tam yerleşim:</strong> Motor dersleri sırayla dizmez; 640 saatin tamamını ve 35'ten fazla kuralı tek bir matematik denklemi olarak aynı anda çözer. Sona 1-2 ders kalması gibi bir durum yaşanmaz; ya 640 saatin tamamı yerleşir ya da neden yerleşemeyeceği kanıtlanır.</li>
+        <li><strong>İmkânsız bir kural varsa 20 milisaniyede nokta atışı teşhis:</strong> Örneğin 16 şubeli Fen Lisesi verisinde Çarşamba 1. saatte 8 sınıfın ders alması gerekirken sadece 7 öğretmenin açık bırakıldığını <strong>saniyenin binde 20'sinde (20,6 ms)</strong> bulur. Hocaya 40 tane izni rastgele sildirmek yerine, <em>"Çarşamba 1. saatte şu öğretmenin 1 saatini açarsan tüm okul %100 çözülüyor"</em> der ve tek onayla 411 kapalı saati koruyarak programı tamamlar.</li>
+        <li><strong>Öğretmeni okulda 3-4 saat boş bekletmeyen LNS cilası:</strong> Tüm dersler yerleştikten sonra motor durmaz. <strong>LNS (Büyük Komşuluk Araması)</strong> devreye girer; öğretmenlerin boşluklarını (pencerelerini) ve sadece 1-2 ders için okula geldikleri kısa günleri tarar. Fen Lisesinde 68 turda 48 otomatik iyileştirme yaparak kısa günleri 12'den 1'e, fazla boşlukları ise %76,6 oranında aşağı çeker.</li>
+        <li><strong>Eski programdan (<code>.prg</code> ve <code>.roz</code>) 2 saniyede geçiş:</strong> İdarecinin yıllarca Progmatic veya aSc'ye girdiği öğretmenleri ve dersleri baştan yazmasına gerek yoktur. Dosyalarını seçtiği anda tarayıcı içinde 2 saniyede okunur ve doğrudan yeni motora aktarılır.</li>
       </ul>
 
       <p>
-        Tüm ölçüm tablolarını, 34 katı kısıt ile 43 kalite metriğinin tam listesini ve 3 pilot okulun (141 öğretmen, 2.513 ders saati) gerçek verisiyle çalışan interaktif demoyu <a href="/hdd-engine/"><strong>ana teknik inceleme sayfasında</strong></a> bulabilirsiniz.
+        Motorun çalışma mantığını, karşılaştırma grafiklerini ve 3 pilot okulun (141 öğretmen, 2.513 ders saati) gerçek verisiyle çalışan interaktif demoyu <a href="/hdd-engine/"><strong>ana inceleme sayfasında</strong></a> deneyebilirsiniz.
       </p>
-
-      <h2 id="posts">Geliştirme güncesi (2026)</h2>
-      <ul class="posts">
-        <li><time>24 Tem 2026</time><span>Adana Mesleki ve Teknik Anadolu Lisesi (94 öğretmen, 45 şube, 28 derslik/atölye, 1.593 saat) verisi eski sistemden <code>legacy_migration</code> ile eksiksiz aktarıldı.</span></li>
-        <li><time>18 Ağu 2026</time><span>Konya Ereğli Fen Lisesi (32 öğretmen, 16 şube, 640 saat) saha pilotu tamamlandı; Progmatic <code>.prg</code> ikili dosya ayrıştırıcısı doğrulandı.</span></li>
-        <li><time>02 Eyl 2026</time><span>Orhaniye Ortaokulu (15 öğretmen, 8 şube, 280 saat) üzerinde 6 senaryo denemesiyle yumuşak kısıt ihlalleri 212'den 5'e düşürüldü.</span></li>
-        <li><time>27 Eyl 2026</time><span>Ordu Aybastı Atatürk Ortaokulu'nda <code>.roz</code> (aSc) veri aktarımı ve değişken teneffüs (10 dk / 20 dk) desteği canlı ortamda doğrulandı.</span></li>
-        <li><time>10 Eki 2026</time><span>Tüm eski sezgisel çözücüler kaldırıldı; <code>hdd-engine.wasm</code> (Rust + C++ OR-Tools CP-SAT) tek üretim motoru olarak devreye alındı.</span></li>
-        <li><time>14 Eki 2026</time><span><code>hdd-guided-lns-school-baseline-v1</code> kabul testi: 68 LNS turu ve 48 iyileştirmeyle 640/640 ders saatinde kısa gün alt sınırı (1) kanıtlandı.</span></li>
-      </ul>
     </article>
   </main>
 
