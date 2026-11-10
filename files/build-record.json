@@ -1,0 +1,2925 @@
+{
+  "artifacts": [
+    {
+      "sha256": "1d03c473a9c2025ae36786b47f49abf55f6535dfcad4f40e47ddfcae71a331b0",
+      "bytes": 129767,
+      "name": "hdd-engine.mjs"
+    },
+    {
+      "sha256": "cc4deceae27b641ce21ddc9a88d88640a329bc0f9f5e23d70c9d8993ea691e60",
+      "bytes": 10660607,
+      "name": "hdd-engine.wasm"
+    },
+    {
+      "sha256": "f173d8af78450576713c9f635c1a4a69a364ee0521cfbf9da1bf8bf789142f80",
+      "bytes": 140552,
+      "name": "THIRD_PARTY_NOTICES"
+    }
+  ],
+  "compiler": [
+    "rustc 1.101.0-nightly (282215592 2026-10-04)",
+    "binary: rustc",
+    "commit-hash: 28221559263a3976766cf305940e80e30cf9ba8a",
+    "commit-date: 2026-10-04",
+    "host: x86_64-pc-windows-msvc",
+    "release: 1.101.0-nightly",
+    "LLVM version: 23.1.3"
+  ],
+  "reusedOrToolsBuild": "D:/tmp/hdd-rust-wasm-20261010/probe/build",
+  "rustArchiveSha256": "10716dd77fee29db607eaaf02b28cbd2562644fb761bf8f47532248dfdb01dfe",
+  "sources": [
+    {
+      "path": "Cargo.toml",
+      "sha256": "2d2c9f260a0ad467c386a9cadcc756c7cf4691fcca3c75b85661f972acc193ca"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "7132031e9bc2e52b3c8d8893fdecea95a224b2266faae6f106d3c6b2eaf36d4e"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "668c4881993ba68bdb317f655101e1be69915966cb303a75de76c01e02681b91"
+    },
+    {
+      "path": "package.json",
+      "sha256": "72639340086945608dee913fb07b2dbaca5dd0526584ae8f4fc2061510251d09"
+    },
+    {
+      "path": "src/calendar.rs",
+      "sha256": "b14d686569c180fecaa59be8f3ff04acab05e30e46e2b8eb99b3e14e49dc2436"
+    },
+    {
+      "path": "src/daily_sessions.rs",
+      "sha256": "e0779c971c4022ed30dbc58a09b6db6c4c25bcc2ba8d440626108d2b16c01a5e"
+    },
+    {
+      "path": "src/expert_days_model.rs",
+      "sha256": "9cd6ac98234009223ee30c4d4663f2a16b6762495eb429ca084ff5b0f2e4f53b"
+    },
+    {
+      "path": "src/guided_lns.rs",
+      "sha256": "cfa3b766ed179548d52ad81b11f56c3385a788f7a6d2e2cf3904c1a6ae60283f"
+    },
+    {
+      "path": "src/input.rs",
+      "sha256": "ccdf7b95dfac7679a38100098a755fdcbe2185536ed8829fae13c9c6439c831d"
+    },
+    {
+      "path": "src/inventory.rs",
+      "sha256": "099acc92f2ac6a3a6b5ae8a0282e678a36b6c2f6a6f877ea2d3d99fd6028fb85"
+    },
+    {
+      "path": "src/learning_audiences.rs",
+      "sha256": "3665522d790d102f4ac938c07caddd8c3e4ee062cb030386f7c578e9225c2293"
+    },
+    {
+      "path": "src/lesson_time_model.rs",
+      "sha256": "67519b80a91974fb9923f3cddb7399b7000729c3e4f4063df235c99c7412f963"
+    },
+    {
+      "path": "src/lesson_time.rs",
+      "sha256": "80d033e75b08606441f28f28488b7d5163ae7751c508650fbb78d0a86202ec9f"
+    },
+    {
+      "path": "src/lesson_variants.rs",
+      "sha256": "a1b945cadb25b77e1f7ad4a9cc28e51afb90c39b05be205c4148c9db64a3499e"
+    },
+    {
+      "path": "src/lib.rs",
+      "sha256": "af28c2b20786dded636f14e96f522f5b2e8d8a357d6933d40a3c000e16bf7e04"
+    },
+    {
+      "path": "src/linked_lessons_model.rs",
+      "sha256": "da71866e1b752598a2c7530f28b42bffd7b90c7fd23028f338814e8c25625b75"
+    },
+    {
+      "path": "src/lunch_distribution.rs",
+      "sha256": "dd0c7b5b1cd5c148fe1c51b2d3192bc60aea78f06b03d077166aebce29233f54"
+    },
+    {
+      "path": "src/offsite.rs",
+      "sha256": "00f1c541c7d694efa096f36fea531721caf294d786b84f191e9644804df66d38"
+    },
+    {
+      "path": "src/parallel.rs",
+      "sha256": "bd2db73b1c62bd3ea0a1c86d9880d70060ef5d7174ece6c3effbd5d4244710e3"
+    },
+    {
+      "path": "src/planner_weights.rs",
+      "sha256": "38e0f2ab38d430f6525e5fb40bc87e57adfcb32025c8ab23d7a1e5ff58da5103"
+    },
+    {
+      "path": "src/quality_bounds.rs",
+      "sha256": "daaa84a904b5ae737845a99f15a6fb9caaf9e68d0da9ff7b4cba8b82d7bfb965"
+    },
+    {
+      "path": "src/quality_guards.rs",
+      "sha256": "41c8add3716e30c3490b1e47e5c753d0fa353461290d0e32966ac3e79c02304b"
+    },
+    {
+      "path": "src/quality_model.rs",
+      "sha256": "4b48b6e149972afdef0823e3125b5a213d2c556537aa01614fa4aceb909c22c0"
+    },
+    {
+      "path": "src/quality.rs",
+      "sha256": "d6e1d58986d648994610b5b0290f2a51d82c006c53dae8d78effe238034f348d"
+    },
+    {
+      "path": "src/room_capacity.rs",
+      "sha256": "9838fdb5348c0e96708d4ba78d4d533d41d632f85625210b0333e2aeaed2ad33"
+    },
+    {
+      "path": "src/school_quality_model.rs",
+      "sha256": "ce01844d03ea87f569c819e21e50ed80464c65a9c9b95a4a43992080640f7d94"
+    },
+    {
+      "path": "src/search_ordering.rs",
+      "sha256": "e198490e9f52652f809bcfd1c92e786c4bdadb1f96b5d0415f54ae767c206e30"
+    },
+    {
+      "path": "src/session_locks_model.rs",
+      "sha256": "fd9f2efb6dcb6bd824efecce07a4b50d0603f8488545aac7811ea084a14b3674"
+    },
+    {
+      "path": "src/shifts.rs",
+      "sha256": "b2ae7f1c3b1cf1e4bea0ad5d957d315e3c73d4a20abea375d7d260582f6cc761"
+    },
+    {
+      "path": "src/stability.rs",
+      "sha256": "d4f94f9d48318493cd5d2eae8bdf1e9579aff75fdabb00ec6399bc9e2c61b159"
+    },
+    {
+      "path": "src/student_enrollments.rs",
+      "sha256": "097ae4fdffcdc2a0eff8351b021668d680e7de4c079dc3ba49e520672929e5fe"
+    },
+    {
+      "path": "src/teacher_duty.rs",
+      "sha256": "76ff1b08e6ec5d1c620f6c63d64f5165c32b474713fdc06c21cc39a17dc2cccb"
+    },
+    {
+      "path": "src/teacher_preferences.rs",
+      "sha256": "77b835e1a1889997c235f3beb70eae2eb8cdbc4e7af025befd67389367c91146"
+    },
+    {
+      "path": "src/time_preferences_model.rs",
+      "sha256": "6c707f395c533f97e5f4e975de24099b7b10cf7d6a49fc92e10ff13ee63df949"
+    },
+    {
+      "path": "src/time_preferences.rs",
+      "sha256": "368562efa6d9f6bb6de212663d1e29e79fc235e52b8f3d5c3a1d70f4bae54363"
+    },
+    {
+      "path": "src/validation.rs",
+      "sha256": "3840dce97ea73699754f76558fb057dd206750c5de7cc0ca13eac642e97d716d"
+    },
+    {
+      "path": "src/wasm.rs",
+      "sha256": "d3544b0a3eec546d824f8042d02c47b91466b6fe94114c50f660f007b6a795ea"
+    },
+    {
+      "path": "src/workload_model.rs",
+      "sha256": "6f2c149aaec9fac8dc9eb0b488d3ba28264b969063de41eef1cf1a484a72a2e8"
+    },
+    {
+      "path": "src/workload.rs",
+      "sha256": "4ae7cb0675c7b44f0f17b1e5b9a525d2deab861dbfe78ee12dcb4468eccc024e"
+    },
+    {
+      "path": "src/attendance_preferences/input.rs",
+      "sha256": "2f8d98ccb2a2c897ccd3567f076199c0735514141dce239a9bd71d80c41759c4"
+    },
+    {
+      "path": "src/attendance_preferences/mod.rs",
+      "sha256": "52f4b8b3c75b194b7be9b8d98c05af6b61ecfdb960763d42720db7249bb9b212"
+    },
+    {
+      "path": "src/attendance_preferences/selection.rs",
+      "sha256": "41f468bc17d969ed4548007ea04a75aeddfa57220f90fe66ed0ad3bba79a8496"
+    },
+    {
+      "path": "src/block_families/input.rs",
+      "sha256": "910bbd37efd92719969a5d5228a37462342f507a219a172ecd21a8d801c977d5"
+    },
+    {
+      "path": "src/block_families/mod.rs",
+      "sha256": "5c0d9ba2d41ff5ace072083cd2c13ad5bac065b12d0ebdc855d99d7119bdb2ab"
+    },
+    {
+      "path": "src/block_families/preferred.rs",
+      "sha256": "4200fa19c4d6e3be4aa55b424717ef12df854c112c0b31468bf64a315ca940c7"
+    },
+    {
+      "path": "src/block_families/selection.rs",
+      "sha256": "9d1e6947dbc1e6666d19500aaf1a715f47e083355f8062ec453934e796364693"
+    },
+    {
+      "path": "src/block_types/mod.rs",
+      "sha256": "1be9fe45eb708bfb77d24c5ce1e75a1fca3b16ab34eaa292bc749b68700955be"
+    },
+    {
+      "path": "src/block_types/model.rs",
+      "sha256": "5366792620427ef4957c24fcf9a60bf442dbb08467d6cf1b255864883a342d30"
+    },
+    {
+      "path": "src/block_types/selection.rs",
+      "sha256": "5b592e0aa6010817720d095afb5662d163355af3d7f1e7d2b67e6373d6fc6f66"
+    },
+    {
+      "path": "src/building_transfer/input.rs",
+      "sha256": "763ca85c247989628846af66d2af90c1d6440ffce3e89fded35accab3e3454a1"
+    },
+    {
+      "path": "src/building_transfer/mod.rs",
+      "sha256": "c96acae2361d8dd3ed48dedf85b6fcdf50f175ec97a82da9a93fd08a57b1cf9e"
+    },
+    {
+      "path": "src/building_transfer/selection.rs",
+      "sha256": "f6a88de9f91a2a59bfcca4e39c6633d94910987cd0532fab9e12b0e47eb542e7"
+    },
+    {
+      "path": "src/cell_capacity/forced.rs",
+      "sha256": "58ce60c883f7859a5d503542942d1a47be6e3c51d2303da95ec1da9f49022ab2"
+    },
+    {
+      "path": "src/cell_capacity/matching.rs",
+      "sha256": "b1e132f262a80c13c1a793bae6c084ce10241fdbfd5649979b431f0e1828c4bb"
+    },
+    {
+      "path": "src/cell_capacity/mod.rs",
+      "sha256": "6d36afe5f996695494fae2d6f0c316fe1959463fede932f6e0606449b05d5e3a"
+    },
+    {
+      "path": "src/contract/block_families.rs",
+      "sha256": "2530b6bc7e6a76ce2fe9632844267611052906f4e2585c9746afe44e849b0ef4"
+    },
+    {
+      "path": "src/contract/block_types.rs",
+      "sha256": "03cd5240989dca021380a5576c5d5b4cf288d3af1722718c28a78956694133e7"
+    },
+    {
+      "path": "src/contract/departments.rs",
+      "sha256": "361974ed013ae1f820e68ca47cb464c4bfef301397dff99d1b248fb8c16a2203"
+    },
+    {
+      "path": "src/contract/diagnosis.rs",
+      "sha256": "ed8a57fb84ae6b544a79b3f55977f17cca2b6822fe2384a412d84b9695c59f4e"
+    },
+    {
+      "path": "src/contract/expert_days.rs",
+      "sha256": "54a7f1b8fd83ee17b6c083bd3f7a04f0c56a4ce098dee9aa85e4dea6b53da48f"
+    },
+    {
+      "path": "src/contract/lesson_time.rs",
+      "sha256": "5cfd23b6af132517db4713bd85fe48550ef6ac8ec63369186e4a95caf88027d7"
+    },
+    {
+      "path": "src/contract/linked_lessons.rs",
+      "sha256": "9abe3fb82eb6779be173ae030e89dd8cc12f3ec94221c172a9d7dab65d648384"
+    },
+    {
+      "path": "src/contract/linked_teachers.rs",
+      "sha256": "a1fb94426d60f1878c38a63c9ddd9bf2b5ae80703b1b05688a024caabd36d0ef"
+    },
+    {
+      "path": "src/contract/mod.rs",
+      "sha256": "5b944fbf4c84ce51eaee3b080815a69c6e2323d675084374191daff81a181479"
+    },
+    {
+      "path": "src/contract/objective_policy.rs",
+      "sha256": "03e5217e1d33d291ada9c8a958e1a352d1629b6cc60eb5e4d7a370fc4689008e"
+    },
+    {
+      "path": "src/contract/pedagogy.rs",
+      "sha256": "21ffae398e914c356f01f01c620328dd21058cac198ec969c12e8fddf2e6abd9"
+    },
+    {
+      "path": "src/contract/policies.rs",
+      "sha256": "8c6087637e7c5bd918a0c3087688eacdb475725cf6c450f3009ffa33816281e4"
+    },
+    {
+      "path": "src/contract/quality.rs",
+      "sha256": "7022ae2a8f1ef9f75bb56fa0e455c51fc13a44742809ee0c0b346ee72fb84df3"
+    },
+    {
+      "path": "src/contract/recovery.rs",
+      "sha256": "d120d038b5e18d68b405d7459eca8c16406aea4d00151d6e2c2a605aaba7413e"
+    },
+    {
+      "path": "src/contract/request.rs",
+      "sha256": "714074ada29ddb0da4f217f4f0c37a62a836dc462ed0efd68e1b62162bbc2db3"
+    },
+    {
+      "path": "src/contract/response.rs",
+      "sha256": "4c5e997eb120d4d2a12282fc9528180507f970dbc549b24909f47d6fd5a7a897"
+    },
+    {
+      "path": "src/contract/rooms.rs",
+      "sha256": "5f9a5a528cd5ec4c09a4bbe6ec229201b58d53292804601798d37d2eef2763b2"
+    },
+    {
+      "path": "src/contract/search_ordering.rs",
+      "sha256": "0807264db7d0ccf95a384f659cc8325c3751c55a3f255573868729056c53d399"
+    },
+    {
+      "path": "src/contract/session_locks.rs",
+      "sha256": "2a06803661ca0a749ed619b2eed8d26e2d9d53844f55502733173df0c54a3681"
+    },
+    {
+      "path": "src/contract/solver_statistics.rs",
+      "sha256": "57ad906e8a0a0cee46ca2596e6608960559c626679dc14899415735d3caf19e4"
+    },
+    {
+      "path": "src/contract/stability.rs",
+      "sha256": "130b8d12430f90bf84825a05323e081ee54dd3db929c0f80f49fed7a6711213c"
+    },
+    {
+      "path": "src/contract/student_enrollments.rs",
+      "sha256": "399fce21dc5fac92f8fe17daca9c0b0e74537c5078c49ae17b67181365ac0339"
+    },
+    {
+      "path": "src/contract/student_groups.rs",
+      "sha256": "4b2ff52e33ae03843517a87fa84ed1bc9c2001a0e02b28ad17b0fd2b4875cbe1"
+    },
+    {
+      "path": "src/contract/synchronization.rs",
+      "sha256": "ffdf72904cfcbf62167167fea6350f4c01635ac8843a80c14433d8a7f9f84ec7"
+    },
+    {
+      "path": "src/contract/teacher_windows.rs",
+      "sha256": "fa0d5d98ebb1d3885fcc906201db2f76869809113433c1a5e98681c1fa6241f8"
+    },
+    {
+      "path": "src/contract/time_preferences.rs",
+      "sha256": "070a84545ce09f1226c53f99024bac3f60607ca5ad03f4630912b55f768f9cd3"
+    },
+    {
+      "path": "src/departments/input.rs",
+      "sha256": "1db892aa09536c98156af2a76470c00dd6e98ebc457b9b07443b89b06e3942d4"
+    },
+    {
+      "path": "src/departments/measure.rs",
+      "sha256": "9b4b0d9b1bc3f648d591f8cc4c1ee9182e914fea8855265017df7ae486a65cbc"
+    },
+    {
+      "path": "src/departments/mod.rs",
+      "sha256": "50d8b4a570292a4195f405ae4adce5c377430baa33c0cc22d3510398ee5929bc"
+    },
+    {
+      "path": "src/departments/model.rs",
+      "sha256": "6bfb7fa7ef473c02b275800790f116be16cef110378f6900b9b7ea67c62dbdea"
+    },
+    {
+      "path": "src/expert_days/input.rs",
+      "sha256": "d76b31fc0b56953f787b10c6a6818e48edbc63021d72a2105b2b4bec304a9b9a"
+    },
+    {
+      "path": "src/expert_days/measure.rs",
+      "sha256": "3bf3f884c14629fab92b422e723bd74f774db6db1d20a9e47b172a46ed9687fd"
+    },
+    {
+      "path": "src/expert_days/mod.rs",
+      "sha256": "b3e28d3c3e15df4480e66b0d0a657723a556439007d178d6157b8e684aefefc6"
+    },
+    {
+      "path": "src/expert_days/scoped.rs",
+      "sha256": "42cd9d4571166088362d44f25877daa53bb24c7d80313542bb4f7b0f17e22771"
+    },
+    {
+      "path": "src/expert_days/selection.rs",
+      "sha256": "cd0d28b303e7b88bf9399588d422b6ff5fce983ec0205b89cadaee4a280dd34f"
+    },
+    {
+      "path": "src/guided_lns/adaptive.rs",
+      "sha256": "f93181044e425d522fc22a395acd809767bdafdcd2f3c8a58fafe0853e3fd9fb"
+    },
+    {
+      "path": "src/guided_lns/conflict.rs",
+      "sha256": "70a732694c97340c2cfa49ab556d1244dc1fdf028dc3a4b89ea09799b5d92a4a"
+    },
+    {
+      "path": "src/guided_lns/kempe.rs",
+      "sha256": "a2caef11ac778d68be6d337ebaf693191522e117a1c8ef52bda9f984240eeed2"
+    },
+    {
+      "path": "src/guided_lns/school.rs",
+      "sha256": "b14c590784d73e44ef1861cfcd5f3f83b408cc5ef860c0149e4ae7e6a6791a92"
+    },
+    {
+      "path": "src/guided_lns/teacher.rs",
+      "sha256": "ad7911c728e7769e1e9f59586d68b3da002c08e5879708b607346466805c7aca"
+    },
+    {
+      "path": "src/linked_lessons/input.rs",
+      "sha256": "b75620bc760400571673e3e800757fe56a652e576f2a34e1c4f2bb82e4885b92"
+    },
+    {
+      "path": "src/linked_lessons/inventory.rs",
+      "sha256": "45ff26277ede9e662489d7743ff934ef64993bb10dab7bde5cc6b7bc1f640c4b"
+    },
+    {
+      "path": "src/linked_lessons/matching.rs",
+      "sha256": "7e7eb3307c4d766426ef4aa855ea137f0e39362d1846559bb7c2fadabb1720e7"
+    },
+    {
+      "path": "src/linked_lessons/mod.rs",
+      "sha256": "185136b95597872aa1bc086cac2c3ca2d234260c91700d7693701488f8061116"
+    },
+    {
+      "path": "src/linked_lessons/scoped.rs",
+      "sha256": "05beff4897fa53eff90915e498b727aa055396c2cb578acf8bd011543a93bc81"
+    },
+    {
+      "path": "src/linked_lessons/selection.rs",
+      "sha256": "c67df84a4f6f9b8818ff2bf964e7abb6bf7874f6d4086113eb6d273ee4745414"
+    },
+    {
+      "path": "src/linked_lessons_model/costs.rs",
+      "sha256": "655d0d517c35008e5de5058f04d7b9a49321cdb540c597e196466b85e39316f0"
+    },
+    {
+      "path": "src/linked_lessons_model/matching.rs",
+      "sha256": "7187b426675cadbd3dc90fc3e9a8e23c32be3e71975db2db2dc5f9e5e91d2bdb"
+    },
+    {
+      "path": "src/linked_lessons_model/nodes.rs",
+      "sha256": "5c642f570523fd82de8a92e811771fc58b2b06e0b6f74ed2bac7bcdceee046a3"
+    },
+    {
+      "path": "src/linked_teachers/input.rs",
+      "sha256": "262e7e85ec817666640363455864643cb2f4ce1f2f79314f946aa874d59e7012"
+    },
+    {
+      "path": "src/linked_teachers/measure.rs",
+      "sha256": "e0d8cbc62d58ed0e7b2076c440dfe3679b0a56a5985b4704fd868cc8e7353bf9"
+    },
+    {
+      "path": "src/linked_teachers/mod.rs",
+      "sha256": "eb0df7fbb44b991af37a581c6638550d028a57395b03d30aa05ec70b891657a4"
+    },
+    {
+      "path": "src/linked_teachers_model/boundaries.rs",
+      "sha256": "13a245fd6154ee3b48bc338a3c310104f546bdd878852788aa9273ccec992130"
+    },
+    {
+      "path": "src/linked_teachers_model/mod.rs",
+      "sha256": "bfa499f227ac1e37e86d76346081bf77c2fb8917d1a505b52faf678b6d2ee497"
+    },
+    {
+      "path": "src/model/assignment_spread.rs",
+      "sha256": "330edc54f6c6be8fcfe9da960624c4e2541a8798d4f223834068a86d6ca781a8"
+    },
+    {
+      "path": "src/model/block_families.rs",
+      "sha256": "38ca912a7041c0bce4d1c604e2cc07790606bc1ef16e000a0c68508dbbfae831"
+    },
+    {
+      "path": "src/model/building_transfer.rs",
+      "sha256": "f9a1fb2e68eccf8f1a7823d9f6e5d462cafdf015af8dac0ebe93385b0f81ce58"
+    },
+    {
+      "path": "src/model/class_days.rs",
+      "sha256": "888149f4966c25bf3b9095a5f8e225b30dab8f683d8144915c99dbeee2c3c43d"
+    },
+    {
+      "path": "src/model/class_resources.rs",
+      "sha256": "0b3b2cda2e919283e6191f11ba9a0155a97604767c5f39228a5d1ba849d1345f"
+    },
+    {
+      "path": "src/model/daily_sessions.rs",
+      "sha256": "8beda004a16c5d950258ab445e70feac9bd69fe3f9324a1ef7a0f41192830bcc"
+    },
+    {
+      "path": "src/model/domains.rs",
+      "sha256": "d9219ebc1a6b877abb40873b83a07e1342644930d542613bea8c0d44217062f4"
+    },
+    {
+      "path": "src/model/logical_synchronization.rs",
+      "sha256": "36400e9291568c039cbdd86fdfdb8021248c38fa944fab85e23e66fc590ebdaa"
+    },
+    {
+      "path": "src/model/mod.rs",
+      "sha256": "f62e1324e6dde68ea29fc8c12375e10c8673da5d5342b1a342947b8198cf4831"
+    },
+    {
+      "path": "src/model/quality_guards.rs",
+      "sha256": "55050440ff41dd9c8f852ed266beb03a280441458c68ae12f106e6861f32bf3a"
+    },
+    {
+      "path": "src/model/resources.rs",
+      "sha256": "433cf569d357782c45904b018480329db30ae7c804cea3013810eeed125f0f8e"
+    },
+    {
+      "path": "src/model/restrictions.rs",
+      "sha256": "dd0033ad94ad54e0886c0cd3681dc6a209c61b388a54d69d19391e1558db0283"
+    },
+    {
+      "path": "src/model/search_ordering.rs",
+      "sha256": "81a19715fd8b164e1a1cbe680e4f704ac48c3d85b4a6671053269d472433f1df"
+    },
+    {
+      "path": "src/model/shifts.rs",
+      "sha256": "3a923cb87bd138915eeaf2598a6efc48bc04133e9c3041387b23e4ae96296f78"
+    },
+    {
+      "path": "src/model/sources.rs",
+      "sha256": "2d9f3b001be3df5b90d3f941a33848d3f79880d756cd837b7d370ff5fb26845b"
+    },
+    {
+      "path": "src/model/synchronization.rs",
+      "sha256": "0c9aa86f11ab7eabffd0435d05f3053361220ab8dfe4899848038536bbfe8b8d"
+    },
+    {
+      "path": "src/model/work_days.rs",
+      "sha256": "71c35cb71169ad53b2fbdff152d34b045c4842aaecddd7ea47f6b4e644fe7d30"
+    },
+    {
+      "path": "src/model/student_groups/mod.rs",
+      "sha256": "5fdaf4682db579edad3c80b24832a0542b153d2885f783630dcc8df8a94d3b71"
+    },
+    {
+      "path": "src/model/student_groups/rooms.rs",
+      "sha256": "e4d7312c8cd830abda30bec545559d0c75df29e45fb5aa1c5fd09c9844494c1e"
+    },
+    {
+      "path": "src/model/student_groups/synchronization.rs",
+      "sha256": "e76f479c66e70cd1a587794ce88d48bacfe34dd54b756ab2c48a7bb2d7f5addf"
+    },
+    {
+      "path": "src/pedagogy/friday.rs",
+      "sha256": "c7c243f0f7a17659bd101917a7aac935ca850a8bbdcd447dbdc34b8f7f5727e9"
+    },
+    {
+      "path": "src/pedagogy/mod.rs",
+      "sha256": "1d94942a4df6f3924db22b6514d47c84c9f8f83f91cf89c3e5170bcf8aeed0d8"
+    },
+    {
+      "path": "src/pedagogy/score.rs",
+      "sha256": "74ca7faf253521141fccfbc8a220e3af616258a814de0191a59b34d3271e5e36"
+    },
+    {
+      "path": "src/pedagogy_model/balance.rs",
+      "sha256": "ad7511bf2199861684f10d420a74dadf4047277a0bd333ae68d97ebe7658a872"
+    },
+    {
+      "path": "src/pedagogy_model/heavy.rs",
+      "sha256": "2b4328a16d95ee16a7c453c606f658def4516d0a1388834c0f896c764a92505b"
+    },
+    {
+      "path": "src/pedagogy_model/mod.rs",
+      "sha256": "2b2515de27360b2066db78247b4609cff2d9da0a10dd3d6a718e9680ce2f9c60"
+    },
+    {
+      "path": "src/quality/load.rs",
+      "sha256": "61bb387a32d180580040cd28dd02f9a29ade8b38f37810ab44bb995e19f064da"
+    },
+    {
+      "path": "src/quality/school.rs",
+      "sha256": "942054216cc29ffca1b4ba429dc77d40d7009121a395b309beeb1a1cdca7f40f"
+    },
+    {
+      "path": "src/quality_bounds/minimum_load.rs",
+      "sha256": "28156825450f6d190c21b73e956a1a27bd8477d667ce11d166af0b929b54947a"
+    },
+    {
+      "path": "src/quality_model/half_day.rs",
+      "sha256": "d5a487888505b59f7f28727c478ae0e8d4273ed4df6dae2e5ad0bc2f912bfae6"
+    },
+    {
+      "path": "src/quality_model/load.rs",
+      "sha256": "89b3a88bed64046827f762bc71d92254b0be28d99f95131d8be7c06dd94d33dd"
+    },
+    {
+      "path": "src/quality_model/lunch.rs",
+      "sha256": "eaa03ec56c54ff92ce72f521d822c3bc70565819973177beac3cc79c913a3e5a"
+    },
+    {
+      "path": "src/quality_model/planner.rs",
+      "sha256": "c057473d6800bc1211fbee31ea7087141f76a35be59ccf3920b0b313a41079a9"
+    },
+    {
+      "path": "src/quality_model/preferred.rs",
+      "sha256": "5b32cea673a3c8d80fe37a47dbe50eb1712b570b69b22170d1b8d1f45192fff3"
+    },
+    {
+      "path": "src/quality_model/windows.rs",
+      "sha256": "932a5723b682117f5c52f2ec5fd3530e3a8e94a702672c4de2fd433318df5c87"
+    },
+    {
+      "path": "src/recovery/capacity.rs",
+      "sha256": "612256a5c7a3a13351f54c27f3b49a091b4b551f81acd37aebc2ea288b3d3409"
+    },
+    {
+      "path": "src/recovery/changes.rs",
+      "sha256": "96d235293792549563ca674fe5b6121aec1f221017359dc2bef67f55c37de208"
+    },
+    {
+      "path": "src/recovery/mod.rs",
+      "sha256": "558bb784770bcedd92f508c0882ace13a64c7cbd3284f0ea3504d1562245340d"
+    },
+    {
+      "path": "src/recovery/plans.rs",
+      "sha256": "7df45b3267ba65378a62d903f51aa52107d42b44ab863128e1ba4a5133f3dccc"
+    },
+    {
+      "path": "src/recovery/rooms.rs",
+      "sha256": "6d8a90388bfbfbc18d6cd4064ae0cdf1f748a68dda2ad9c61428d3508a289144"
+    },
+    {
+      "path": "src/recovery/scenarios.rs",
+      "sha256": "0f357ecee7e45a9e09df2f2a7e0c46bf4167e4f12568bc2b24ade999ccb8ccb5"
+    },
+    {
+      "path": "src/recovery/verification.rs",
+      "sha256": "6e156c6aa6c3f3dbc98e0b06726b33d0847e84845f576dd35278f08b00a9e838"
+    },
+    {
+      "path": "src/rooms/input.rs",
+      "sha256": "2391108c63aade2cc81b3f4b2c445b7a0e7edc3f99d3826e4910e86f890bce80"
+    },
+    {
+      "path": "src/rooms/mod.rs",
+      "sha256": "9eafbaa1c29946c9c61fbb587342e943335829d7e0ec704d8e167b3caf35f23c"
+    },
+    {
+      "path": "src/rooms/model.rs",
+      "sha256": "7db71b479743f7fa88ec86ae90140cc0490d93581649b2254acdf06800f0f1d9"
+    },
+    {
+      "path": "src/rooms/selection.rs",
+      "sha256": "8b4ea69a6d3837e4a46465383f8d1b2f47b051c21b00b2f075ba8a24213ff449"
+    },
+    {
+      "path": "src/school_quality_model/repeated_visits.rs",
+      "sha256": "c8a4f1f4ddc5f0b6ff984b116479d6291fb6fc3e010faad8008f5195593f0509"
+    },
+    {
+      "path": "src/session_locks/input.rs",
+      "sha256": "58303a0b32b3ec5f9e5b784e25e99696d99bb9f742330138b173c693c4f07750"
+    },
+    {
+      "path": "src/session_locks/mod.rs",
+      "sha256": "5aca30dfac071bb2106ae6524ed0403778c64889dca0b3872ab1fe8db7a37943"
+    },
+    {
+      "path": "src/session_locks/selection.rs",
+      "sha256": "11f07e0ec615ce27693332ac8a537c93a8eec2e06acce4ca50dddf4bb98898b4"
+    },
+    {
+      "path": "src/session_locks_model/selection.rs",
+      "sha256": "abeba28ca352699d0a0b326d1e6fe7dd9803616c769c6cbf5eb0924310e4de39"
+    },
+    {
+      "path": "src/solver/cell_capacity.rs",
+      "sha256": "7982419bca652a2c15f27acb8235857f9e3c6656ec2bc7be390c227c18577838"
+    },
+    {
+      "path": "src/solver/diagnosis.rs",
+      "sha256": "56f86cfb872a7d0b41bd70efe2ddac4dedb33ac6918ad80de67af753c26407f1"
+    },
+    {
+      "path": "src/solver/guided_lns.rs",
+      "sha256": "72461e7d1b1c85b0418744e78a86e68e808ea68fa0679ed4a01b4b89a4d8e175"
+    },
+    {
+      "path": "src/solver/hints.rs",
+      "sha256": "1149d6a359b2a1d34dc53914d0d872bd617cde4585fa68def594118fdf58a793"
+    },
+    {
+      "path": "src/solver/incumbent_model.rs",
+      "sha256": "b728151e9670574afec6e8f3b214e236e2820ef1fa41117905ebf671039f7f44"
+    },
+    {
+      "path": "src/solver/incumbent.rs",
+      "sha256": "f52649da5245aba0099f9244faae07675113c5c2106d3879aa3fe3517712db6c"
+    },
+    {
+      "path": "src/solver/legal_stage.rs",
+      "sha256": "8de50eb6121325d51797b0c1ddfc5c25129291c7431e58c43bfafbb276b91646"
+    },
+    {
+      "path": "src/solver/memory.rs",
+      "sha256": "1c78295e972e92d50fb0ac95eb898c616cb3c93736b4c06147de60a385693649"
+    },
+    {
+      "path": "src/solver/mod.rs",
+      "sha256": "75b1c4e0f90bc1f554bfe26caaaf7f608b1022134e6e16142ba25c23d3abaf78"
+    },
+    {
+      "path": "src/solver/quality_stages.rs",
+      "sha256": "35e962c5a9c249503f68a50a67939ddca1221e2a6046b4b7e0aaf65271c4c727"
+    },
+    {
+      "path": "src/solver/recovery_budget.rs",
+      "sha256": "cefaba7239aac6f5cc31ed4620beed253b591c669fad321e958fe206c00027d0"
+    },
+    {
+      "path": "src/solver/recovery.rs",
+      "sha256": "05ac2847f9b09f62fcc7fa0ac0abfa70983c1bbe916ca896805c28de5b8eebc7"
+    },
+    {
+      "path": "src/solver/resource_policy.rs",
+      "sha256": "81bc3a31c69c1605df039ad15488942d982fa549c156e19643c1cdc511c07dfd"
+    },
+    {
+      "path": "src/solver/room_capacity.rs",
+      "sha256": "06642aa7fe872752b24d830983d161de203ff0d2bd26845cd144fd3d058a7cbe"
+    },
+    {
+      "path": "src/solver/status.rs",
+      "sha256": "4a0e10b686c46b090fb6e7f046947ec7c5f8420d28d639278f445257e78d2c44"
+    },
+    {
+      "path": "src/solver/transport.rs",
+      "sha256": "e2f2d8f58f0258eb5ff0c1c5b9af588ff057084d22f18166272378315a841bd6"
+    },
+    {
+      "path": "src/solver/guided_lns/kempe.rs",
+      "sha256": "9da91dab2814203025d1dc32f436f789db097ede4a5c1154c99bb473ed6691ff"
+    },
+    {
+      "path": "src/solver/guided_lns/load_polish.rs",
+      "sha256": "3a42c0867eb95acb300b32c7dc0d9b5357d022c3f307cf740ba972a8f962a68f"
+    },
+    {
+      "path": "src/solver/guided_lns/load_start.rs",
+      "sha256": "88d92f3dfc71c4853893eb3ab58a52eba74745403820916c61f445a2b5e8c122"
+    },
+    {
+      "path": "src/source_input/approval.rs",
+      "sha256": "38ad36270570c7256e2eb404d95b928342ee2bcd62a2efccf5c5dba254259055"
+    },
+    {
+      "path": "src/source_input/assignments.rs",
+      "sha256": "f982ee21963fda64fdf6beaa5c81e4ce8de8d327ab29534b65b84e6e03b0ad6e"
+    },
+    {
+      "path": "src/source_input/availability.rs",
+      "sha256": "ec6389ce6421f26993bd1bcd839296247aee0ece3db9f3a4056d87b42c4d9b94"
+    },
+    {
+      "path": "src/source_input/block_shapes.rs",
+      "sha256": "e5dbeef6498f86edd567924b3673f9b61ae7969f23d5ce9424098b53e35d0beb"
+    },
+    {
+      "path": "src/source_input/class_calendar.rs",
+      "sha256": "3e605d1d71ff46fa59772353493e7ee3f9af152d2c15fbc1ecd16fdbd05e46e7"
+    },
+    {
+      "path": "src/source_input/class.rs",
+      "sha256": "4e18622e97b506e84aa4581c427f296c5506e2b3ded5f9edd9465e582f17a2db"
+    },
+    {
+      "path": "src/source_input/curriculum.rs",
+      "sha256": "3cf81be873ab8ab38e5c607446aea000ca14418154be529760c595abdf97727e"
+    },
+    {
+      "path": "src/source_input/inspection.rs",
+      "sha256": "d2e1ba858319e25ceb37cd6e1e6ec25d19d23ca635f92f33393da9ff402c2846"
+    },
+    {
+      "path": "src/source_input/lesson_variants.rs",
+      "sha256": "020e9af189a36d5cf81f73f296bdd5f5ec976f55efa93894830539a049d416b7"
+    },
+    {
+      "path": "src/source_input/lesson.rs",
+      "sha256": "46ceda3255da699c2ae7d75bb917e8b3541fcf5d0f4da3a94cee867c6c914bb8"
+    },
+    {
+      "path": "src/source_input/locks.rs",
+      "sha256": "b790f3b322b44312438705c0cf1282d184bda31b0021d529c10385f09f417d66"
+    },
+    {
+      "path": "src/source_input/manual.rs",
+      "sha256": "e55eab3e88c9c8423c0a6178e33eb82c3e732be1d723c0dc6f83b4dc33dd9d2a"
+    },
+    {
+      "path": "src/source_input/mod.rs",
+      "sha256": "7e539f664dc0288375df411d25d4f09f14a4f45680ed06ac4d43b43b063f49e5"
+    },
+    {
+      "path": "src/source_input/paired_starts.rs",
+      "sha256": "60ac1836c0c4caa744b02c48e85c7f712cdb474101711d9c2372b782c6995b10"
+    },
+    {
+      "path": "src/source_input/placement_identity.rs",
+      "sha256": "c66ac414e522802c0a5e1093b5daf35e442ba57ef6e3d076beb45d1e7a9d4d83"
+    },
+    {
+      "path": "src/source_input/recovery_refinement.rs",
+      "sha256": "69c292e9cc6c4bb45ace686036c6108fdf6d9efb50cc17efc26bf0f34f205592"
+    },
+    {
+      "path": "src/source_input/reoptimization.rs",
+      "sha256": "e406cd8cdf0955097f8e7d6d68b8c0794dc4f96207ebae5e673d52fc47883819"
+    },
+    {
+      "path": "src/source_input/resources.rs",
+      "sha256": "29b117f0b76603f64e29fb83192046d547857ac90c5dc178acc78a8aad26002d"
+    },
+    {
+      "path": "src/source_input/rows.rs",
+      "sha256": "1abc043b253e637999ac85ea087ea50829361d7c847d9f6f5624743140c3f5be"
+    },
+    {
+      "path": "src/source_input/scoped.rs",
+      "sha256": "6be1533fe494ba83f24187d6a1f633369c40978ac251844c0ec15b1a4d039ae3"
+    },
+    {
+      "path": "src/source_input/seed.rs",
+      "sha256": "1c5c606495792351069ef5a5ebc9499d7a60dacb733e3762696b0f0d9aecfb95"
+    },
+    {
+      "path": "src/source_input/shifts.rs",
+      "sha256": "6ca97124ced67c71bb4e11111a440ff52f20a4f702fdaf9777f4f902e842e1be"
+    },
+    {
+      "path": "src/source_input/storage.rs",
+      "sha256": "950f55902f5f9261728c5805e6be9b7c370c2b8e313129fc02f7cc0e90959821"
+    },
+    {
+      "path": "src/source_input/student_enrollments.rs",
+      "sha256": "262301927107819b0a15d4d91343789f5ea0d4445228142f06e3a4be78224d8a"
+    },
+    {
+      "path": "src/source_input/teacher.rs",
+      "sha256": "2c6a84c8fa62f410baf193b21309eb4dd6d801d5a1427316e1a01a923c63b851"
+    },
+    {
+      "path": "src/source_input/time_preferences.rs",
+      "sha256": "2580264d3f81bfdc44e8f5e4d189f009565a0d23fb77585db17d57af08782780"
+    },
+    {
+      "path": "src/source_input/approval/context.rs",
+      "sha256": "f7f78718b3b272e542bddca0834322cdebaab78440ad06f80abca012143738ca"
+    },
+    {
+      "path": "src/source_input/approval/finish.rs",
+      "sha256": "0eff85d83eeee9aa745dad32131e9ad979a7f92645e3527f8bbe4785cdb7cbb9"
+    },
+    {
+      "path": "src/source_input/approval/permission.rs",
+      "sha256": "4ac30d78c3c376622862146f051b7c617df44d7d76a31e7edc0c88b27c09aba9"
+    },
+    {
+      "path": "src/source_input/class_calendar/metadata.rs",
+      "sha256": "bca197a215f0508c21536867d3a9699298f9a39fc9373bb10554c50769b6b307"
+    },
+    {
+      "path": "src/source_input/class_calendar/row.rs",
+      "sha256": "c28473fdbb70b18fcffd9dd5a28e99d9af6025b53d3b2dcc86244d8aa7753658"
+    },
+    {
+      "path": "src/source_input/curriculum/coverage.rs",
+      "sha256": "9cf851f97098e5c484c167458ba459bfc1ef173118453d8e766cf2b6b4c9c4ae"
+    },
+    {
+      "path": "src/source_input/curriculum/inventory.rs",
+      "sha256": "914952d3acccb370ad9b3c2761fbc6b676582db38ec0dd6cef4ae365f3cf9f57"
+    },
+    {
+      "path": "src/source_input/inspection/pool.rs",
+      "sha256": "566bab6278c6d41e029584ad949434076a888d8553da9c41d50c57ae254fc586"
+    },
+    {
+      "path": "src/source_input/inspection/sessions.rs",
+      "sha256": "b74cbb75bcef1614a22c5aed3e3b780c99f81487fac826df3c17697907d0cbdb"
+    },
+    {
+      "path": "src/source_input/lesson/context.rs",
+      "sha256": "6345d221f62bd08486177ebf81016391da791b61137a07e4eea302946f5a7825"
+    },
+    {
+      "path": "src/source_input/manual/context.rs",
+      "sha256": "efbe304b9edb881543267c57f7b0c8a45d473c7da262bdf83f8133ea37856109"
+    },
+    {
+      "path": "src/source_input/manual/mapping.rs",
+      "sha256": "1496074fc482b7120d6f82fa68417f24a1e2c1dd47f5066e6ee2de281aa9085e"
+    },
+    {
+      "path": "src/source_input/manual/operations.rs",
+      "sha256": "948fd4e9eac0dce6650e2e202213680f8da0675865b39da59a8f32c305a3e5a7"
+    },
+    {
+      "path": "src/source_input/manual/projection.rs",
+      "sha256": "02af5182147c49925eb684668197706b0c220990f6593223e085db2b770bb0e0"
+    },
+    {
+      "path": "src/source_input/manual/mapping/allocate.rs",
+      "sha256": "872617f5a39b6e1981e43e445479353ec3ea4490ef0a1b2646e66734bb292569"
+    },
+    {
+      "path": "src/source_input/manual/mapping/row.rs",
+      "sha256": "d0273f1dc2c6c2316b3cae7749adb16078b62e3bb6cb2955ef425bb285a799e9"
+    },
+    {
+      "path": "src/source_input/manual/operations/scope.rs",
+      "sha256": "2a2ba6d5fb25ddff561fcc555282721a19d655d318c4dea568b32bf78d1246b7"
+    },
+    {
+      "path": "src/source_input/manual/operations/selection.rs",
+      "sha256": "6acbb34004fef0d7240e65a122d81787c9e6f8121ef9220136b846919856e6db"
+    },
+    {
+      "path": "src/source_input/manual/operations/set_locked.rs",
+      "sha256": "890c4fd1017075d3a5d3ef5263ec54fabc96417275a9620c52e58bc2802b482a"
+    },
+    {
+      "path": "src/source_input/manual/operations/unplace.rs",
+      "sha256": "6fff9fedf74bde32605de731a6a87ca1363fefb4bd75d08ac297f957c8f77d77"
+    },
+    {
+      "path": "src/source_input/preferences/attendance.rs",
+      "sha256": "fc4137d3ae022e8a8ceee05ffc9951f5a7ff61b243054f03686c6f3d885f72a3"
+    },
+    {
+      "path": "src/source_input/preferences/block_types.rs",
+      "sha256": "6b19af0a3cb60754d0c4eb85a8ee57410bf6313dbc7c949e4f8851bc0f07dabf"
+    },
+    {
+      "path": "src/source_input/preferences/classes.rs",
+      "sha256": "ed31a73f7430b360ad68b45baa36abcc6bc5f40ca4250bb023289de47912f3d1"
+    },
+    {
+      "path": "src/source_input/preferences/companions.rs",
+      "sha256": "facd44ba9293668d99a310696328c8b19b77a9cf6b382aed16e457c56f962386"
+    },
+    {
+      "path": "src/source_input/preferences/departments.rs",
+      "sha256": "99834de8ab58a5a235f0dc1fd394a175e35798c8fda81638a7e4145282f56412"
+    },
+    {
+      "path": "src/source_input/preferences/expert_days.rs",
+      "sha256": "ed3028767b5d87dff510ce49a28410c723236c61bcbf49fbccbdab613606807e"
+    },
+    {
+      "path": "src/source_input/preferences/expert_time.rs",
+      "sha256": "ca054f1858701248886c998d3b842fed00e7d4706dc72cac8810853574dcfe54"
+    },
+    {
+      "path": "src/source_input/preferences/expert_values.rs",
+      "sha256": "ab3fce3d335a29e73c2b7b750b98a106129467e961f4fbb22b4ff2796d83b29c"
+    },
+    {
+      "path": "src/source_input/preferences/friday.rs",
+      "sha256": "fa301891bc7f2963bec05b2363e85a5ae7ba609b8d5dccf39d69063e56d69e85"
+    },
+    {
+      "path": "src/source_input/preferences/linked_lessons.rs",
+      "sha256": "03c3ca1085844efe8d929d76e6ce60339a620a5f917aa621c6b8a17974ca7982"
+    },
+    {
+      "path": "src/source_input/preferences/linked.rs",
+      "sha256": "ce11321a9ef11af35e81871e179867a7b902f8293fe3a15c15b1bff222744622"
+    },
+    {
+      "path": "src/source_input/preferences/mod.rs",
+      "sha256": "a9d8c97e289164656ef0a512591b4aeeaf886caba0a01c61f691dfa60258ce1a"
+    },
+    {
+      "path": "src/source_input/preferences/pairs.rs",
+      "sha256": "65f488c6fabbac9047a06e86fc80ef06d6080bb0b9f8823013340f6f9cf8ca57"
+    },
+    {
+      "path": "src/source_input/preferences/pedagogy.rs",
+      "sha256": "76a0277c87de2468391751d5ea923c95a9bab0ac9f1f364e5c74abdda4a2e854"
+    },
+    {
+      "path": "src/source_input/preferences/planner.rs",
+      "sha256": "cf05594aa363310fd6c42da81752f1eeb2b868f2a040b65ebc0024de5b1d534e"
+    },
+    {
+      "path": "src/source_input/preferences/session_locks.rs",
+      "sha256": "0facb9b37d73b1223b71d474912036ffe46cbef51b93dd132cacb27a1125817a"
+    },
+    {
+      "path": "src/source_input/preferences/teacher_duty.rs",
+      "sha256": "76c9162736ef1f48443c592ffcc67e886051acd45d59254503f7fd208fbc03f6"
+    },
+    {
+      "path": "src/source_input/preferences/teachers.rs",
+      "sha256": "de16ef0c71d64d17095c38554bac1a90c60712e5d94f31c02742cad241f95864"
+    },
+    {
+      "path": "src/source_input/preferences/time_cells.rs",
+      "sha256": "bc1a8ef83860ebcf27cda365e496f04207fe2b2c693c0e9f1e66998e5505d87c"
+    },
+    {
+      "path": "src/source_input/preferences/time_preferences.rs",
+      "sha256": "db9ed4e06f075b0a5d10a2f2db8c135d0654c9eb35810b58b2770f8b0b91a8ce"
+    },
+    {
+      "path": "src/source_input/preferences/time_rules.rs",
+      "sha256": "49ecdb40473156c50525d56f85a56908bc72d72929648c68a3b628298bbe481f"
+    },
+    {
+      "path": "src/source_input/preferences/weekly_cells.rs",
+      "sha256": "ae5dfc9b6746d68d4ae1fad088de199e56498832117a2b7973c123e3e60325b5"
+    },
+    {
+      "path": "src/source_input/preferences/windows.rs",
+      "sha256": "17b040a18ad7d21e1f0f1f9fb5a7e30fd18eaff0fc500661bb4d87a24e915122"
+    },
+    {
+      "path": "src/source_input/preferences/workload_options.rs",
+      "sha256": "1d5972e99144532727a7a79495113cf654a4b413113fa3516aae380a82798712"
+    },
+    {
+      "path": "src/source_input/preferences/workload_preferences.rs",
+      "sha256": "bd4cfe22546fbba01be45232117ebbb6931a9e6d81fca8f5dbe4767b924f24b6"
+    },
+    {
+      "path": "src/source_input/preferences/workload_sources.rs",
+      "sha256": "f0d9a195c5abe1f4cbbc60cfdbb910ee407b36258884eb9dff0fa5ec687eff4a"
+    },
+    {
+      "path": "src/source_input/preferences/lesson_time/mod.rs",
+      "sha256": "6cb6ecf57d630af932c1d6ff8a9722f875fa96300f7810df4787e59e8fd91c32"
+    },
+    {
+      "path": "src/source_input/preferences/lesson_time/presets.rs",
+      "sha256": "80b21b2a22ed9142352aa3601bd7ee7eb2de083ff12c7c0925fc4685f0dbd0f6"
+    },
+    {
+      "path": "src/source_input/preferences/lesson_time/scope.rs",
+      "sha256": "5c0ed6d208a1c1b7950f790f0918cda15d162fba16722888fc9770f015e70764"
+    },
+    {
+      "path": "src/source_input/preferences/lesson_time/time.rs",
+      "sha256": "cbd0cac777aa80493cc4b2786224de42cfe3d46564bcf66d6c0d78ced20bb6b7"
+    },
+    {
+      "path": "src/source_input/preferences/planner/weights.rs",
+      "sha256": "cabb36d6a386339574e86cd8250c0cdc3d21000aaa271d500700869f3dfeb898"
+    },
+    {
+      "path": "src/source_input/reoptimization/context.rs",
+      "sha256": "152af0b38a9524429182796789cc6a2826779c0301ba86279faeba393aaf48ee"
+    },
+    {
+      "path": "src/source_input/reoptimization/finish.rs",
+      "sha256": "129e3edcf0b3d22f1316fa7e1e52bf70f26f19638ded3be1d3b0f57d634df3a3"
+    },
+    {
+      "path": "src/source_input/rooms/features.rs",
+      "sha256": "3dabbd90228861fd68be89192a902fe5dbdad1289b02b46d5d25f0b7ac7eaf35"
+    },
+    {
+      "path": "src/source_input/rooms/mod.rs",
+      "sha256": "1451aac0ee2e5e54fef71f40331560983169629ae6c32323c669da1f08365b09"
+    },
+    {
+      "path": "src/source_input/rooms/requirements.rs",
+      "sha256": "f84a62e47ef78467a341c30e69badf33f9117bc0ee41eb7339d4fce3bc27a937"
+    },
+    {
+      "path": "src/source_input/school_wide/mod.rs",
+      "sha256": "abafa346a29c38f7a0f27f663e6d45ef02860d6c3542c38823bb1701122b3b48"
+    },
+    {
+      "path": "src/source_input/school_wide/partitions.rs",
+      "sha256": "6b6f566c833431666fc79d446360d542a3d96c0292d685c0b41db07e21f034b5"
+    },
+    {
+      "path": "src/source_input/school_wide/profiles.rs",
+      "sha256": "3a6717dfbba09aea477c8ab67479cdf339a2d050589b568415c8eae3cab41623"
+    },
+    {
+      "path": "src/source_input/school_wide/slots.rs",
+      "sha256": "d8750424ac035848e23cfb48c085fc3637760b6e4a2d25492ce6cfecf0f94527"
+    },
+    {
+      "path": "src/source_input/scoped/context.rs",
+      "sha256": "68c6b1662b034159a23707d0d0a816af52f50e163658a0d7a5d7ce327586516a"
+    },
+    {
+      "path": "src/source_input/scoped/finish.rs",
+      "sha256": "2bf3b904dc527e79edc5ba802474942e436a64aa76f0d89462fb78e2476979e2"
+    },
+    {
+      "path": "src/source_input/scoped/inventory.rs",
+      "sha256": "9bb3e32eaee8567fe964f7779935c76c173b590bd5873426dfe1d2c44327acb5"
+    },
+    {
+      "path": "src/source_input/scoped/policies.rs",
+      "sha256": "cafa36192fb9f589d8729a5a2f415aaeba452fc8628cb74c26249db676fcf84b"
+    },
+    {
+      "path": "src/source_input/scoped/synchronization.rs",
+      "sha256": "1d97324a8e346b376e818102318e83c23957aef131e9f2caf129deca5fdeb7c5"
+    },
+    {
+      "path": "src/source_input/storage/origins.rs",
+      "sha256": "55bd8c17af85379e79921208b12640a3000b805bce70de1aa5e31b2e01aa5915"
+    },
+    {
+      "path": "src/source_input/student_groups/cohorts.rs",
+      "sha256": "8af2f931a5b8f50d4650a290b73d6f3fe2b14ddb652242c2f6f9148420beb3ea"
+    },
+    {
+      "path": "src/source_input/student_groups/membership.rs",
+      "sha256": "65283e735564d0d916a020ef3cb0a3548c7b428e77f28f4669e563e629d10606"
+    },
+    {
+      "path": "src/source_input/student_groups/metadata.rs",
+      "sha256": "b415d5fb500ed23f3a80c860944768bcc40aff1bf53a2997906c2b1d4feb06b5"
+    },
+    {
+      "path": "src/source_input/student_groups/mod.rs",
+      "sha256": "8b3ea9e1a6779b8b28d0cc974ad6c24979115a0563f896bc2c872d6620447d1e"
+    },
+    {
+      "path": "src/student_groups/input.rs",
+      "sha256": "d2fa3e2a6c129aae30192682bc404e9c93e2b55f59f0b354459de19de0361c17"
+    },
+    {
+      "path": "src/student_groups/mod.rs",
+      "sha256": "bb35573606daff8a7eeb5153cd4e347d610b8f95ee28a62229aac66c6c2a747f"
+    },
+    {
+      "path": "src/student_groups/projection.rs",
+      "sha256": "cc5465075ddc88dea2b5c1a340aca4b4afaef596a055c7cec7e060146388595a"
+    },
+    {
+      "path": "src/student_groups/rooms.rs",
+      "sha256": "5050df29cce8446d9294b9f8e37ed49c969002a048a7d9a07155a4c92efc64a9"
+    },
+    {
+      "path": "src/student_groups/selection.rs",
+      "sha256": "78555b0cb73a1d29a84e349baaf349c31a7ffb2d05de0583e00be170816af22e"
+    },
+    {
+      "path": "src/student_groups/input/entitlements.rs",
+      "sha256": "c2086591f98aacf537dc25eec5400219c354c7becf07131cc1092bdc3d478339"
+    },
+    {
+      "path": "src/student_groups/input/groups.rs",
+      "sha256": "fe9993190dd62e80d2070ed1f66423dc9ffa6b2f1f99b5f924ff2c27dace9f81"
+    },
+    {
+      "path": "src/student_groups/selection/synchronization.rs",
+      "sha256": "d4da65db33ab8c85fd79f7c787e8bbb3d5c1c2f85c54d18e4c7c89a7dbd351fc"
+    },
+    {
+      "path": "src/synchronization/input.rs",
+      "sha256": "33c0d0fe4f52f59064c5ae7ef688675e4c97aaa6fcd17de5ce52a24edd22c5ac"
+    },
+    {
+      "path": "src/synchronization/mod.rs",
+      "sha256": "a054db6e6fe19e09d0de3bd31a573d7d63c0a3291169f29ddc6898222ab93e7a"
+    },
+    {
+      "path": "src/synchronization/selection.rs",
+      "sha256": "23b62b26b070c319d44cdd965d60109cdeae8b75318984da96ca2d9dbc1c095f"
+    },
+    {
+      "path": "src/teacher_windows/input.rs",
+      "sha256": "5359915612112052a874d6dcd0a548f1b19401fa43058c6b9dfa63f096bd3b6d"
+    },
+    {
+      "path": "src/teacher_windows/measure.rs",
+      "sha256": "e297b5ec15533a2b9d52e5db35548a60f5bfe5194723af1d8798c06551917e9c"
+    },
+    {
+      "path": "src/teacher_windows/mod.rs",
+      "sha256": "eb0df7fbb44b991af37a581c6638550d028a57395b03d30aa05ec70b891657a4"
+    },
+    {
+      "path": "src/teacher_windows_model/day.rs",
+      "sha256": "aad68c2ce712f8bbf7615d7a41d0b38565f8753829beb32b36bc995c722fb37c"
+    },
+    {
+      "path": "src/teacher_windows_model/metrics.rs",
+      "sha256": "7d33d7f6e5f0c95708bb65fc3b07f6458ae1e7cb52946673ac2bc56d573499de"
+    },
+    {
+      "path": "src/teacher_windows_model/mod.rs",
+      "sha256": "497b46c3b6df629941ba4e17c98335b7ab41abfd52c98479b72c6067dc20e814"
+    },
+    {
+      "path": "src/validation/manual.rs",
+      "sha256": "428e29fb2136883d84c3b6def87a02b107b3fc2ab2ff192b08b1968da936d600"
+    },
+    {
+      "path": "src/validation/repeated_visits.rs",
+      "sha256": "b501a04f1659ccf687c3e49e0d3e4dd8b8b2ed6b5263340a1b81bc46e3f36ddc"
+    },
+    {
+      "path": "src/validation/teacher_days.rs",
+      "sha256": "64553f1ea5ab958845f0a11b7fcb3913891b861adbea3d787a2c6d1779b6531c"
+    },
+    {
+      "path": "src/workload_model/mixed.rs",
+      "sha256": "e060c22a8a781b69edf0996e771cdcd83c592d2e6bc1f8cd3e9efa0b2582bc04"
+    },
+    {
+      "path": "src/workload_model/teaching.rs",
+      "sha256": "fc4103707767d19f0ab32db8bf0e1b0063ae7d4398d9281d9b821fa56a7e413a"
+    },
+    {
+      "path": "bridge/cpsat.cpp",
+      "sha256": "84a499c05614b154f5d93019a21f8ed25336195a4cd59174606903766e3979c7"
+    },
+    {
+      "path": "build/build-wasm.ps1",
+      "sha256": "a4dcea2e1549d7cc9bd78c98abd32824b9e4597c605a587e19d3dd650c25ee4c"
+    },
+    {
+      "path": "build/dependencies.lock.json",
+      "sha256": "56d6975bcb465378345bdebf126ebfb9389377093b5e232f52012c55aa81b14a"
+    },
+    {
+      "path": "build/prepare-dependencies.ps1",
+      "sha256": "403f433875d9c809c83bf3a72f4cc3c977a1c8e9b1f481067617831f1d45e3c0"
+    },
+    {
+      "path": "build/runtime-artifacts.mjs",
+      "sha256": "c9985699143f35938989408824d2c6a5ee39e869c0bfadc6be5491136c640b5d"
+    },
+    {
+      "path": "build/rust-archive.ps1",
+      "sha256": "2095df35f5ba6fb27cb1eaa5084ec1bef37c1e29edb8ba68470eefde4ffd5838"
+    },
+    {
+      "path": "build/rust-inputs.ps1",
+      "sha256": "762beae5a120a42366b24a95b2626a265043df13eab964bcbaa5a190ffac5799"
+    },
+    {
+      "path": "build/vite-runtime.d.ts",
+      "sha256": "b80d5081425ef217dc0f82c1a7f1d8352cc022ae3cde7947143df374adb37e57"
+    },
+    {
+      "path": "build/vite-runtime.mjs",
+      "sha256": "b3210ab06f0a4efe75ab8484bdee37e0efbbf78f6b94e351d0e8ff250bcc10d5"
+    },
+    {
+      "path": "build/patches/or-tools.patch",
+      "sha256": "ab8e30bc2f0646608fe46c7ffe3922a77a4fac9594482cc2c7155b57b1646dcf"
+    },
+    {
+      "path": "runtime/browser.d.ts",
+      "sha256": "a14273c4bef9e844e068c4a4a59cfc96f68fdaabdba46cd9d6bb875ec6c67b65"
+    },
+    {
+      "path": "runtime/browser.mjs",
+      "sha256": "92a25db3b2249c2aec11ba7ff54810c66d6dd45a2cd85ec00618bd524e9f957c"
+    },
+    {
+      "path": "runtime/client.d.ts",
+      "sha256": "539ea9db179ba9b82b0591fc850a82e5af36d7283dbb0c9d4aab7fe9a3f24bbc"
+    },
+    {
+      "path": "runtime/client.mjs",
+      "sha256": "a038d1fc9a1a7adf08b895f887aa40a555429d83efcb0cc292e0c2d34db51cc5"
+    },
+    {
+      "path": "runtime/inspection-run.mjs",
+      "sha256": "93151710f5072057da0bac2f0b4192cc384ef9c46d7db9673613959caa8f17db"
+    },
+    {
+      "path": "runtime/manual-run.mjs",
+      "sha256": "2a4f0040ecf8f69fb3834ffde08bd80390e1707ab72891236553941d5f8f865a"
+    },
+    {
+      "path": "runtime/node.d.ts",
+      "sha256": "789b309945f3bcfd279d6981b00c36e710927eeb4e8519a7055026494d6694cb"
+    },
+    {
+      "path": "runtime/node.mjs",
+      "sha256": "99269782f1766176d1cb4bce3c642d7dcf8332cb0d31d84e560c68fca5f43e48"
+    },
+    {
+      "path": "runtime/prepare-run.mjs",
+      "sha256": "e3dba8896872233869590a60718e811013d49d484ad9c0e3509c95b5c8966679"
+    },
+    {
+      "path": "runtime/progress.mjs",
+      "sha256": "996b51c63516fbb12a3ca9936837a6dd89a776d892291372a7f6fe824ee28c70"
+    },
+    {
+      "path": "runtime/run.mjs",
+      "sha256": "b63a2e30f3c41ac04e0025691fe258d2dd1244e2cfdcb4bdbf08cf45b4761549"
+    },
+    {
+      "path": "runtime/scoped-run.mjs",
+      "sha256": "1b98e60c238ad6041d514239340df2bbadb31466c9689672beaaf29b69b02c48"
+    },
+    {
+      "path": "runtime/scoped-worker.mjs",
+      "sha256": "edc6c2aa1e57956452eb5259ce35e49907fb39c44c62c4c1f265bda95ca9e7bf"
+    },
+    {
+      "path": "runtime/worker.mjs",
+      "sha256": "ebf21f0b51976fbe99e8670baa90838ef5f6d264c37799b58dad76e733eb1a59"
+    },
+    {
+      "path": "vendor/cpsat-rs/build.rs",
+      "sha256": "661d9f0f9ebbe1933fdc6e12f32f6a87863c11ade1c989e97e9b75ab005c82cc"
+    },
+    {
+      "path": "vendor/cpsat-rs/Cargo.toml",
+      "sha256": "4ac48fbc7dab96a0ed7f5f2589dc6b317537de6e53a356ac1d42858220926703"
+    },
+    {
+      "path": "vendor/cpsat-rs/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "vendor/cpsat-rs/origin.json",
+      "sha256": "4ef7a0789a87547947025f775468d04e1f3477377c633150bd303ef6f45cd00c"
+    },
+    {
+      "path": "vendor/cpsat-rs/proto/cp_model.proto",
+      "sha256": "c967180600fab5db4fc8b7477fef56c3c6d3c0714b1f0355697f96d147f77d96"
+    },
+    {
+      "path": "vendor/cpsat-rs/proto/sat_parameters.proto",
+      "sha256": "9a5e08486a63414191870bd9953f9e561af221e165654913a33662bf1b674308"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/error.rs",
+      "sha256": "f3b544300a5e5061f49974336b4ec02bc4bb1456f250ad8054894fb2c8107c93"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/expressions.rs",
+      "sha256": "1e90dc5b8f5879bd6740814edd8de3d92ea34a639301c7a555f171cb0b1eb33d"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/ffi.rs",
+      "sha256": "8db27600ca2fdcad1ade85ca11fa0c4b766c0ed12e210a631892e0c0a22eeeca"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/lib.rs",
+      "sha256": "e051475ca9a0e92ed73be7c133a1751bfd052e7380a14a25797ac0663299285e"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/model.rs",
+      "sha256": "9c2a0ad87d858783c788d0f70067676ee502f92228d82c6ed73efc17632c4d31"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/params.rs",
+      "sha256": "7a20b58826aa3ba11ddb4d7bf5c8b6423774fc4eae1903f1633aee8f1f2c38be"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/proto.rs",
+      "sha256": "f8a6493a1abbf27389696b570d1e77723a00a23c20d297600702617cacb944d3"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/solver.rs",
+      "sha256": "e7eb1c8bd9518e1a33b3ac583dee21b7cdcdc2e4571b826dbd763b816b812f67"
+    },
+    {
+      "path": "vendor/cpsat-rs/src/vars.rs",
+      "sha256": "4290f4e53a650fa526ed6bcd96c3e52bb77dddcd90b7b389fde2bc70d27582d2"
+    },
+    {
+      "path": "fixtures/anonymous-school-baseline.json",
+      "sha256": "387c679e0206adc17523303d809e8107e314b987b393113753edd97fbc3ea58b"
+    },
+    {
+      "path": "fixtures/anonymous-school.json",
+      "sha256": "86e63a7c0947ffc63964b31e99dca6bc96949280b7ea7017eee7276d8df43875"
+    },
+    {
+      "path": "fixtures/approval-contract.json",
+      "sha256": "e225ff43dc7cf989d17d145a8d369c56fa3feebcb2cb9eb17c0a292bbf3ff2c3"
+    },
+    {
+      "path": "fixtures/scale-poor-school.json",
+      "sha256": "ec856f16888fe459aeee6683bf1c1713d1b41b6897ecd430c7dd11f917112357"
+    },
+    {
+      "path": "fixtures/school-source.json",
+      "sha256": "e807419714ddb1c8e19d24840da0584d916a2d91b5813794496b8ce3b479a53b"
+    },
+    {
+      "path": "fixtures/school.json",
+      "sha256": "637ac6f0995fb591b1db2a66c52a860caee15c2ff1421cc8f746b6a50cbe577b"
+    },
+    {
+      "path": "fixtures/student-group-source.json",
+      "sha256": "8dfb209c648283083d4579a53a65b53226b21157364a3e7b4e38ae77b83faec2"
+    },
+    {
+      "path": "fixtures/student-groups.json",
+      "sha256": "54f0e314d80504c431817ffdaa60126219521c92f8044a633c367154a814a5c5"
+    },
+    {
+      "path": "tests/acceptance.rs",
+      "sha256": "1ba4eae646573dfbed26a232446cece51892985864f29236be31c8657158f348"
+    },
+    {
+      "path": "tests/approval-check.test.mjs",
+      "sha256": "81930959640f701bfde4bed07ed16edb854a9698f3dc2730d271f2cc427b0b23"
+    },
+    {
+      "path": "tests/approval-client.test.mjs",
+      "sha256": "d3243a67c6638b6a5483fe9d253a1f6634101728b8f83f1c9ddfcc72314a3fb0"
+    },
+    {
+      "path": "tests/attendance_preferences.rs",
+      "sha256": "a3a444b557d23d0f6befeaa62e6c9028e72761c986e005baa19bcac31c154f7a"
+    },
+    {
+      "path": "tests/block_families.rs",
+      "sha256": "654ba0071f139c73f5c9f71d6b35c93af1d23715616056aaf80c2ef2ef3567b5"
+    },
+    {
+      "path": "tests/block_types_source.rs",
+      "sha256": "1dae432d525962ce6856897d95ef6d30072be1ad8bfb4577aa6dd8d466a5555c"
+    },
+    {
+      "path": "tests/block_types.rs",
+      "sha256": "6faba5cfb5ad94acd7f6dd8a48aebf85aab5d6263a77b9580c6da7da4f7e9896"
+    },
+    {
+      "path": "tests/browser.mjs",
+      "sha256": "cab5ce475436ab6902b7732fcb71512d5b8edeee5f6d507b2bd864e47693fe90"
+    },
+    {
+      "path": "tests/building_transfer.rs",
+      "sha256": "f564c067fde46a420946cf48fd60898e9514214169662f2aeae447df01023e20"
+    },
+    {
+      "path": "tests/calendar_intent.rs",
+      "sha256": "0ddc048469be812a61618fa949e09b84ea45bae9400938d5a24c5af87953ac37"
+    },
+    {
+      "path": "tests/cell_capacity.rs",
+      "sha256": "1edf14287e183eec33e796c0584e1a3a8506df31fda3362a77f049ada7a5971a"
+    },
+    {
+      "path": "tests/class_calendar_source.rs",
+      "sha256": "536af79fa198bd078416e66e1d022b88def6834e5d902540158164199117b866"
+    },
+    {
+      "path": "tests/class_partitions.rs",
+      "sha256": "6559d2f495ecfd568e547008c1a806eb033935c26d1e7eb63ce4f5984f6cb69d"
+    },
+    {
+      "path": "tests/class_placement.rs",
+      "sha256": "e5f30290bc118f8fe26c18110114465b02fb3d39f9a7a401dbc59414431be383"
+    },
+    {
+      "path": "tests/class-client.test.mjs",
+      "sha256": "4f0b8d6686b15237b37e2894c3accf7fefaf2cc153118d39a2515e83092c1fb1"
+    },
+    {
+      "path": "tests/client-browser.mjs",
+      "sha256": "faab983ca03eace19cd4cf351f003335655bab4ffa16218d56ce59b3cf8388dd"
+    },
+    {
+      "path": "tests/client-fixture.mjs",
+      "sha256": "088c16702c8ca32113e737faf4b73462778e06c6dd4a4f25676c81a9a3948ed5"
+    },
+    {
+      "path": "tests/client.test.mjs",
+      "sha256": "a307fb652241ae17db7e080fbdffa9800e34941e42098d4402f9f8026d551a43"
+    },
+    {
+      "path": "tests/compactness_day_neighborhood.rs",
+      "sha256": "687f9e3e441a63751dd91bd36ad8b877583a2e56bf660cae06951d0c9cbcedb1"
+    },
+    {
+      "path": "tests/conflict_neighborhood.rs",
+      "sha256": "ed864b8b8fe89644b5a149961b0bdf357e1053acb680b82f920d25721b075c00"
+    },
+    {
+      "path": "tests/curriculum_source.rs",
+      "sha256": "ac103ef901c886a825b6615d2cb0ee11e1220026a8830a629fc5361147407533"
+    },
+    {
+      "path": "tests/departments_source.rs",
+      "sha256": "45bb8ba852bacbee9acf60fe35513dc09dadf0ea0a281b2ee326acbaac54ca54"
+    },
+    {
+      "path": "tests/departments.rs",
+      "sha256": "ec30a9bdbbf64854fc2fd483ccd73ab3b554d8a28e5121d6c4f65e207b151c23"
+    },
+    {
+      "path": "tests/difficulty_weight.rs",
+      "sha256": "434db7e66c266d4a210bce1035e4b346c2494dee0b812b021796e9742a3b1b8e"
+    },
+    {
+      "path": "tests/difficulty-weight-check.test.mjs",
+      "sha256": "28745c0457c36cc5479bf4316920b03d523abc6df1a2617e1593fec58b74f7e0"
+    },
+    {
+      "path": "tests/dynamic_objective.rs",
+      "sha256": "0b1f847769ed0dce77b69849cfdb62dfc56c62f9dbd51881dd3af0395ac1fd9d"
+    },
+    {
+      "path": "tests/expert_days.rs",
+      "sha256": "462e3b32f2b04bdb6231435583a29a3a9ac09b529236577d46b7ca9753592052"
+    },
+    {
+      "path": "tests/expert-days-check.test.mjs",
+      "sha256": "6fad39ee20523cd9512fe34618fc5f285a2d45760ee0ba66afea961d9a2ff715"
+    },
+    {
+      "path": "tests/friday.rs",
+      "sha256": "f34ba70d8fd77f17d27fa102b51d2b2d6c6d593f03088b40ccf150841712e97f"
+    },
+    {
+      "path": "tests/guided_lns.rs",
+      "sha256": "c19487d4a47281853259a2770d3bfb27caf39ae872a442d24b87f3c50632e518"
+    },
+    {
+      "path": "tests/guided-lns-browser.mjs",
+      "sha256": "f4ddc4d36069b26a2582908f4010121dd8a72811d60b15b10c9eff47d91e6c04"
+    },
+    {
+      "path": "tests/hall-forced-cells-check.test.mjs",
+      "sha256": "46391569763ebcf3858ae71a66536c73ecb19c6a3ec3f825bbe508fe5db55edd"
+    },
+    {
+      "path": "tests/initial_legal_policy.rs",
+      "sha256": "edd1e9c278640b13589d94e847d039addde52f8adfb41644e9905b4702667dbc"
+    },
+    {
+      "path": "tests/inspection-client.test.mjs",
+      "sha256": "6d702488920727eb36cb8ff23bde5c0fb14ddbec1b8646d9084c1e6cecb6e055"
+    },
+    {
+      "path": "tests/inspection-fixture.mjs",
+      "sha256": "235b20a3266f1feea38f3c1faffe4df3306787c444e9f2f57ccc7c0362a71b01"
+    },
+    {
+      "path": "tests/lesson_placement.rs",
+      "sha256": "f775bb9bd579f74d97e9bcbc234f413d0a02c35b3a65ce95f26b4f20260dff24"
+    },
+    {
+      "path": "tests/lesson_time.rs",
+      "sha256": "371ac23c38b23b0fa4a96d3fbea49fde9a7cc15c77aff76268c5f068540a4261"
+    },
+    {
+      "path": "tests/lesson_variants_source.rs",
+      "sha256": "4eff931b67c5aac0ca512a187c7b3b727897dc4a8ee78e01c2bf688f44c02fe7"
+    },
+    {
+      "path": "tests/lesson-time-check.test.mjs",
+      "sha256": "7749e039754bf0f710b712068b9cba5741986c91be1082d2b2aa581b15b6d1b7"
+    },
+    {
+      "path": "tests/linked_lessons.rs",
+      "sha256": "9b87b5b54a6c2e69bccf388b470e8f3cee521d5b9b703314f6c216ba395c3b30"
+    },
+    {
+      "path": "tests/linked_teachers.rs",
+      "sha256": "48f0d4064157c1a9eb98a49fe0439a8c8e908e4afd1731920cfde079cd8a0a5c"
+    },
+    {
+      "path": "tests/linked-lessons-check.test.mjs",
+      "sha256": "4a60a503dfdc868af45f3ac381ca9fa593be8cafc7280da1f9922fc52aadd355"
+    },
+    {
+      "path": "tests/live-preparation.test.mjs",
+      "sha256": "ff450bffd0e3a587fcebf626b7943c11485c770579ede497d8e01aa2bfaac85f"
+    },
+    {
+      "path": "tests/load_estimate.rs",
+      "sha256": "b8c972f3d892cc72557c1ad512c2f821389d088fb13e7cb1d3b94e4e8e923a0b"
+    },
+    {
+      "path": "tests/logical_synchronization.rs",
+      "sha256": "d9f37304a40df684c61a0a8dcdb6da2e90767b46d829b001370068485170c192"
+    },
+    {
+      "path": "tests/lunch_distribution.rs",
+      "sha256": "6d05c625d23ee12177bfb79113d41bc06614ba1387214536466d9a8327dc5809"
+    },
+    {
+      "path": "tests/lunch-check.test.mjs",
+      "sha256": "cfc385f64d4e21c65e1f942f3c16e2af52506c8c6dc805abad71f63d2b2d1875"
+    },
+    {
+      "path": "tests/manual_bulk.rs",
+      "sha256": "bb83d915086c6fa9159cb243bb29ddf469b51f127ac63ba39f770fdf3f7b085e"
+    },
+    {
+      "path": "tests/manual_edit.rs",
+      "sha256": "c78ccb477154891e47873c602b080caae5103df0c823de6066f629f61602d9be"
+    },
+    {
+      "path": "tests/manual_lock.rs",
+      "sha256": "810b3ef1d0fd51d8b62fbf83f469beb3124689956a04e48188fce04efc8da7e7"
+    },
+    {
+      "path": "tests/manual_validation.rs",
+      "sha256": "1ec8485c6f6b87c2c634725eb7b5c4ffe2e0a4eab253e7c76afbe92f554e1f0d"
+    },
+    {
+      "path": "tests/manual-check.test.mjs",
+      "sha256": "0d7a514716802fd624fe926b970c4a7b9b3dbce5d804283e4455fe146494fed0"
+    },
+    {
+      "path": "tests/manual-client.test.mjs",
+      "sha256": "a284fcc0dc4415d6049dfd8be01174ba5bbcdd882aa3104d94cd72fefe6870c1"
+    },
+    {
+      "path": "tests/minimum_load_bounds.rs",
+      "sha256": "619521aaf599ce041cdf8f6d1e3b05658ca0c570301dc1f0b1d2e5da7cb70a86"
+    },
+    {
+      "path": "tests/objective_policy.rs",
+      "sha256": "49d2852cba5e1b5b2d66830afc49f578ad68e3ff5e13ac96b3812efd9d7c654c"
+    },
+    {
+      "path": "tests/objective-policy-check.test.mjs",
+      "sha256": "bc46f9f9639c66a06a0ddaaa3a9fe3a949fb87b869aaee363f763d52936fa7b6"
+    },
+    {
+      "path": "tests/offsite.rs",
+      "sha256": "4d53f8f4914b5dbc0ca7d172ed5da9a610ece5671301c7fdcaf44c5b3b5e6bf9"
+    },
+    {
+      "path": "tests/paired_starts_source.rs",
+      "sha256": "7d0e9f727a9eb64be39821c4842706c5d7b3c2465263ad69c2a80c79774d843b"
+    },
+    {
+      "path": "tests/pedagogy.rs",
+      "sha256": "beb251e1bdbe511b941b0d0a6e1ca185713a3a2ea7eda1c7e1939ec2b8f4d413"
+    },
+    {
+      "path": "tests/placement_policy.rs",
+      "sha256": "776451668f80d3ab19f047067ad5e63da5d387663a448cae2612e824ddf45b2f"
+    },
+    {
+      "path": "tests/planner_weight_quality.rs",
+      "sha256": "8855421095df91ab1f10e80e10d04adc7285df20a700d3f3dfb72df4cfd944a6"
+    },
+    {
+      "path": "tests/planner-weight-check.test.mjs",
+      "sha256": "69703c00601222d48398f85eb1edb25399adff59b3abf86f0d96a00c308fe8eb"
+    },
+    {
+      "path": "tests/preferred_cells.rs",
+      "sha256": "3177510312121369112b731b7ccfa2b04038caff2288810a8444e1c40d2978d2"
+    },
+    {
+      "path": "tests/prepare-client.test.mjs",
+      "sha256": "4f3534c3d35a31d17f658f7cf2f3c38003761bb77d4d087895651c7e0f0f4bea"
+    },
+    {
+      "path": "tests/principal_priorities.rs",
+      "sha256": "c319d062272a226b759cf4b1a65fa5d5716251616c18c6bda54991565fe46c02"
+    },
+    {
+      "path": "tests/quality_bounds.rs",
+      "sha256": "13b6ee8145aa84cec8599771bdb9499ebc9ffe3f933b7adaee63fdbc7b7df4dc"
+    },
+    {
+      "path": "tests/quality.rs",
+      "sha256": "9f50a77661b6781fe20fb2439f1d836afb26cc903f277d36b387c4e5b8a724b1"
+    },
+    {
+      "path": "tests/recovery_approval.rs",
+      "sha256": "e6247b73934a9f0f8b60f40d16f7886585843772c1d0efae283a2fed259eeb1b"
+    },
+    {
+      "path": "tests/recovery_capacity.rs",
+      "sha256": "12874d11d08608b19bca5468e0fae8939e5e2ce9f478475f4ebbfd46afd4261b"
+    },
+    {
+      "path": "tests/recovery_refinement.rs",
+      "sha256": "87b893b73222b705a057aa6aeeb2f5cf853fa449a69b14b0d62a6d029bfb5e19"
+    },
+    {
+      "path": "tests/recovery.rs",
+      "sha256": "85b6527826098a0121975aeb21a9a881568999cdc2c4443470d37050e10640d0"
+    },
+    {
+      "path": "tests/refinement-client.test.mjs",
+      "sha256": "4771cf83f18c3e5a5b2741a77b86df554f219cd7669636cc83d1728aa4cf1aed"
+    },
+    {
+      "path": "tests/reoptimization-client.test.mjs",
+      "sha256": "f7cb8b08951574cbfeb3c84e673c09a26bf4efb884ed826c84fe660932bc7699"
+    },
+    {
+      "path": "tests/reoptimization.rs",
+      "sha256": "b6be24548bf5558404a4d09a76042d534f1ad85c08f4f53caa4bed6e2d026afa"
+    },
+    {
+      "path": "tests/repeated_visits_hard.rs",
+      "sha256": "a7157504a1d35e60a6a690b0d3e6fd2bbd0b2cd211077c636529491156b8b458"
+    },
+    {
+      "path": "tests/repeated_visits_settings_source.rs",
+      "sha256": "3cf5c32751323760c8f04b3584391eae687f45e05177666714f35f7909e4ecd6"
+    },
+    {
+      "path": "tests/retained_family_slices.rs",
+      "sha256": "46eeb74c508cef7e275c94537f961a6cf35c9b2cf648cf54d4833092d9fe5fae"
+    },
+    {
+      "path": "tests/room_capacity.rs",
+      "sha256": "412f64d5cf19db1bbf86b484a8a94d0a9c273cf06431d3b03cfd738b83c5ab75"
+    },
+    {
+      "path": "tests/room_recovery.rs",
+      "sha256": "a5ab2373e16e378dd9057957b95c2501ea7f562292439f1c3f5e2c67ebd1b2f4"
+    },
+    {
+      "path": "tests/rooms_source.rs",
+      "sha256": "1dc414d43a1ab6b8a6e7497b162106b761df7faa0cc0c6cdac9b65a51ffd5ff0"
+    },
+    {
+      "path": "tests/rooms.rs",
+      "sha256": "cf73aa65661195bf7dc0483bef4394535acf370e7c1cb7ea85ed39ec2d17a9e3"
+    },
+    {
+      "path": "tests/runtime-artifacts.test.mjs",
+      "sha256": "5db7c3d8905a3178842999a903af4e8cd7ff3a024beafbd647fd374808389fe0"
+    },
+    {
+      "path": "tests/runtime-vite.test.mjs",
+      "sha256": "e31ce59dc90e5474ac37bb19407790d2d81a8f917ff6864ef7af213ac32771ab"
+    },
+    {
+      "path": "tests/rust-archive-link.test.mjs",
+      "sha256": "5a9f1d5e57397228492f5eb1779e8f464a7d246bc3203182b3d4e0839002fd0e"
+    },
+    {
+      "path": "tests/school_inspection_sessions.rs",
+      "sha256": "3d4a6ccbbcf42488675d7043b2e1202753a0708e64a8e185903ddeac3e888f0c"
+    },
+    {
+      "path": "tests/school_inspection.rs",
+      "sha256": "2bafbd41cf7f283489e11921668cc25ec9ea779307d8d69155792191b4fad507"
+    },
+    {
+      "path": "tests/school_quality.rs",
+      "sha256": "19ef6a52ab16d63462aef875da865cf58dab762016cc913f032ab3bcb8ef0001"
+    },
+    {
+      "path": "tests/school_student_rotation.rs",
+      "sha256": "fc3519af5a273095fe51a2715081f75ad31673d29903d754bc8a423263a96993"
+    },
+    {
+      "path": "tests/school_time_preferences.rs",
+      "sha256": "7a198c5871c45bbdf9fb94e75fe323bd94035f5e4e5db8ad94ab2a4e49256e25"
+    },
+    {
+      "path": "tests/search_ordering_source.rs",
+      "sha256": "f0921b6afcc50d55c3d633870c589a9d6ec815f02068f3f40df30e91b4bffa1d"
+    },
+    {
+      "path": "tests/session_locks.rs",
+      "sha256": "d336602529347d475d930fd3e3f520fdcbd862b38b2abe2dc17b7f6a9dba0f34"
+    },
+    {
+      "path": "tests/session-locks-check.test.mjs",
+      "sha256": "4d3cf471c6c49958fa5088fad489a5c6947c807367f9a4d47d984717d25fdbf1"
+    },
+    {
+      "path": "tests/source_hard_constraints.rs",
+      "sha256": "a605ac63aa898137fa62f9bf17a7edd6018e8800710fb3b4bc6c161bba3378f6"
+    },
+    {
+      "path": "tests/source_input.rs",
+      "sha256": "1154c8d186c87604a789fa819872b72e01d5d6f280a3c37324664fb650575aaf"
+    },
+    {
+      "path": "tests/source_pedagogy.rs",
+      "sha256": "9b245928c826404d8e3661378adfa8d82919bd40fb3927093b6e29da941e4109"
+    },
+    {
+      "path": "tests/source_seed.rs",
+      "sha256": "cc2e46fac649031796959234d1bb0fcd4e6588d0e1c18e4060cc6bb3fd0d8271"
+    },
+    {
+      "path": "tests/stability.rs",
+      "sha256": "7a07416d53015a2787ed06a4127901c5eb8a1a87aa8b6707601b2b7437972cc4"
+    },
+    {
+      "path": "tests/standard_profile.rs",
+      "sha256": "b8c9d03c9b5b40efc8229424e26f2ffb3f5c4dec61dc8529e2efad34ee9bec10"
+    },
+    {
+      "path": "tests/storage_export.rs",
+      "sha256": "63c2cede0ea34857999f712ed1646df77079ee87f0078c7e8bc0ea17366876ae"
+    },
+    {
+      "path": "tests/student_enrollments_source.rs",
+      "sha256": "acdbc79c0f60e32c87a60c93d41a5f6291ed454c92b49b7edffb3722b7199363"
+    },
+    {
+      "path": "tests/student_group_integration.rs",
+      "sha256": "11c8dfdeef51d4679f8ac94fa107ac75a4538be0e42cd2e2e978bc965362b300"
+    },
+    {
+      "path": "tests/student_group_partial_scope.rs",
+      "sha256": "e582c3c07ad4ccafd3ff8818cd92872bddb1b6bc1325abfb698ca751d5eaa9e1"
+    },
+    {
+      "path": "tests/student_group_pedagogy.rs",
+      "sha256": "173e9cf5f3a4550dcd6d3a12478f6837b699c03ff3310bf65d258dc26dd53f75"
+    },
+    {
+      "path": "tests/student_group_recovery.rs",
+      "sha256": "c7e3d195ab73c4332eceb11361a705d84dbf17476798ccc196b068a0295f3408"
+    },
+    {
+      "path": "tests/student_group_school_quality.rs",
+      "sha256": "7b0d6de19237153ee49e66ea17ebf829be6ed7f7bd6f0d8e076f8447704cd220"
+    },
+    {
+      "path": "tests/student_group_source.rs",
+      "sha256": "1da3f10e5f64f4466b0732fd110da86ef94955ec800f11aac372bda9c3d4ba5c"
+    },
+    {
+      "path": "tests/student_group_teacher_quality.rs",
+      "sha256": "5f6e20df836094078bfe87b58d585c9f28672ab330b96570e5ce8f612c565d66"
+    },
+    {
+      "path": "tests/student_group_time_preferences.rs",
+      "sha256": "6d7a98c746ade52357093edb3ee073caceefcd23f30fcbed9e9fff7050f3d6ca"
+    },
+    {
+      "path": "tests/student_group_workload.rs",
+      "sha256": "0b4343ae7859d995b1b9319859a588ba53c74327b747f09eaf022b76adf054ef"
+    },
+    {
+      "path": "tests/student_groups.rs",
+      "sha256": "b24ce3d03b43e1e59d3800d48b91ea46df6b12a7ad91630986c7f2d48e509572"
+    },
+    {
+      "path": "tests/subject_policies.rs",
+      "sha256": "00d6efd46880678241cc2f982ebaef197cd74034ac4c28f98e1224bf4c5c7ed5"
+    },
+    {
+      "path": "tests/target_focus.rs",
+      "sha256": "bcf37acdb49ce6e82c84c4dc4c8339e6480d66ce2cc38b0d45017607658754cf"
+    },
+    {
+      "path": "tests/targeted_quality.rs",
+      "sha256": "cd3ffbf1cc63227f79c5f41a544122d1714d81e7401823c950f2568a502ddcd6"
+    },
+    {
+      "path": "tests/teacher_duty.rs",
+      "sha256": "022ae87c8c429882354516f4958ef2feea735106e71a06774453fb19102c22dc"
+    },
+    {
+      "path": "tests/teacher_neighborhood_rotation.rs",
+      "sha256": "b94966363b31ecbfb2d532e6b07a3d6869c0d2502f45151085ed7c83494ef42b"
+    },
+    {
+      "path": "tests/teacher_placement.rs",
+      "sha256": "17a7bc4fac04bafca39dd3cd9f2a6c8dd999142c0b69466c146b37012379a88b"
+    },
+    {
+      "path": "tests/teacher_weekly_limit_intent.rs",
+      "sha256": "515b09110d555ae9adc4ddb997ceb32e4c65f1579adf41a3750d1712b63c905d"
+    },
+    {
+      "path": "tests/teacher_windows.rs",
+      "sha256": "9f4da377b17eadba5086dc72a5bf9bf1d382d20913ac2d199a9849cf7843a29a"
+    },
+    {
+      "path": "tests/teacher-client.test.mjs",
+      "sha256": "160be302d944a96938569d6f3444eb2adfcdb0d21afcd1d8e9754df02e6bd821"
+    },
+    {
+      "path": "tests/teacher-duty-check.test.mjs",
+      "sha256": "ffc519591a820b6f3b3a64f40fc5c3713877d9bb2d044246a15b681e5fb680e1"
+    },
+    {
+      "path": "tests/teacher-load-lower-bound-check.test.mjs",
+      "sha256": "001740ed332299b8fefd5329f78ce8502528e9eb0329ffd45b70b92627798057"
+    },
+    {
+      "path": "tests/teacher-record-actions.test.mjs",
+      "sha256": "5d415ec2bad822f19c9cfb45ae417e837633a7dac54a58cdf04fe20ec2aabc00"
+    },
+    {
+      "path": "tests/teaching_run_windows.rs",
+      "sha256": "ed3104c6a4d67a82d0d19516d9719bc39aeb076c5778852bc93bbdf270110376"
+    },
+    {
+      "path": "tests/time_preferences.rs",
+      "sha256": "dab07c5dab15faeff51bcf3f2005efaf8da62f45e713085a9614c3244af3e83f"
+    },
+    {
+      "path": "tests/time-preferences-check.test.mjs",
+      "sha256": "c9a4c162ff4de9e7125cce579581b2bc695cd57428d6a83b5428efa0a615e5b6"
+    },
+    {
+      "path": "tests/weekly_time_cells.rs",
+      "sha256": "4309bb9bc817ac5953cb3e5115414a09687dd838abb804c87b5548f7f179f6a7"
+    },
+    {
+      "path": "tests/workload_persistence_source.rs",
+      "sha256": "c2f9ad8e5aaae8ff542037beca715744eac36acf66b7244748483e778625e06d"
+    },
+    {
+      "path": "tests/workload_preferences_source.rs",
+      "sha256": "1e7986b280a3df68ab961979d691ad5b6ce0add93db2f541d07a5b0df1b138de"
+    },
+    {
+      "path": "tests/workload_time_preferences.rs",
+      "sha256": "92a2f728a40926355a705a28185b85927d23ef8b8b17ed00576fae7d7f67e4db"
+    },
+    {
+      "path": "tests/workload.rs",
+      "sha256": "a68934ca3c758d7b3cd930da978332574fc72f8e28047bf34fda84e9080d9350"
+    },
+    {
+      "path": "tests/browser/approval-cases.mjs",
+      "sha256": "8ba31043be71ae603b7e68fa0c7a4ab56a68a2d1db0c28383bd722f6520295e9"
+    },
+    {
+      "path": "tests/browser/approval-check.mjs",
+      "sha256": "dd2f885cb57a8f91568a3f8c769e14cb3c9e18342533059ba0e5dcd0cabbeb6c"
+    },
+    {
+      "path": "tests/browser/attendance-cases.mjs",
+      "sha256": "ce875e7dcb4eb5f080b72b3177c95e222d0b10c2a2c85768aacc22ceab8feb0d"
+    },
+    {
+      "path": "tests/browser/attendance-source-cases.mjs",
+      "sha256": "d0e62aa1d6cf258011b31251f7de6162538163695f18917938611e05e9ccf93d"
+    },
+    {
+      "path": "tests/browser/block-types-cases.mjs",
+      "sha256": "f4b58bf2f9fd2e5e2d5a77db5f7029c0161c152ab13ac5b1bfee156bf99334db"
+    },
+    {
+      "path": "tests/browser/block-types-check.mjs",
+      "sha256": "7fda93a6dbbcde41ef5948554d7f20265870f5710ffb9df97297890f670a93f4"
+    },
+    {
+      "path": "tests/browser/block-types-source-cases.mjs",
+      "sha256": "9c304092e04c1b927d18321af9473f653b08937e9199bfefd0719641403220a3"
+    },
+    {
+      "path": "tests/browser/calendar-intent-cases.mjs",
+      "sha256": "8f46e50ee8cb5cb4b506b416236d02ffab51c6bb7c357f071e40909c135f21b7"
+    },
+    {
+      "path": "tests/browser/canvas-actions.mjs",
+      "sha256": "4d364442acb132447e68e7190d71ed81cb6d1771dc0175c989b2b20a0362c162"
+    },
+    {
+      "path": "tests/browser/capacity-db-seed.mjs",
+      "sha256": "852dd19a9761a6cad7e4ff627f131a5c7528177ff30a8a819587491f08ce13fa"
+    },
+    {
+      "path": "tests/browser/cell-capacity-check.mjs",
+      "sha256": "892e9a1f9d712fa1aa3411908d7ac63ce83c796fed0c7990f072d15f092fc4db"
+    },
+    {
+      "path": "tests/browser/checks.mjs",
+      "sha256": "2a5e3232dd26bcf78839cc31c7245625acc13cec107cf06738d6ccda92df57b4"
+    },
+    {
+      "path": "tests/browser/class-calendar-source-cases.mjs",
+      "sha256": "229e4a4571717457696ada322a9ee785909a746597c588195f15355a84dd8c21"
+    },
+    {
+      "path": "tests/browser/client-api.mjs",
+      "sha256": "934f910a482737e7318f6e77ea7c88066d2260e52b582ea6924865f970d7cf6d"
+    },
+    {
+      "path": "tests/browser/client-automat.mjs",
+      "sha256": "a6568b91e1961d49e3b6f833dd0107e899b6e54d5e46ce8e0f35c2a51d0d32c3"
+    },
+    {
+      "path": "tests/browser/client-board-retention.mjs",
+      "sha256": "2af97a371053de5be5fd4caaa6684a5dc5fdd64247f0675e289a982e1ed3960d"
+    },
+    {
+      "path": "tests/browser/client-class-ui.mjs",
+      "sha256": "7be7afae41feea40c9c20da6c79bce1edb9c5f7cacf170a34282cd453984c7da"
+    },
+    {
+      "path": "tests/browser/client-commands.mjs",
+      "sha256": "7f7bd6635676128d78baee0ef3c73efd48f0b4669725c99ff8bde4e3a2a46a16"
+    },
+    {
+      "path": "tests/browser/client-database-wire.mjs",
+      "sha256": "402eb7d03c5b88c65d370787be53e0a1619f27e1f3974407eb1feec9f71a7ce3"
+    },
+    {
+      "path": "tests/browser/client-distribution-ui.mjs",
+      "sha256": "a8fed17e9b978773d3e226c563c548ba83925df3be71fda7a931ac7b9290f6fb"
+    },
+    {
+      "path": "tests/browser/client-entry.mjs",
+      "sha256": "125583c958977ce0f20019bb6512b9aa93d9914157fff10f66ff2288bacbe1b8"
+    },
+    {
+      "path": "tests/browser/client-expert-days-db.mjs",
+      "sha256": "32ba4b70b905ff63ecbd43d424136344f76689313ac9131b33b66c5e5a7316ba"
+    },
+    {
+      "path": "tests/browser/client-expert-days.mjs",
+      "sha256": "23c145137185e61e3bd147b6ee2e0a213f10738a272ca3af5e43ae87a834c6ee"
+    },
+    {
+      "path": "tests/browser/client-history.mjs",
+      "sha256": "62a567a125dfa97783646d9ba8f9c863f8f0c7b77166e827f3a1e12c17be3cef"
+    },
+    {
+      "path": "tests/browser/client-lesson-placement.mjs",
+      "sha256": "f9980ef858d0a4b5a56f070978bb69b95fb71ed479ae60fea5cab26b1d311a71"
+    },
+    {
+      "path": "tests/browser/client-lesson-session.mjs",
+      "sha256": "26e3d1e6c076142e0f2cd4c3dbf84e05dbc4d8473711c2f7c79fe3ebcad33964"
+    },
+    {
+      "path": "tests/browser/client-lesson-time.mjs",
+      "sha256": "51c5c9ee6a89daafb149f08d24fb1e215764478863e3dd0aa4e7493b62ea27c5"
+    },
+    {
+      "path": "tests/browser/client-lesson-variants.mjs",
+      "sha256": "70d1bcc1e54302716d884f0dd950604df8efb1112abba6afc1ded4d778b9d76a"
+    },
+    {
+      "path": "tests/browser/client-linked-lessons-db.mjs",
+      "sha256": "0e4fe51077bfc8dcde9adc9dd15a9ab0cbaf5c441b453158de53de42acbab3bc"
+    },
+    {
+      "path": "tests/browser/client-linked-lessons-scope.mjs",
+      "sha256": "a1fd6c8ecf97b908de5d20ba7ecedf2e55135c8592aeb90a7cdd6cfaa2d945c6"
+    },
+    {
+      "path": "tests/browser/client-linked-lessons.mjs",
+      "sha256": "32589c7b21f7f5088f5340dffb410eb8b8e50114462c7faff22a287c5b3608fa"
+    },
+    {
+      "path": "tests/browser/client-lns-settings.mjs",
+      "sha256": "c871de0b4a081f0456e5a5b2cce3552ff5a4b4d89255ffd28f6f4de9ea639db5"
+    },
+    {
+      "path": "tests/browser/client-manual-checks.mjs",
+      "sha256": "b379bea4450da1bec52c93908670e5d6975249876e699090937238ae5a706988"
+    },
+    {
+      "path": "tests/browser/client-manual.mjs",
+      "sha256": "be6e932a07387e800bb08723b6895e3a6936a30feeced83f9e3b8f2465be5cb6"
+    },
+    {
+      "path": "tests/browser/client-normal-planner-error.mjs",
+      "sha256": "184c33d72d5d8fb844648ab49a1a67cf8494ab37b8278807ea9b933fa248a8e7"
+    },
+    {
+      "path": "tests/browser/client-normal-planner.mjs",
+      "sha256": "7b96b4de9ea1b9bc2acfde2b91f83624b441d90eab0226d07aec3a7cfbf5bd5a"
+    },
+    {
+      "path": "tests/browser/client-offsite.mjs",
+      "sha256": "4b5ddd6a25398063a1453a5625e02e06670aaa6647c2ff2fed21e3ad33f8cef1"
+    },
+    {
+      "path": "tests/browser/client-paired-starts.mjs",
+      "sha256": "00edded2010ab072166dda38bce02ba458628c8c0341b7ee7a3638965f911b53"
+    },
+    {
+      "path": "tests/browser/client-parallel.mjs",
+      "sha256": "a4fb25e7a26b2e214ec1a41cb792e65992e42cd935f7aa36f82aca905469ec86"
+    },
+    {
+      "path": "tests/browser/client-placement-policy.mjs",
+      "sha256": "e851f8405fe39b4d7900e67d634559aa69aa67de188d0ada2863702e906a83cb"
+    },
+    {
+      "path": "tests/browser/client-pool-choice.mjs",
+      "sha256": "6761181389c839cf1f5fef33062fdbb821760dd296e06cca4cb88b6d1b35cdd6"
+    },
+    {
+      "path": "tests/browser/client-profiles.mjs",
+      "sha256": "ad2237ff55f894c7302f0e9bafe2194d55bc80799ed5fe6ed84da4dc8311e467"
+    },
+    {
+      "path": "tests/browser/client-publication.mjs",
+      "sha256": "659b6602ee1d437c9537fd7bf8b2acd30f1495bcc62c3a6a548bae01ad48f599"
+    },
+    {
+      "path": "tests/browser/client-recovery-ui.mjs",
+      "sha256": "c6efab61024d7292bdee454c8e5ba6aff91247b0741b61cf7539ec71273cab14"
+    },
+    {
+      "path": "tests/browser/client-recovery.mjs",
+      "sha256": "855cb3287163727477ea56885208360a49ee4eea1dce8507915468e7e2c5fb07"
+    },
+    {
+      "path": "tests/browser/client-reoptimization-ui.mjs",
+      "sha256": "9ed2e0f3b9ae4e6a84b1999d75fc3a7ecd1636deb3e158cfe1758ca0a38b1b7a"
+    },
+    {
+      "path": "tests/browser/client-reoptimization.mjs",
+      "sha256": "592fac2969d244d27e45bc1aa402accb32fad8f417eb5e292347ee5df09b23ae"
+    },
+    {
+      "path": "tests/browser/client-scenarios.mjs",
+      "sha256": "2f36de983725271da1718ae61502d3567ce83d296ffbdc44014181498896a258"
+    },
+    {
+      "path": "tests/browser/client-school.mjs",
+      "sha256": "04025b37107c20c54a16cfa08a144b8404343fa261b8b0607afefbd9907579c5"
+    },
+    {
+      "path": "tests/browser/client-session-locks-db.mjs",
+      "sha256": "2937cf6a2dee6eb98171d39f76ece4a110882959e972d118f07777cf51538639"
+    },
+    {
+      "path": "tests/browser/client-session-locks-scope.mjs",
+      "sha256": "16a43b09fe91e801ce8fea4a332217710aa9660e9b28d2fb680a7df7aa35a2fb"
+    },
+    {
+      "path": "tests/browser/client-session-locks.mjs",
+      "sha256": "f47fcb96cd8d39bf4ad2c796800028acdc4d332e3ad76e6a0e6df4629e428b8e"
+    },
+    {
+      "path": "tests/browser/client-session.mjs",
+      "sha256": "35a7f683bcc69189e0ddac0668b303a6440cc6a888e4c5cc6153df5148d5728a"
+    },
+    {
+      "path": "tests/browser/client-startup.mjs",
+      "sha256": "6f54c69ccd078721a4e25aa38977ad295c22115d2b948c6d141edf1e2fe94623"
+    },
+    {
+      "path": "tests/browser/client-teacher-duty-db.mjs",
+      "sha256": "d2f523a1d84c3c978ca238cd860e85ca7df2fb491e350674df360d01c8158f1c"
+    },
+    {
+      "path": "tests/browser/client-teacher-duty.mjs",
+      "sha256": "b407519fd3e38548f989bc5228829caf28e8efd989fa95f61a16ff58a8648c4f"
+    },
+    {
+      "path": "tests/browser/client-teacher-placement.mjs",
+      "sha256": "d55eda8d064580dfc8102aefc9ab2a2edc15ff9f1fcc77113cdec75dbb69d32e"
+    },
+    {
+      "path": "tests/browser/client-teacher-ui.mjs",
+      "sha256": "f2c704e274bd18987cec2945b7af2145ef067b292f8411a6b700dc1d68840df4"
+    },
+    {
+      "path": "tests/browser/client-workload-persistence.mjs",
+      "sha256": "411b1dfe570403b9451d28f534356daa4b4a963aec06483b8cd16f54f66bd196"
+    },
+    {
+      "path": "tests/browser/client-workload-time.mjs",
+      "sha256": "93c37d49dc11db80ea161d17a0d73bb8eeafd86395983d89b4329ba20ef92e45"
+    },
+    {
+      "path": "tests/browser/command-actions.mjs",
+      "sha256": "89ecc77b25d0038a4e532b7751444344e4b6f9363985dc27b3b467cb8aa55e53"
+    },
+    {
+      "path": "tests/browser/command-backend.mjs",
+      "sha256": "f60e57826dc74b6cb34481fdc1716df4be4dc3dadbad5c94cbb067ea3013a7aa"
+    },
+    {
+      "path": "tests/browser/compactness-reentry-cases.mjs",
+      "sha256": "4a1c987589fb6ebf3a897e240faa83dad90db7f928587d6e28cbaed3b6828d26"
+    },
+    {
+      "path": "tests/browser/constraints-page-actions.mjs",
+      "sha256": "c44773f1feb4ca87237baaf271c892439abc8cc439775c8181a8316a6373c085"
+    },
+    {
+      "path": "tests/browser/current-db-actions.mjs",
+      "sha256": "93f77f45d41fed20322030c3f03a27cbfc039b8b1f49a7411bb4feee24145907"
+    },
+    {
+      "path": "tests/browser/curriculum-db-seed.mjs",
+      "sha256": "797ecc2d79737a26da187ea8af90086054bfe20cb06950df3d23a4f0c3a04bcf"
+    },
+    {
+      "path": "tests/browser/curriculum-source-cases.mjs",
+      "sha256": "eb1a9b1ff7309865862d54578278018ab17f9580881f079e7834d17c68285238"
+    },
+    {
+      "path": "tests/browser/dense-calendar-cases.mjs",
+      "sha256": "611c682869884e5a7144bcd558a89810ab118637a34a3c5e9eaf3cd20b191818"
+    },
+    {
+      "path": "tests/browser/departments-cases.mjs",
+      "sha256": "e381ceb826e2c13dfd216252c5793519f44ef80d9aedc9b87a84a89dbe882a69"
+    },
+    {
+      "path": "tests/browser/departments-check.mjs",
+      "sha256": "467139bd4161c64aa0ea1c4ac9820c83b738323fd66d0416986a37a52821cae5"
+    },
+    {
+      "path": "tests/browser/departments-source-cases.mjs",
+      "sha256": "e67852d9ca5dc95fc5123ba296b6d7354d42155c76160d364cdbff937028672c"
+    },
+    {
+      "path": "tests/browser/diagnosis-cases.mjs",
+      "sha256": "e82ce9660c811c86168b448e8c09c861c1baec200ff71e5e383afa90720c9397"
+    },
+    {
+      "path": "tests/browser/diagnosis-check.mjs",
+      "sha256": "4b73185b324e8a084c974fb46cdbf1a43738381d07f06edcb36d563fcb2dda43"
+    },
+    {
+      "path": "tests/browser/diagnosis-expert-source-cases.mjs",
+      "sha256": "4cf69b0984135df1858e9b7098f5ac8b67013e3e29d1ea7a47c9aac1c5c186ca"
+    },
+    {
+      "path": "tests/browser/difficulty-weight-cases.mjs",
+      "sha256": "9aa4ec814479d917c2fd4212973d9ec3a940984b03a147c2197696633a0dd151"
+    },
+    {
+      "path": "tests/browser/expert-days-check.mjs",
+      "sha256": "b697acc1c72e5172168f9292a391776e61e5f755fc2c8cc4258181fd0f09b722"
+    },
+    {
+      "path": "tests/browser/expert-days-db-seed.mjs",
+      "sha256": "e710045d0549f20c5171476b516007682594d0d1d8fc52f9b9ee8fba9a5882b0"
+    },
+    {
+      "path": "tests/browser/expert-free-db-seed.mjs",
+      "sha256": "8e73add57ded5f772a60d2b2647ba87d1242d82c8060c48be830b95b4fdcdea5"
+    },
+    {
+      "path": "tests/browser/expert-record-actions.mjs",
+      "sha256": "c76604df6b4ce65ace46b1c96233d50322dc38248d041b3ad428873097887b90"
+    },
+    {
+      "path": "tests/browser/expert-widget-fixture.mjs",
+      "sha256": "72cbd1c2266db8cc357393e2f2897b58153deeb6c002c4f4e2409979c0bc13ae"
+    },
+    {
+      "path": "tests/browser/family-cases.mjs",
+      "sha256": "40e766d5e12db56c20e04e0402054ba3141fe6c0480db56a2af8c5a26034da6c"
+    },
+    {
+      "path": "tests/browser/family-check.mjs",
+      "sha256": "022fd4fbf9d96d071b7092d5cc8fddecf7bbceb7f439a72e6cbf45aafa741ca2"
+    },
+    {
+      "path": "tests/browser/fixtures.mjs",
+      "sha256": "fdf0eab47c95b6d7a288d6f28d07e05eccc16be2dd018d4a58a296e2262037db"
+    },
+    {
+      "path": "tests/browser/foundation-cases.mjs",
+      "sha256": "3ba807b591731337a9f3c9789a7d5eb88020f375023ce8ce12b5d24b5483b130"
+    },
+    {
+      "path": "tests/browser/friday-cases.mjs",
+      "sha256": "023279efc7c1a19027642e18678bdc61431825a15779ac7460339b47b694af0f"
+    },
+    {
+      "path": "tests/browser/friday-source-cases.mjs",
+      "sha256": "daa899195cff0231f62f776ea1e6b7730c5469f292f40ac219a45d0d22b131ab"
+    },
+    {
+      "path": "tests/browser/hall-forced-cells-check.mjs",
+      "sha256": "e54dc9c212c6a8676a299332866b9a522c0b61a0a3c1a24f2e47123a663b0220"
+    },
+    {
+      "path": "tests/browser/hard-time-source-cases.mjs",
+      "sha256": "3bcfbe7b0e123e866fafdba74a415b07e9fe1372a8f2b460a99483c7529809d5"
+    },
+    {
+      "path": "tests/browser/incumbent-model-cases.mjs",
+      "sha256": "cf61ac1e1ef330de5e8f0f594decc57b8d266348b1c3a6769bc5336de359d2e1"
+    },
+    {
+      "path": "tests/browser/learning-audiences.mjs",
+      "sha256": "f201b67eb14544f46682b7e6edd64cc4be175862bcce4922c1fd6c1ee21f2d83"
+    },
+    {
+      "path": "tests/browser/learning-audiences.test.mjs",
+      "sha256": "d37501eb07c343331c6efd5cd231c96412565357a31f32dfe4ba7129cf9e211e"
+    },
+    {
+      "path": "tests/browser/lesson-placement-source-cases.mjs",
+      "sha256": "e3cdaabb8bdb7b1db3314a85b7a8deb21e12cd29c5dafa57153be945d1a06c38"
+    },
+    {
+      "path": "tests/browser/lesson-time-cases.mjs",
+      "sha256": "d0f3048bf2a9af7cb82959fdf52a3d9cd3fbda4dbf65383477509ba35ba8e3ed"
+    },
+    {
+      "path": "tests/browser/lesson-time-check.mjs",
+      "sha256": "2c329fe8b3ba80d901fe9e777b4f0e9ac6dcebedc34d58f17eeba2a053fc116c"
+    },
+    {
+      "path": "tests/browser/lesson-variant-db-seed.mjs",
+      "sha256": "150575d9835c78f72d76d1b5681acd6d60e07b71e51c3d5475964eaf4c1db9a7"
+    },
+    {
+      "path": "tests/browser/linked-cases.mjs",
+      "sha256": "40637896794a12c1eaf228556782b5282b84d99af9bce9f22eeaa3d55120db13"
+    },
+    {
+      "path": "tests/browser/linked-check.mjs",
+      "sha256": "ffb31891e9d4b29c06ab9ee470ee3b57f35ea031ca609307aa04e71f9a09582d"
+    },
+    {
+      "path": "tests/browser/linked-lessons-check.mjs",
+      "sha256": "b3bb630e7591cb4fb9497a8d405b55d7b727b1244e74a111055f09d906cd1420"
+    },
+    {
+      "path": "tests/browser/linked-lessons-db-seed.mjs",
+      "sha256": "ff01a5b208b58a6a64b70bd531555967522eee7a7facd5ad69625cdb2b58408b"
+    },
+    {
+      "path": "tests/browser/linked-lessons-source.mjs",
+      "sha256": "81ec0b66fe4e06ebb79a5e6b31efc624c1509f7fbe81c7c6bfff3049a495457c"
+    },
+    {
+      "path": "tests/browser/linked-source-cases.mjs",
+      "sha256": "26b28c39d2122e340224eb0ffbec9a5aa2033f6f83d37cb0e43668d4ef999ea3"
+    },
+    {
+      "path": "tests/browser/logical-sync-check.mjs",
+      "sha256": "aa6eee0d005474d6895355ebd0cd1646b13d2ef3ea747ad6a3042f9c3c2caa87"
+    },
+    {
+      "path": "tests/browser/lunch-cases.mjs",
+      "sha256": "3013e36853550c175bab37c92cf0eab3c381a0eba1401eeeb89b5f8432c04b32"
+    },
+    {
+      "path": "tests/browser/lunch-check.mjs",
+      "sha256": "aa7357f4528ca39d7d2f3222d01bf19748ad0770d3dc30928605f8a81bb92d4c"
+    },
+    {
+      "path": "tests/browser/manual-check.mjs",
+      "sha256": "da871350c26a115f1600d24758b65e5d91007f25ebb81dcbd09192edb4866557"
+    },
+    {
+      "path": "tests/browser/manual-db-seed.mjs",
+      "sha256": "0731301a9f3af427871ffead8f26765904197d872bdbd64a78131fa7f35f4498"
+    },
+    {
+      "path": "tests/browser/manual-inventory-check.mjs",
+      "sha256": "886103569cf4b9c5e59ba6dfd66e3ac33f9746137435d49600c299efde35fa02"
+    },
+    {
+      "path": "tests/browser/manual-student-groups.test.mjs",
+      "sha256": "5ba0135ac5680d616cef10b07badf87263527e46d41dfe0fcf99872902a68c37"
+    },
+    {
+      "path": "tests/browser/minimum-load-bound-cases.mjs",
+      "sha256": "4fad06f50c0da1baa3eba0a216d668a0e0f7f65efa6aec693a5bea1acce9dfdc"
+    },
+    {
+      "path": "tests/browser/normal-calendar-controls.mjs",
+      "sha256": "529a6518a74433cf3a37e8e3c8f13ebaa7934fe03cf225a8313cc60abe26a6a9"
+    },
+    {
+      "path": "tests/browser/normal-capacity-recovery.mjs",
+      "sha256": "ee32c5f85fa7eab545b621f93648b5c1bf0a7333d25f20a71f656832f0597a34"
+    },
+    {
+      "path": "tests/browser/normal-constraints-page.mjs",
+      "sha256": "7bc61536b95691bd33445d4292633d36f0fdc2e94ce1d8f13a47cf9de0017c1b"
+    },
+    {
+      "path": "tests/browser/normal-copy-cancel.mjs",
+      "sha256": "00f33cdb94884123bbf9667685f87f56227385a8f0992cacdc64781c541688a8"
+    },
+    {
+      "path": "tests/browser/normal-expert-conflicts.mjs",
+      "sha256": "8ce45c706c3cf4f11a723a0303dce47a615e545fe7dec705541a08367c6f89a5"
+    },
+    {
+      "path": "tests/browser/normal-expert-free.mjs",
+      "sha256": "e05e66f2880592c2969101a55af9bba1f6e7c98f6685d142ea5be668b883f6d9"
+    },
+    {
+      "path": "tests/browser/normal-expert-kinds.mjs",
+      "sha256": "bd204be0f16f975359db8851dd28796f5b8fc05e774d87b3bca87e7a93d11417"
+    },
+    {
+      "path": "tests/browser/normal-expert-records.mjs",
+      "sha256": "69bdbde95418d4879776820f01ef36b80e9ab9943a67e12368b8d99e040bbf49"
+    },
+    {
+      "path": "tests/browser/normal-global-settings.mjs",
+      "sha256": "ed7ada3e6aa97a6721083dbe9e6df0cf3e87cf19c6972756d1473d3cd3529cfa"
+    },
+    {
+      "path": "tests/browser/normal-lesson-settings.mjs",
+      "sha256": "44a34558339eeff4fa5da62bec05bd2df19cb7a3814b804c2fd62fc90a62db59"
+    },
+    {
+      "path": "tests/browser/normal-live-stop.mjs",
+      "sha256": "dad72205513480bef0d11973a58f6c91230648904fadfa493b81b1b1ce2eaed0"
+    },
+    {
+      "path": "tests/browser/normal-mobile-calendar.mjs",
+      "sha256": "14e9c6d7462db4dd4da7a657957dd93896c20c943a8f76ef051dd3babbf2bdcb"
+    },
+    {
+      "path": "tests/browser/normal-permission-free.mjs",
+      "sha256": "72f6d2340f291476239d78fe8265008e1585551c43f5431968539aa92e930ece"
+    },
+    {
+      "path": "tests/browser/normal-planner-actions.mjs",
+      "sha256": "722a949f518f3b0d55d88e30ea5c5edbafd0c125584b5cfb46ce183b6ecf7576"
+    },
+    {
+      "path": "tests/browser/normal-planner-control.mjs",
+      "sha256": "59a5d5f83bef3d4c483d901f5c7a497f35b33f63f45b1db1dacd567f9f91f085"
+    },
+    {
+      "path": "tests/browser/normal-planner-entry.tsx",
+      "sha256": "358fc48241d0b39499a1355dc4e4b690307e5713b5a446d57315bbae11014d15"
+    },
+    {
+      "path": "tests/browser/normal-planner-modal.mjs",
+      "sha256": "262977b7f4ec9d46e0bcda4bd01048feed80ab0b5d4a8aff2aa91261a7d4ad10"
+    },
+    {
+      "path": "tests/browser/normal-planner-publication.mjs",
+      "sha256": "bf6f4d8c50d168ca88b2f34ea7b664d08c983a036b7d4be1616b6321c89f141c"
+    },
+    {
+      "path": "tests/browser/normal-planner-recovery.mjs",
+      "sha256": "9b6807f56c6a2e85228eaf9dc8d9eb3364d77a8670719cdbc76b19fde9f2c84d"
+    },
+    {
+      "path": "tests/browser/normal-planner-ux.mjs",
+      "sha256": "05f13ec9a209dab0f3184385af71fd982367c7493183880a696658400559860e"
+    },
+    {
+      "path": "tests/browser/normal-real-school-cold.mjs",
+      "sha256": "9e77c6283d803908884486443ef7df28ec95fa15c4c47f5b3293a27df33f6051"
+    },
+    {
+      "path": "tests/browser/normal-real-school.mjs",
+      "sha256": "90b2e8953565bb8c823cad47c7af57e5cd93c2e59ecd91b7097cdd92dad9ba18"
+    },
+    {
+      "path": "tests/browser/normal-recovery-permission-check.mjs",
+      "sha256": "5924011fe0fc2779de567e6d56781d68a3a2e25f55602f8f1dbcd46f45c2c1f0"
+    },
+    {
+      "path": "tests/browser/normal-reentry-settings.mjs",
+      "sha256": "ce75a01a68e8a43fe579bae06dc19b4999b521b6bfd54d210a3e85a157dcb818"
+    },
+    {
+      "path": "tests/browser/normal-resource-settings.mjs",
+      "sha256": "35e14734bb9efcbe70073cd004c05938cecaf26c5a4cef7a72672cd55d861514"
+    },
+    {
+      "path": "tests/browser/normal-room-intent.mjs",
+      "sha256": "469ccff58a401ea2616466def6481c689cea03c61b4f9aa3fab209090fa41432"
+    },
+    {
+      "path": "tests/browser/normal-school-time.mjs",
+      "sha256": "55b6e160f7e5ac2ca43623954b91f84905ded8366404759ccfa7c5766f77ec8e"
+    },
+    {
+      "path": "tests/browser/normal-student-enrollment.mjs",
+      "sha256": "f36e88972cc88f9764fa8469c5347026b07e68a4f2324608beb8f5355a5225aa"
+    },
+    {
+      "path": "tests/browser/normal-student-group-reports.mjs",
+      "sha256": "00af53f52015ffb811149c9dfe2823a92e1b1379dc16527246858b7d9697fc44"
+    },
+    {
+      "path": "tests/browser/normal-student-groups.mjs",
+      "sha256": "6fe8e8875e3d803bc329dd565a730f8c0782230ab12496ac648cc52ae49ea08c"
+    },
+    {
+      "path": "tests/browser/normal-teacher-policy.mjs",
+      "sha256": "6f7ac289528681205c0fda79b05161c2658df4c13fbd1a6875e402edbafa5ff1"
+    },
+    {
+      "path": "tests/browser/normal-teacher-settings.mjs",
+      "sha256": "dd2c2c7071c06aa2764eab69e7bf4afebc1a45f48703bb8c03c32768bf432c1e"
+    },
+    {
+      "path": "tests/browser/objective-policy-cases.mjs",
+      "sha256": "df4c0852e8a4057c4340c5fc5bb3be1f9dcd416b303bd0be83f13f48d63a49cc"
+    },
+    {
+      "path": "tests/browser/objective-policy-check.mjs",
+      "sha256": "3238a83c712197921dc22039bee1b956fe4d3791ad81cef24ef3bda905741c0c"
+    },
+    {
+      "path": "tests/browser/offsite-db-seed.mjs",
+      "sha256": "4763c9a8a4fe81a8f1757fea15e586e32bdc0920ca1a78925905a2a199652e28"
+    },
+    {
+      "path": "tests/browser/parallel-check.mjs",
+      "sha256": "2ab7399b370c7ac25946e892aa59fa2e011168670ca851cec2084300a30eb2d2"
+    },
+    {
+      "path": "tests/browser/parallel-check.test.mjs",
+      "sha256": "6336b4e59a977d4ca442f6be6a6bc8dd8d9e99bfdbf040506b22541d64e9b734"
+    },
+    {
+      "path": "tests/browser/parallel-db-seed.mjs",
+      "sha256": "2ae4711454f4132db4563a607f789bf62a2e68c32f64407015e699abe01a9a06"
+    },
+    {
+      "path": "tests/browser/parallel-source-cases.mjs",
+      "sha256": "1ed0b7bb3eca271659168dc300d4b4d222bf5636bef7b0217a2b96bdd0b4bc14"
+    },
+    {
+      "path": "tests/browser/pedagogy-cases.mjs",
+      "sha256": "83a84c6633b3a0d35c465ce9e982fee49377317aca8983cb0f9c9c3d57b86a04"
+    },
+    {
+      "path": "tests/browser/pedagogy-check.mjs",
+      "sha256": "fcf5fc04ab7e11d8d7915c36105060bcfb907bf6f2cc31ecbb54f1647318fb59"
+    },
+    {
+      "path": "tests/browser/placement-policy-source-cases.mjs",
+      "sha256": "a54bbd76327ae2aab402f8b4384269f31d49a11d39adb84a0b2c56b3a09171a8"
+    },
+    {
+      "path": "tests/browser/planner-ux-entry.tsx",
+      "sha256": "409dd1cc45126f1f4dc65da6f142f8c1520c95c5ab2426651d087e73d41d4fef"
+    },
+    {
+      "path": "tests/browser/planner-weight-cases.mjs",
+      "sha256": "7005378a4ca53da1e5249791047fcf0eb3bacfff491038ec45affcc093e64e88"
+    },
+    {
+      "path": "tests/browser/planner-weight-check.mjs",
+      "sha256": "ef4dd7140b7e9b8fcc4447ed47d0e1af3cfbba1f7464b6df0424bc5beb5939d5"
+    },
+    {
+      "path": "tests/browser/preferred-cases.mjs",
+      "sha256": "ff6f6433768b0575a87c97fc16a578918955d08259ac6ea3d458c21e16ee1994"
+    },
+    {
+      "path": "tests/browser/preferred-source-cases.mjs",
+      "sha256": "eb98ef1ee35548255a682d3a480bae7e4c15786c525ae0e27910d38a58b6255c"
+    },
+    {
+      "path": "tests/browser/quality-display-check.mjs",
+      "sha256": "fe62ad88460853a101af2cfaeaa9290b26a1fc25fe9baf43e91b78e10572d911"
+    },
+    {
+      "path": "tests/browser/quality-guards-check.mjs",
+      "sha256": "d47c3c51cb942a95261c959d104b906144e236a2ae2207a6e4457889cd3d0599"
+    },
+    {
+      "path": "tests/browser/real-school-command-backend.mjs",
+      "sha256": "5ca768367bdd9484b6107049fc76f74bbc633e943e1ffc0843ae00521e5e981f"
+    },
+    {
+      "path": "tests/browser/real-school-release-input.mjs",
+      "sha256": "7c1ea0673285ecfd29a8096663186c1e3147949cd204e74016403ab4acddd53e"
+    },
+    {
+      "path": "tests/browser/recovery-capacity-cases.mjs",
+      "sha256": "2759e1f0761bd2adc45907b0af539b53dceeeed59515a855928c22f7b0ed1670"
+    },
+    {
+      "path": "tests/browser/recovery-cases.mjs",
+      "sha256": "cb6c905f16ba5577dc97a7f3de6e8819b8f4383ebf96d6bce2e05cf7ca913c61"
+    },
+    {
+      "path": "tests/browser/recovery-check.mjs",
+      "sha256": "6785d05c2a82622b08faaa84c4145963de245a7719fb34b686cdf9ac09e8e1bb"
+    },
+    {
+      "path": "tests/browser/recovery-clock-check.mjs",
+      "sha256": "5d05200a50add9414cf94032794dadaad0e716b176d319271a19f003a75e2cc8"
+    },
+    {
+      "path": "tests/browser/recovery-db-seed.mjs",
+      "sha256": "00dd26c03f57ba0f0ecbbafc5dea9c1abd9327d2cc861da5314be858a4e35ecb"
+    },
+    {
+      "path": "tests/browser/recovery-quality-order-cases.mjs",
+      "sha256": "c5fa558e35b48294e3be3f28490c1627907d28b078c3bdcc57f5511bd739a328"
+    },
+    {
+      "path": "tests/browser/reentry-cases.mjs",
+      "sha256": "b932d7e66e2b8177ff96f73cdb899c941fa65b6a8e483367b8ec2e91ccf05d35"
+    },
+    {
+      "path": "tests/browser/reentry-db-seed.mjs",
+      "sha256": "be688dd1da9b8bd96235ee4ecd283b60c727cb447ba045870c0354a8b5749611"
+    },
+    {
+      "path": "tests/browser/refinement-cases.mjs",
+      "sha256": "6cb0ab31225d1bb2248dfe614ad09f33cf3138c483857b3ccc1e8211c92f75e7"
+    },
+    {
+      "path": "tests/browser/reoptimization-cases.mjs",
+      "sha256": "4d160a3e741fa8cbf56bea889b3476c63ef8e5f2e1d19b6c5ab91c73b98d0965"
+    },
+    {
+      "path": "tests/browser/repeated-visits-check.mjs",
+      "sha256": "3589ae0d10673322436c312e54623006c648c4cac90f7761694907f86d0e0d81"
+    },
+    {
+      "path": "tests/browser/repeated-visits-check.test.mjs",
+      "sha256": "352e387f9965f809f8d4f14a02e6ea9c795bc3180c8a05594856a4f7606460ba"
+    },
+    {
+      "path": "tests/browser/resource-policy-cases.mjs",
+      "sha256": "58cd914e7ec736ed822e721f83f7659b5837b850403ecc69b3ad25d5edb71c50"
+    },
+    {
+      "path": "tests/browser/room-intent-db-seed.mjs",
+      "sha256": "ea81be1d22c3f4f1110c1ab7e3e4ff359d8b77ce6b757ef7ffa63f8f05c63f93"
+    },
+    {
+      "path": "tests/browser/rooms-cases.mjs",
+      "sha256": "325e939dc3f65fc6922acf59006c85f17c745f01c47c650345c5f7f3346a24b9"
+    },
+    {
+      "path": "tests/browser/rooms-check.mjs",
+      "sha256": "fa44983674d0ede717cca26858446f5c9faa64c2728544939ce8c4bb3e637154"
+    },
+    {
+      "path": "tests/browser/rooms-source-cases.mjs",
+      "sha256": "82793443905a1b94c97bbcf52c87dc36775b55eee023b01aa490ad4570411dd0"
+    },
+    {
+      "path": "tests/browser/scale-school-fixture.mjs",
+      "sha256": "90a532396dd470d78938b08f4c3d9808a1145f3acf206ea5786e8e1c80b8ab81"
+    },
+    {
+      "path": "tests/browser/school-cases.mjs",
+      "sha256": "d8b7be269feb17d442c571f65e3630e0d4a1440eb457b4d0ac8645f113f92da5"
+    },
+    {
+      "path": "tests/browser/school-teacher-load-cancel-case.mjs",
+      "sha256": "1bb61f5432dd9a539fafd3ae457b1883244e6f8e6c688b8d9e8f9775a2057987"
+    },
+    {
+      "path": "tests/browser/school-teacher-load-cases.mjs",
+      "sha256": "0d7c2edab4f919303af96fbbf89114b84aa19306e18ce6eff291efb5fb7dd661"
+    },
+    {
+      "path": "tests/browser/search-ordering-cases.mjs",
+      "sha256": "94cad99e292b1ee26acdeb0c284516a87d78566bbc039d92dc872c99cabb3e7a"
+    },
+    {
+      "path": "tests/browser/session-locks-check.mjs",
+      "sha256": "c61d056f1f0b3afc86444526cfd3eb4b1c9bb70ffead4beac566daf4534156c6"
+    },
+    {
+      "path": "tests/browser/session-locks-db-seed.mjs",
+      "sha256": "6d03bdfa3e42e24fba521644969680aea7c78823180bae378517addd5e0291a5"
+    },
+    {
+      "path": "tests/browser/solver-statistics-cases.mjs",
+      "sha256": "28533dcb747ab3d7c46a3abd38b0507267b4cd201639e20969d423a31afdd592"
+    },
+    {
+      "path": "tests/browser/source-assignment-check.mjs",
+      "sha256": "2f10e1a0553ee959551320f0ed4b4c11ab0088cbeef14815a0adf94a49e01958"
+    },
+    {
+      "path": "tests/browser/source-cases.mjs",
+      "sha256": "b2a8d3c100485adb1d6abc09764b1e02eef377cbfe5f956cf9987c1623952adc"
+    },
+    {
+      "path": "tests/browser/source-fixture.mjs",
+      "sha256": "8a148b9e349e5177f990e96ee4f72fc010d3b36ee1e32da7070db34b7d9e0817"
+    },
+    {
+      "path": "tests/browser/standard-profile-cases.mjs",
+      "sha256": "880f34c1cf6473164d7370dfd2d56803e6e636d8b9d81551900adb15ba5fd966"
+    },
+    {
+      "path": "tests/browser/storage-check.mjs",
+      "sha256": "d0c576339891ba52a1295dfe26eeee898b43ce6795952af7e000437207f44a04"
+    },
+    {
+      "path": "tests/browser/storage-source-cases.mjs",
+      "sha256": "bcd4649c90a970e69c811f18c5b4ecc5f751c8e4abd6667095aaa0e84c42734c"
+    },
+    {
+      "path": "tests/browser/student-enrollment-db-seed.mjs",
+      "sha256": "84f12eb484049204802b9e9939034450d2cb12932d8d9b5147e98cd8f8570528"
+    },
+    {
+      "path": "tests/browser/student-group-creation-cases.mjs",
+      "sha256": "6c9bfdc13227c4fcec9766bd9fb17140a8c22d633d3235c6a55c13307bcb078e"
+    },
+    {
+      "path": "tests/browser/student-group-db-seed.mjs",
+      "sha256": "de9f4ab74206ae580781748c46c41e383b40b59321b593021779057bf0f0685c"
+    },
+    {
+      "path": "tests/browser/student-group-integration-cases.mjs",
+      "sha256": "98fa4df92fe76e95b443b0ebdc06f59eba3c3a70caa1f403b78847d264ad4d56"
+    },
+    {
+      "path": "tests/browser/student-group-partial-cases.mjs",
+      "sha256": "728fdd7b25d12da78767dfdca737f77b57d97720690e4c2bcd024e59a9ef7835"
+    },
+    {
+      "path": "tests/browser/student-group-pedagogy-cases.mjs",
+      "sha256": "965688c21b47061a45c51cd35ff9ebff72229e60cea55a95c479344cf06acd25"
+    },
+    {
+      "path": "tests/browser/student-group-pedagogy-family-cases.mjs",
+      "sha256": "746ad99752b279d5f77722d6e8f41dd6a220e1b3bea74010114582b266593d3a"
+    },
+    {
+      "path": "tests/browser/student-group-recovery-cases.mjs",
+      "sha256": "6e1f71bc6d93c06057ce3877fb63dba40f14c3b7191c52d9dd23ba9035ec16a8"
+    },
+    {
+      "path": "tests/browser/student-group-school-cases.mjs",
+      "sha256": "0b5b8a0140b44ca8091912eb6d44b9133e25dfdf4f76a89b07970c246f563de8"
+    },
+    {
+      "path": "tests/browser/student-group-source-cases.mjs",
+      "sha256": "0cad3e162a54cf8f385a82b4fb1d13617eea8e08e177b66c9ad7f776bcb15e7c"
+    },
+    {
+      "path": "tests/browser/student-group-teacher-cases.mjs",
+      "sha256": "4e8dd958473be418f2ff32a81bd50b12cab021b41ad18ae88d61f2041fc90455"
+    },
+    {
+      "path": "tests/browser/student-group-time-cases.mjs",
+      "sha256": "b0174d1b7a6cab7ca51433f2cd8eb817d6107bc489de2170d6c33b237f14a5fc"
+    },
+    {
+      "path": "tests/browser/student-group-workload-cases.mjs",
+      "sha256": "71265d1797ef2529215e5e19f00c5e0834e805de9b6e39608d433fbd2f4b805c"
+    },
+    {
+      "path": "tests/browser/student-groups-cases.mjs",
+      "sha256": "3408edbc4f4083882a4e1c3a7d830485c85da1fe7f57b1104240b0940ff7158a"
+    },
+    {
+      "path": "tests/browser/student-groups-check.mjs",
+      "sha256": "507b334e1e4a8dd58fba0565acbf74ff98d6e6ca93ba1f366de96811637843bc"
+    },
+    {
+      "path": "tests/browser/student-groups-diagnosis.mjs",
+      "sha256": "9b83526fcd4e8d88e2e7375643ea5609d48e09814bd53749e79b2e38554475e8"
+    },
+    {
+      "path": "tests/browser/student-groups-diagnosis.test.mjs",
+      "sha256": "c6e5ed181025d83ea1631dc48660f873ba56f3ecd0f102751864b9574f51220f"
+    },
+    {
+      "path": "tests/browser/subject-source-cases.mjs",
+      "sha256": "5b5999dde743eb345ed38ee7bff6178260eb206e6216287424fc1bc37e152fa0"
+    },
+    {
+      "path": "tests/browser/synchronization-cases.mjs",
+      "sha256": "80d6e0cf2f98c45265dbe025068ef4a9e9b051eabdf24bf942f1cbde7fb4e100"
+    },
+    {
+      "path": "tests/browser/synchronization-source-cases.mjs",
+      "sha256": "c70dbddb9be115610c47154895838ce419b54f6bc1126c695748ffad70f099aa"
+    },
+    {
+      "path": "tests/browser/teacher-cases.mjs",
+      "sha256": "459f13bb5819ca1ea2632d6d55e6d039f746ed9d4517420960784ff41b5d8ce4"
+    },
+    {
+      "path": "tests/browser/teacher-duty-check.mjs",
+      "sha256": "40df859e8a8585cfa3d8106988f863ff708b2c4c5a1932255a37966202f112e5"
+    },
+    {
+      "path": "tests/browser/teacher-duty-db-seed.mjs",
+      "sha256": "5b01d5a5a1fd26b573aa08d0a0c813974b92e71c09119b562aa8f858bde552d6"
+    },
+    {
+      "path": "tests/browser/teacher-load-lower-bound-check.mjs",
+      "sha256": "cf55cfdb88ee75787832b6308275bc0a00c980231095789dd0ebee1750081176"
+    },
+    {
+      "path": "tests/browser/teacher-placement-fixture.mjs",
+      "sha256": "7508cc699798aa697c8c0ed69ecbd61074303aec7449ab25678ac7b2bc36ebf7"
+    },
+    {
+      "path": "tests/browser/teacher-placement-source-cases.mjs",
+      "sha256": "8845bcb0d267a21406c06176ed68950f518fada5026afe0ff3a4ee9994cb406a"
+    },
+    {
+      "path": "tests/browser/teacher-record-actions.mjs",
+      "sha256": "4a363667c8f2f3cd331fa7e618adbbacc700b891cd2d49ee882460f0c20d5842"
+    },
+    {
+      "path": "tests/browser/time-preferences-cases.mjs",
+      "sha256": "bf54f1c0c85155db945e2d4a51fda1a2f52494c36fba7b00d5abd832d56f74e7"
+    },
+    {
+      "path": "tests/browser/time-preferences-check.mjs",
+      "sha256": "50776271f1e8beeacc9770b08fadb69ac7dac29b0e61cbf7c5ba6911f390c784"
+    },
+    {
+      "path": "tests/browser/transfer-cases.mjs",
+      "sha256": "fe82d15ef31d1d89f5a521a491e7a0a3c9d28917a957cd9972a78b8f84160f74"
+    },
+    {
+      "path": "tests/browser/transfer-check.mjs",
+      "sha256": "e7e3fab907b73c1b92a6641239a9ce101b668cb3acee9fcd263af9cd7cea6de0"
+    },
+    {
+      "path": "tests/browser/transfer-source-cases.mjs",
+      "sha256": "ec739c4300141e6a82f18ba50a99de2be0e4762a33492f89b8c7cdf59b9baeca"
+    },
+    {
+      "path": "tests/browser/windows-cases.mjs",
+      "sha256": "a94ac6dc86875ab535c443fad222a780baf9cba14b976173a372f5f53b10f9c9"
+    },
+    {
+      "path": "tests/browser/windows-check.mjs",
+      "sha256": "74c7bb83533f9ebc206cb1bb5a106458f8af0e3096b6d3df17335090b2d53c0f"
+    },
+    {
+      "path": "tests/browser/windows-source-cases.mjs",
+      "sha256": "e251aa7236dc24322bf1cf12becb95b134c0fb29cd8b9d3184073aa2fe4223a4"
+    },
+    {
+      "path": "tests/browser/workload-cases.mjs",
+      "sha256": "83f06e1036ed71c762e8b0dfd1f1f6dc5e5e8fb6ac92e5f6348bf10284b879a7"
+    },
+    {
+      "path": "tests/browser/workload-check.mjs",
+      "sha256": "7fd1e84bb52a5bc4e6460ceb78c1d11b669eec278a8dedafdf36e7931828e1ab"
+    },
+    {
+      "path": "tests/browser/workload-fixtures.mjs",
+      "sha256": "51a7596269b0d3879803296ce0467ffa5a2179f67d2de4adbe2b742ba1a2dace"
+    },
+    {
+      "path": "tests/browser/workload-time-source-cases.mjs",
+      "sha256": "4d7d092ed5d0551ef611329f5e65e51929885290a21a7d6260daab439383b172"
+    },
+    {
+      "path": "tests/support/manual_fixture.rs",
+      "sha256": "f8035ff49b3b0d8bdaa842511ecccac8f93d57b02be8bc4482741ba6558a8656"
+    },
+    {
+      "path": "tests/support/rust-archive-runner.ps1",
+      "sha256": "98ced92cdfb309d6d67f8b959d2c201c76b844b8178fd13f3f557d8ce1b26510"
+    },
+    {
+      "path": "tests/support/rust-inputs-runner.ps1",
+      "sha256": "842dea50c543e3137f171e604672a94052236df409d7288786f66d0be75d79f1"
+    }
+  ],
+  "builtAt": "2026-11-09T15:23:19.1424690Z",
+  "scope": "hdd-rust-engine-runtime",
+  "supportedScopes": [
+    "hard-foundation-v1",
+    "teacher-quality-v1",
+    "school-quality-v1"
+  ],
+  "dependencies": {
+    "rustManifestDate": "2026-10-05",
+    "rustCommit": "28221559263a3976766cf305940e80e30cf9ba8a",
+    "emscriptenVersion": "6.0.12",
+    "protocVersion": "33.1",
+    "sourceDiffHashNormalization": "git diff --no-ext-diff --binary HEAD; UTF-8; LF; outer whitespace trimmed",
+    "protocWindowsArchiveSha256": "d7a207fb6eec0e4b1b6613be3b7d11905375b6fd1147a071116eb8e9f24ac53b",
+    "repositories": {
+      "emsdk": {
+        "url": "https://github.com/emscripten-core/emsdk.git",
+        "commit": "35ff8a6d150541276abbc6bae512ca90bcfbe220",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "or-tools": {
+        "url": "https://github.com/google/or-tools.git",
+        "commit": "551ad10d94835c99e5e1e684500d3db398c0e345",
+        "patch": "patches/or-tools.patch",
+        "sourceDiffSha256": "029b8998deda70794334a63c76c9b58de5b2f6da3ec2768b9f3d950094019eed"
+      },
+      "protobuf": {
+        "url": "https://github.com/protocolbuffers/protobuf.git",
+        "commit": "a8d85ffbc7158660b4247f732371d1b07780510e",
+        "patch": "or-tools/patches/protobuf-v33.1.patch",
+        "sourceDiffSha256": "fd4fb37a206c84f37dc77ff192a7e39ee23806d264ec6d35630e27e0ba4a5d9c"
+      },
+      "re2": {
+        "url": "https://github.com/google/re2.git",
+        "commit": "0f6c07eae69151e606acb3d9232750c3442dff23",
+        "patch": "or-tools/patches/re2-2025-08-12.patch",
+        "sourceDiffSha256": "5a7fc56c4f5835ffa285ee0c1629c546edb1bdf723c6ddf5d898d081d545aba5"
+      },
+      "eigen": {
+        "url": "https://gitlab.com/libeigen/eigen.git",
+        "commit": "3147391d946bb4b6c68edd901f2add6ac1f31f8c",
+        "patch": "or-tools/patches/eigen3-3.4.0.patch",
+        "sourceDiffSha256": "d8e2c48c04fa401fa016291c7355d7c4929816dd58ebd38ae991b832c4f8c11e"
+      },
+      "zlib": {
+        "url": "https://github.com/madler/zlib.git",
+        "commit": "51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf",
+        "patch": "or-tools/patches/ZLIB-v1.3.1.patch",
+        "sourceDiffSha256": "0fdf0f29bab27e43dde9cdcc720084334ab009dfe195fe52ee65615f25b2af2e"
+      },
+      "bzip2": {
+        "url": "https://gitlab.com/bzip2/bzip2.git",
+        "commit": "66c46b8c9436613fd81bc5d03f63a61933a4dcc3",
+        "patch": "or-tools/patches/bzip2.patch",
+        "sourceDiffSha256": "0cb7826d0ca392eae3ffcb481e9ff6c0107597bbd198b0c580ae0aefe039986e"
+      },
+      "absl": {
+        "url": "https://github.com/abseil/abseil-cpp.git",
+        "commit": "d38452e1ee03523a208362186fd42248ff2609f6",
+        "patch": "or-tools/patches/abseil-cpp-20250814.1.patch",
+        "sourceDiffSha256": "3dd0bc8bf33c45ce5fd2a6fd69fcf6c0f683265f0de5fb0d7c432c82f7849c39"
+      }
+    }
+  },
+  "rustInputSha256": "7206b6a61b080fff247d2c4e37d4afb0c1a6a24d41d333a4c400375690f1ad05"
+}

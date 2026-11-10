@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="tokyo-night">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neden kendi çözücü motorumu yazdım · toikron/hdd-engine</title>
+  <meta name="description" content="Okullarda kullanılan klasik ders dağıtım programlarının neden tıkandığı, sezgisel algoritmalar yerine neden Rust ve OR-Tools CP-SAT tercih ettiğim ve Clean-Room .prg dönüşümünün hikayesi.">
+  <script>
+    (() => {
+      let theme = null;
+      try { theme = localStorage.getItem("theme"); } catch {}
+      if (!theme) theme = "tokyo-night";
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="bar-name" href="/hdd-engine/"><span>toikron/</span>hdd-engine</a>
+      <nav class="bar-links" aria-label="Ana menü">
+        <a href="/hdd-engine/#architecture">Mimari &amp; 35+ Kural</a>
+        <a class="hide-sm" href="/hdd-engine/#measured">Benchmark</a>
+        <a class="hide-sm" href="/hdd-engine/#pilot">3 Pilot Okul</a>
+        <a class="hide-sm" href="/">Toikron Profil</a>
+        <a class="sponsor-button" href="/hdd-engine/#live-demo">Canlı Demo →</a>
+      </nav>
+      <label class="theme">
+        <select class="theme-select" id="theme" aria-label="Tema seçimi">
+          <option value="tokyo-night">Tokyo Night</option>
+          <option value="catppuccin">Catppuccin</option>
+          <option value="flexoki-light">Flexoki Light</option>
+        </select>
+        <span class="caret" aria-hidden="true">▾</span>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <article class="prose">
+      <p class="hero-label">MÜHENDİSLİK NOTLARI · EKOLNİZAM HDD</p>
+      <h1>Neden mevcut algoritmaları silip saf CP-SAT motoruna geçtim</h1>
+
+      <p>
+        Bir okul müdür yardımcısının odasında ders programı hazırlanırken ekrana baktığınızda hep aynı manzarayı görürsünüz. 90'lı yıllardan kalma bir masaüstü programı açıktır. Ekranın altında yerleşmeyi bekleyen ders kartları dizilmiştir. İdareci "Otomatik Dağıt" tuşuna basar, sayaç döner ama son 4-5 ders bir türlü yerleşmez.
+      </p>
+
+      <p>
+        Sorun idarecinin girdiği veride mi, yoksa yazılımın arama yönteminde mi? Klasik yazılımlar (Progmatic ve aSc Timetables) bu soruya yanıt vermez. Çünkü arkada çalışan mekanizma matematiksel bir kanıtlayıcı değildir; dersleri rastgele veya açgözlü (greedy) sırayla yerleştirip sıkıştığında ikili-üçlü takaslar (local swap) deneyen sezgisel bir döngüdür.
+      </p>
+
+      <figure class="shot">
+        <img src="/assets/asc-freeze.png" alt="Aynı okul verisinde aSc Timetables ekranının Yanıt Vermiyor durumuna düşmesi">
+        <figcaption>32 öğretmenli ve 640 ders saatli gerçek okul verisinde kısıtlar daraldığında klasik masaüstü yazılımının (Yanıt Vermiyor) durumuna düşüp ders kartlarını açıkta bırakması.</figcaption>
+      </figure>
+
+      <h2>Sahte ilerleme çubuklarını ve açgözlü döngüleri çöpe atmak</h2>
+
+      <p>
+        EkolNizam HDD'nin ilk prototiplerinde ben de hibrit bir yol denemiştim: Önce hızlı bir sezgisel yerleştiriciyle 640 saatin büyük kısmını dizip kalan boşlukları onarmaya çalışıyordum. Sahadan gelen gerçek okul yedeklerini motora verdiğimde bu yaklaşımın sınırını net gördüm.
+      </p>
+
+      <p>
+        16 şubeli ve 32 öğretmenli bir Fen Lisesinin gerçek Progmatic yedeğinde (<code>Downloads/01</code> veri seti) öğretmenlerin toplam 412 kapalı saati vardı. İdareci bu dosyayı Progmatic'te çözemediği için sırasıyla <code>yedek boş</code> (401 kapalı saat) ve <code>02</code> (369 kapalı saat) klasörlerinde 43 kapalı saati el yordamıyla silmiş, başka bir yedekte ise (<code>Progmatic/05</code>) 27 kapalı saati zorla ezip 4 saatlik dersi silerek 636 saatlik eksik bir tablo çıkarmıştı.
+      </p>
+
+      <p>
+        Aynı veriyi incelediğimde problemin 43 saatlik bir darlık olmadığını fark ettim. Çarşamba günü 2. derste 8 şubenin tamamı ders almak zorundaydı ama o şubelere derse giren öğretmenlerden yalnızca 7 tanesi açıktı. Sekiz sınıfa aynı anda yedi öğretmen yetmez. İdareci hangi 40 saati açarsa açsın, Çarşamba 2. saatteki o sekizinci öğretmeni açmadığı sürece program matematiksel olarak imkânsızdı.
+      </p>
+
+      <p>
+        Bu bulgudan sonra üretim hattındaki bütün açgözlü (greedy), genetik ve yerel arama (local search) kodlarını tamamen sildim. Yerine <strong>Rust (<code>rustc 1.101.0</code>)</strong> ve <strong>Google OR-Tools CP-SAT C++ (<code>hdd-engine.wasm</code>)</strong> tabanlı dört katmanlı yeni bir mimari kurdum:
+      </p>
+
+      <ul class="changes">
+        <li><strong>Milisaniyelik darboğaz kanıtı:</strong> Çözücü aramaya başlamadan önce iki parçalı graf eşleşmesi (Hall teoremi) ve CP-SAT varsayım çekirdeği (<code>sufficient_assumptions_for_infeasibility</code>) çalıştırır. Fen Lisesi verisindeki Çarşamba 2. ders darboğazını <strong>20,6 milisaniyede</strong> yakalayıp ilgili 8 sınıfı ve 7 öğretmeni doğrudan listeler.</li>
+        <li><strong>Kontrollü kurtarma (<code>recovery::run</code>):</strong> Kullanıcıya "Çözülemedi" demek yerine, en az sayıda kapalı saati açarak tam programı kurtaran alternatifleri hesaplar. Aynı okulda 412 kapalı saatin 411'ini koruyup yalnızca <code>teachers-28</code> kaydının Çarşamba 2. saatini açarak 640/640 saati 0 katı ihlalle çözer.</li>
+        <li><strong>Alt sınır kanıtlı kalite aşamaları ve Guided LNS:</strong> İlk geçerli çözüm bulunduktan sonra motor durmaz. Gün dilimi (<code>day-slice</code>) ve sınıf bağlantılı (<code>class-coupled</code>) komşuluklarda <strong>Kempe zinciri</strong> takaslarıyla 68 tur büyük komşuluk araması (Guided LNS) yapar; kısa günleri 11'den 1'e (alt sınır = 1 kanıtlı), pencere hedef aşımını 77'den 18'e indirir.</li>
+        <li><strong>Tarayıcıda Clean-Room <code>.prg</code> ve <code>.roz</code> okuyucu:</strong> Okul idarecisinin eski programdan çıkıp yeni sisteme geçebilmesi için sıfırdan veri girmemesi şarttır. Progmatic'in <code>teacher.prg</code> (7.060 bayt/kayıt) ve <code>common.prg</code> (2.764 bayt/kayıt) dosyalarını doğrudan tarayıcı belleğinde çözen temiz oda ayrıştırıcıyı bu yüzden yazdım.</li>
+      </ul>
+
+      <p>
+        Tüm ölçüm tablolarını, 34 katı kısıt ile 43 kalite metriğinin tam listesini ve 3 pilot okulun (141 öğretmen, 2.513 ders saati) gerçek verisiyle çalışan interaktif demoyu <a href="/hdd-engine/"><strong>ana teknik inceleme sayfasında</strong></a> bulabilirsiniz.
+      </p>
+
+      <h2 id="posts">Geliştirme güncesi (2026)</h2>
+      <ul class="posts">
+        <li><time>24 Tem 2026</time><span>Adana Mesleki ve Teknik Anadolu Lisesi (94 öğretmen, 45 şube, 28 derslik/atölye, 1.593 saat) verisi eski sistemden <code>legacy_migration</code> ile eksiksiz aktarıldı.</span></li>
+        <li><time>18 Ağu 2026</time><span>Konya Ereğli Fen Lisesi (32 öğretmen, 16 şube, 640 saat) saha pilotu tamamlandı; Progmatic <code>.prg</code> ikili dosya ayrıştırıcısı doğrulandı.</span></li>
+        <li><time>02 Eyl 2026</time><span>Orhaniye Ortaokulu (15 öğretmen, 8 şube, 280 saat) üzerinde 6 senaryo denemesiyle yumuşak kısıt ihlalleri 212'den 5'e düşürüldü.</span></li>
+        <li><time>27 Eyl 2026</time><span>Ordu Aybastı Atatürk Ortaokulu'nda <code>.roz</code> (aSc) veri aktarımı ve değişken teneffüs (10 dk / 20 dk) desteği canlı ortamda doğrulandı.</span></li>
+        <li><time>10 Eki 2026</time><span>Tüm eski sezgisel çözücüler kaldırıldı; <code>hdd-engine.wasm</code> (Rust + C++ OR-Tools CP-SAT) tek üretim motoru olarak devreye alındı.</span></li>
+        <li><time>14 Eki 2026</time><span><code>hdd-guided-lns-school-baseline-v1</code> kabul testi: 68 LNS turu ve 48 iyileştirmeyle 640/640 ders saatinde kısa gün alt sınırı (1) kanıtlandı.</span></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>
+    <p><a href="/hdd-engine/">← toikron/hdd-engine ana sayfasına dön</a> · <a href="/">Toikron Profil</a></p>
+  </footer>
+
+  <script type="module">
+    const sel = document.getElementById("theme");
+    const root = document.documentElement;
+    sel.value = root.dataset.theme || "tokyo-night";
+    sel.addEventListener("change", () => {
+      root.classList.add("no-transition");
+      root.dataset.theme = sel.value;
+      try { localStorage.setItem("theme", sel.value); } catch {}
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("no-transition")));
+    });
+  </script>
+</body>
+</html>

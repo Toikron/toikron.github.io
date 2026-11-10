@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="tokyo-night">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toikron · NizamNet, EkolNizam ve Sistem Mühendisliği</title>
+  <meta name="description" content="Toikron - NizamNet ve EkolNizam kurucusu. Rust, C++, WebAssembly ve kısıt programlama (OR-Tools CP-SAT) tabanlı operasyon yazılımları, geliştirici araçları ve açık kaynak projeler.">
+  <meta name="author" content="Toikron">
+  <script>
+    (() => {
+      let theme = null;
+      try { theme = localStorage.getItem("theme"); } catch {}
+      if (!theme) theme = "tokyo-night";
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="bar-name" href="/"><span>toikron/</span>index</a>
+      <nav class="bar-links" aria-label="Ana menü">
+        <a href="/hdd-engine/">hdd-engine (CP-SAT)</a>
+        <a class="hide-sm" href="/hdd-engine/#measured">Benchmark</a>
+        <a class="hide-sm" href="/hdd-engine/#pilot">Pilot Okullar</a>
+        <a class="hide-sm" href="/hdd-engine/neden/">Mühendislik Notları</a>
+        <a class="sponsor-button" href="/hdd-engine/#live-demo">Canlı Demo →</a>
+      </nav>
+      <label class="theme">
+        <select class="theme-select" id="theme" aria-label="Tema seçimi">
+          <option value="tokyo-night">Tokyo Night</option>
+          <option value="catppuccin">Catppuccin</option>
+          <option value="flexoki-light">Flexoki Light</option>
+        </select>
+        <span class="caret" aria-hidden="true">▾</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <div class="profile-header">
+      <p class="eyebrow">TOIKRON / NIZAMNET</p>
+      <h1>Toikron</h1>
+      <p class="role"><a href="https://nizamnet.com">NizamNet</a> ve <a href="https://ekolnizam.com">EkolNizam</a> kurucusu · Sistem ve Algoritma Mimarı</p>
+      <p class="lead">
+        Rust, C++ ve WebAssembly ile tarayıcı içinde çalışan kısıt optimizasyon motorları, masaüstü arayüz araçları ve eğitim kurumları için operasyon yazılımları geliştiriyorum.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:toikron.dev@gmail.com">E-posta (toikron.dev@gmail.com)</a>
+        <a href="https://github.com/Toikron">GitHub (@Toikron)</a>
+        <a href="/hdd-engine/">toikron/hdd-engine</a>
+        <a href="https://ekolnizam.com">ekolnizam.com</a>
+        <a href="https://nizamnet.com">nizamnet.com</a>
+      </div>
+    </div>
+
+    <h2 id="hdd-engine">
+      <span><a href="/hdd-engine/">toikron/hdd-engine (EkolNizam HDD Çekirdeği)</a></span>
+      <span class="tag">Rust + OR-Tools CP-SAT WASM</span>
+    </h2>
+    <p>
+      Şu anki ana odağım <a href="/hdd-engine/"><strong>hdd-engine</strong></a>: Türkiye'deki okulların haftalık ders dağıtımı, nöbet ve derslik atama problemini çözmek için <strong>Rust</strong> ve <strong>Google OR-Tools CP-SAT (C++)</strong> kullanarak geliştirdiğim, doğrudan tarayıcı içindeki bir Web Worker'da çalışan 10,16 MB'lık WebAssembly çizelgeleme motoru.
+    </p>
+    <p>
+      Klasik masaüstü ders programı yazılımları (Progmatic, aSc Timetables) rastgele yer değiştirme sezgileriyle çalışır; kurallar daraldığında saatlerce dönüp kilitlenir veya öğretmenlerin kapalı saatlerini ezer. <code>hdd-engine</code> ise <strong>34 katı kısıt ailesini (<code>ConstraintKind</code>)</strong> ve <strong>43 kalite metriğini (<code>QualityMetric</code>)</strong> deterministik olarak modeller. Çözüm imkânsız olduğunda Hall eşleşme teoremi ve CP-SAT varsayım çekirdeğiyle <strong>20,6 milisaniyede</strong> darboğazın tam saatini ve şubesini kanıtlar; ardından en az müdahaleyle (örneğin 412 kapalı saatin 411'ini koruyup yalnızca 1 hücreyi açarak) <strong>640/640 ders saatini 0 katı ihlalle</strong> yerleştirir.
+    </p>
+    <p>
+      Ayrıca okulların eski <strong>Progmatic (<code>.prg</code>)</strong> ve <strong>aSc (<code>.roz</code> / XML)</strong> dosyalarını bayt düzeyinde okuyan temiz oda (clean-room) ikili ayrıştırıcı sayesinde kurumlar yıllarca biriktirdikleri verileri tek tıkla yeni sisteme taşır. Motor, <strong>3 pilot okulda 141 öğretmen, 69 şube ve 2.513 haftalık ders saati</strong> üzerinde doğrulandı.
+    </p>
+    <p>
+      <a href="/hdd-engine/"><strong>Teknik mimariyi, Progmatic benchmarklarını, 35+ kural tablosunu ve canlı demoyu incele →</strong></a>
+    </p>
+
+    <h2 id="ekolnizam-ekosistem">
+      <span>EkolNizam Ürün Ailesi (EOS, YRT, EKP ve LITE)</span>
+      <span class="tag">SolidJS · Drizzle · Turso · WASM</span>
+    </h2>
+    <p>
+      <code>hdd-engine</code> etrafında kurduğum ortak veri ve yetki altyapısı üzerinde bir okulun ihtiyaç duyduğu diğer operasyonel modülleri geliştiriyorum. <strong>EkolNizam EOS</strong>, tarayıcı içi görüntü işleme (OpenCV/WASM) ile ek optik okuyucu cihaz gerektirmeden telefon veya tarayıcı çıktısından sınav kağıtlarını okur. <strong>EkolNizam YRT</strong> pansiyon ve belletmen nöbetlerini adalet skoruyla dağıtırken, <strong>EkolNizam EKP</strong> aylık öğretmen ders yüklerini, nöbetleri ve 10'a 1 hazırlık kurallarını hesaplayıp doğrudan Maliye Bakanlığı KBS formatında Excel çıktısı üretir.
+    </p>
+    <p>
+      Okulların günlük evrak yükünü azaltmak için hazırladığım <strong>42 araçlık LITE paketi</strong> ve doğrudan e-Okul ekranlarıyla konuşan <strong>Chrome eklentisi</strong> de aynı çatı altında çalışır.
+    </p>
+
+    <h2 id="cpsat-js">
+      <span><a href="https://github.com/Toikron/cpsat-js">toikron/cpsat-js ve WebAssembly Çözücü Köprüsü</a></span>
+      <span class="tag">C++ · Emscripten · FFI</span>
+    </h2>
+    <p>
+      Google OR-Tools CP-SAT çözücüsünü tarayıcıların 2 GiB WebAssembly bellek sınırları içinde kararlı çalıştırmak için <a href="https://github.com/Toikron/cpsat-js">cpsat-js</a> ve özel <code>cpsat-rs</code> FFI köprüsü üzerinde çalışıyorum. Büyük okul modellerinde protobuf kopyalarını sınırlayan bellek korumaları (<code>allows_build</code> / <code>allows_query</code>), atomik iptal bayrakları (<code>SharedArrayBuffer</code> / <code>Atomics</code>) ve canlı aday yayınlama (incumbent callback) mekanizmaları bu katmanda çalışır.
+    </p>
+
+    <h2 id="imdesignmanager">
+      <span><a href="https://github.com/Toikron/ImDesignManager">ImDesignManager</a></span>
+      <span class="tag">C++ · Dear ImGui · Açık Kaynak</span>
+    </h2>
+    <p>
+      Dear ImGui ve <code>ImDrawList</code> üzerine inşa ettiğim gerçek zamanlı arayüz oluşturucu ve tasarım yöneticisi. Masaüstü araçları ve oyun motoru arayüzleri geliştirirken bileşen yerleşimlerini, etkileşim durumlarını ve animasyon eğrilerini anlık görsel geri bildirimle tasarlamak için açık kaynak olarak yayınladım. Kaynak koduna <a href="https://github.com/Toikron/ImDesignManager">GitHub üzerinden</a> ulaşabilirsiniz.
+    </p>
+
+    <h2 id="dbvisualizer">
+      <span><a href="https://github.com/Toikron/DBVisualizer-for-Sqlite">DBVisualizer-for-Sqlite</a></span>
+      <span class="tag">SQLite · Tek Dosya · Açık Kaynak</span>
+    </h2>
+    <p>
+      Yerel <code>.db</code> ve SQLite dosyalarını sunucu veya kurulum gerektirmeden doğrudan tarayıcıda açıp tablo şemalarını, indeksleri ve satır verilerini incelemeye yarayan tek dosyalık (HTML/CSS/JS) hafif veri tabanı görselleştiricisi. Yerel LibSQL ve SQLite tabanlı projelerde hızlı hata ayıklamak için geliştirdim (<a href="https://github.com/Toikron/DBVisualizer-for-Sqlite">GitHub deposu</a>).
+    </p>
+
+    <h2 id="fizik-ve-3d">
+      <span>Rust Fizik Çözücüleri ve Blender Araçları (AVBD &amp; EdgeWeaver)</span>
+      <span class="tag">Rust · 3D · Simülasyon</span>
+    </h2>
+    <p>
+      Kısıt çözme (constraint solving) matematiğini yalnızca çizelgelemede değil, gerçek zamanlı 3B fizik simülasyonlarında da kullanıyorum. <code>avbd_rs</code> (Augmented Vertex Block Descent) ile Rust üzerinde katı cisim ve etkileşim çözücüleri denerken, <code>EdgeWeaver</code> ile Blender içinde topoloji ve kenar akışı otomasyonu sağlayan eklentiler geliştiriyorum.
+    </p>
+
+    <h2 id="yazilar">
+      <span>Teknik İncelemeler ve Mühendislik Kayıtları</span>
+    </h2>
+    <ul class="posts">
+      <li>
+        <time>Kas 2026</time>
+        <span><a href="/hdd-engine/"><strong>toikron/hdd-engine:</strong> 35+ kuralı değerlendiren CP-SAT + Guided LNS motoru, Progmatic karşılaştırması ve 3 pilot okul verisi</a></span>
+      </li>
+      <li>
+        <time>Eki 2026</time>
+        <span><a href="/hdd-engine/neden/"><strong>Neden kendi çözücü motorumu yazdım:</strong> 90'lardan kalma okul yazılımlarının kilitlenme sebebi ve Clean-Room <code>.prg</code> dönüşümü</a></span>
+      </li>
+      <li>
+        <time>Eyl 2026</time>
+        <span><a href="/hdd-engine/#diagnosis"><strong>20,6 milisaniyede darboğaz kanıtı:</strong> 8 sınıf ve 7 öğretmen çelişkisinde Hall eşleşmesi ve kontrollü kurtarma</a></span>
+      </li>
+      <li>
+        <time>Ağu 2026</time>
+        <span><a href="/hdd-engine/#prg-binary"><strong>Progmatic ikili dosya şeması:</strong> <code>teacher.prg</code> (7.060 B) ve <code>common.prg</code> (2.764 B) kayıtlarını tarayıcıda çözmek</a></span>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>Toikron (<a href="mailto:toikron.dev@gmail.com">toikron.dev@gmail.com</a>) · <a href="https://github.com/Toikron">GitHub</a> · <a href="https://ekolnizam.com">ekolnizam.com</a> · <a href="https://nizamnet.com">nizamnet.com</a></p>
+    <p class="more-projects">Projeler: <a href="/hdd-engine/">hdd-engine</a> · <a href="/hdd-engine/neden/">Mühendislik Notları</a> · <a href="https://github.com/Toikron/ImDesignManager">ImDesignManager</a> · <a href="https://github.com/Toikron/DBVisualizer-for-Sqlite">DBVisualizer-for-Sqlite</a> · <a href="https://github.com/Toikron/cpsat-js">cpsat-js</a></p>
+  </footer>
+
+  <script type="module">
+    const sel = document.getElementById("theme");
+    const root = document.documentElement;
+    sel.value = root.dataset.theme || "tokyo-night";
+    sel.addEventListener("change", () => {
+      root.classList.add("no-transition");
+      root.dataset.theme = sel.value;
+      try { localStorage.setItem("theme", sel.value); } catch {}
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("no-transition")));
+    });
+  </script>
+</body>
+</html>
